@@ -1,0 +1,53 @@
+{% extends "layout.nunjucks" %}
+
+{% block content  %}
+
+  <h2>{{ title }}</h2>
+
+  <section id="article-details">
+
+  {% if article.image_filename %}
+    <img src="{{ path }}uploads/{{ article.image_filename }}" alt="{{ article.description }}">
+  {% else %}
+    <p>Keine Bilddatei.</p>
+  {% endif %}
+
+  <h3>x {{ article.title }}</h3>
+
+    <dl>
+      <dt>Beschrieb</dt>
+      <dd>{{ article.description }}</dd>
+      <dt>Einstiegspreis</dt>
+      <dd>CHF {{ article.base_price }}</dd>
+      <dt>Sofort kaufen</dt>
+      <dd>CHF {{ article.instant_buy_price }}</dd>
+      <dt>Eingestellt am</dt>
+      <dd>{{ article.date_formatted}}</dd>
+      <dt>Ablaufdatum</dt>
+      <dd>{{ article.expiration_formatted }}</dd>
+      <dt>Status</dt>
+      <dd>{{ "Verkauft" if article.sold else "Zu verkaufen" }}</dd>
+      <dt>ID</dt>
+      <dd>{{ article._id}}</dd>
+    </dl>
+
+    <h3>Gebote</h3>
+
+    {% if bid_list | length %}
+    <dl id="article-bids">
+      {% for bid in bid_list %}
+      <dt>CHF <a href="{{ bid.url }}">{{ bid.amount }}</a></dt>
+      <dd>von <a href="{{ bid.user.url }}">{{ bid.user.name }}</a></dd>
+      {% endfor %}
+    </dl>
+    {% else %}
+    <p>Noch keine Gebote.</p>
+    {% endif %}
+    
+    <h3>Administration</h3>
+
+    <p><a href="{{ article.url }}/update">aktualisieren</a></p>
+    <p><a href="{{ article.url }}/delete">löschen</a></p>
+  </section>
+
+{% endblock %}

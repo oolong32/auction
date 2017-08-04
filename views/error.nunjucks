@@ -1,0 +1,6 @@
+{% extends "layout.nunjucks" %}
+
+{% block content %}
+  <h2>Oops</h2>
+  <p>{{error}}</p>
+{% endblock %}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de">
+<!--
+  Design & Coding: Josef Renner, josefrenner.ch
+  Built with
+  - Node/Express
+  - MongoDB
+  - Sass/Nunjucks
+  etc.
+  No Frameworks, no Post-Its
+-->
+<head>
+  <meta charset="UTF-8">
+  <title>Françoise Nussbaumer Bild-Auktion – {{ title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+  {#
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  #}
+  <link rel="stylesheet" href="/reset.css">
+  <link rel="stylesheet" href="/fonts.css">
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+  <header>
+    <h1><a href="/">Françoise Nussbaumer — Auktionen</a></h1>
+  </header>
+
+  <main>
+  {% set path = "http://localhost:3000/" %}
+  {% block content %}
+    <p>if you see this, there’s a mistake in a template.</p>
+  {% endblock %}
+  </main>
+
+  <nav>
+    <section>
+      <h2 id="nav-users">Bieter</h2>
+      <ul>
+        <li><a href="/user">Auflistung</a></li>
+        {# <li><a href="/user/create">Neuen Bieter erstellen</a></li> #}
+      </ul>
+    </section>
+
+    <section id="nav-articles">
+      <h2>Bilder</h2>
+      <ul>
+        <li><a href="/article">Auflistung</a></li>
+        <li><a href="/article/create">Neues Bild versteigern</a></li>
+        <li><a href="/reset-article">Zurücksetzen</a></li>
+      </ul>
+    </section>
+
+    <section id="nav-bids">
+      <h2>Gebote</h2>
+      <ul>
+        <li><a href="/bid">Auflistung</a></li>
+        {# <li><a href="/bid/create">Neues Gebot abgeben</a></li> #}
+      </ul>
+    </section>
+
+  </nav>
+
+  <footer>
+    <p>© Françoise Nussbaumer – <a href="mailto:admin@francoisenussbaumer.ch">Kontakt</a></p>
+  </footer>
+  {#
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  #}
+</body>
+</html>

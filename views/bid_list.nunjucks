@@ -1,0 +1,16 @@
+{% extends "layout.nunjucks" %}
+
+{% block content %}
+  <h2>{{ title }}</h2>
+  {% if bid_list | length %}
+    <dl>
+    {% for bid in bid_list %}
+      <dt>CHF <a href="{{ bid.url }}">{{ bid.amount }}</a></dt>
+      <dd>Von <a href="{{ bid.user.url }}">{{ bid.user.name }}</a><br>für <em><a href="{{ bid.article.url }}">{{ bid.article.title }}</a></em></dd>
+    {% endfor %}
+    </dl>
+  {% else %}
+    <p>Keine Daten gefunden. Entweder sind keine Gebote in der Datenbank oder es gibt einen Fehler beim Abfragen der Datenbank.</p>
+  {% endif %}
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "layout.nunjucks" %}
+
+{% block content %}
+  <h2>{{ title }}</h2>
+  {% if article_list | length %}
+    <ul>
+    {% for article in article_list %}
+      <li><a href="{{ article.url }}">{{ article.title }}</a></li>
+    {% endfor %}
+    </ul>
+  {% else %}
+    <p>Keine Daten gefunden. Entweder sind keine Bilder in der Datenbank oder es gibt einen Fehler beim Abfragen der Datenbank.</p>
+  {% endif %}
+
+{% endblock %}

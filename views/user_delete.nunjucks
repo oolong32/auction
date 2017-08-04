@@ -1,0 +1,30 @@
+{% extends "layout.nunjucks" %}
+
+{% block content %}
+  <h2>{{ title }}</h2>
+  <p>{{ user.name }}</p>
+  <p>{{ user.email }}</p>
+
+  {% if user_bids.length %}
+  <p><em>Diese Gebote sollten gelöscht werden, bevor dieser Benutzer gelöscht wird.</em></p>
+  <h3>{{ user.first_name}}s Gebote</h3>
+  <dl>
+    {% for bid in user_bids %}
+    <dt><a href="{{ bid.url }}">CHF {{ bid.amount }}</a></dt>
+    <dd>Geboten für {{ bid.article }}.</dd>
+    {% endfor %}
+  </dl>
+  {% else %}
+    <p>Soll diese Benutzerin gelöscht werden?</p>
+    <form method="POST" action="">
+      <input
+        type="hidden"
+        id="userid"
+        required="true"
+        name="userid"
+        value="{{ user._id }}">
+      <button type="submit">Delete</button>
+    </form>
+  {% endif %}
+{% endblock %}
+

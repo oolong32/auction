@@ -1,0 +1,14 @@
+{% extends "layout.nunjucks" %}
+
+{% block content %}
+  <h2>{{ title}}</h2>
+  <ul>
+  {% if user_list %}
+    {% for user in user_list %}
+      <li><a href="{{ user.url }}">{{ user.name }}</a></li>
+    {% endfor %}
+  {% else %}
+    <p>Keine Benutzer gefunden.</p>
+  {% endif %}
+  </ul>
+{% endblock %}

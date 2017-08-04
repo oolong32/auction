@@ -1,0 +1,48 @@
+{% extends "layout.nunjucks" %}
+
+{% block content %}
+  <h2>{{ title }}</h2>
+  <h3>{{ article.title }}</h3>
+
+  {% if article_bids.length %}
+    <p><em>Die folgenden Gebote sollten gelöscht werden, bevor dieses Bild gelöscht wird.</em></p>
+    <h4>Gebote</h4>
+    <dl>
+    {% for bid in article_bids %}
+      <dt><a href="{{ bid.url }}">CHF {{ bid.amount }}</a></dt>
+      <dd>Geboten von <a href="{{ bid.user.url }}">{{ bid.user.name }}</a>.</dd>
+    {% endfor %}
+    </dl>
+  {% else %}
+    <p><em>Soll dieses Bild gelöscht werden?</em></p>
+    <section id="article-details">
+      {% if article.image_filename %}
+      <img src="{{ path }}uploads/{{ article.image_filename }}" alt="{{ article.description }}">
+      {% else %}
+      <p>Keine Bilddatei.</p>
+      {% endif %}
+      <dl>
+        <dt>Beschrieb</dt>
+        <dd>{{ article.description }}</dd>
+        <dt>Einstiegspreis</dt>
+        <dd>CHF {{ article.base_price }}</dd>
+        <dt>Sofort kaufen</dt>
+        <dd>CHF {{ article.instant_buy_price }}</dd>
+        <dt>Eingestellt am</dt>
+        <dd>{{ article.date_formatted}}</dd>
+        <dt>ID</dt>
+        <dd>{{ article._id}}</dd>
+      </dl>
+    </section>
+    <form method="POST" action="">
+      <input
+      type="hidden"
+      id="articleid"
+      required="true"
+      name="articleid"
+      value="{{ article._id }}">
+      <button type="submit">Delete</button>
+    </form>
+  {% endif %}
+{% endblock %}
+

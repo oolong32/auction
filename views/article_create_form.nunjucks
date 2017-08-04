@@ -1,0 +1,71 @@
+{% extends "layout.nunjucks" %}
+
+{% block content %}
+  <h2>{{ title }}</h2>
+  {% if article.image_filename %}
+  <img src="{{ path }}uploads/{{ article.image_filename }}" alt="{{ article.description }}">
+  {% endif %}
+
+ {# was macht das hier??? <p>{{ article.description }}</p>
+  <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+  <p>Fucking CSRF Token: {{ csrfToken }}</p> #}
+  
+  <form method="POST" action="" enctype="multipart/form-data">
+
+  <label for="title">Titel</label>
+  <input
+  id="title"
+  type="text"
+  placeholder="Name des Bildes"
+  name="title"
+  required="true"
+  value={% if article == undefined %}""{% else %}"{{ article.title }}"{% endif %}>
+
+  <label for="description">Beschreibung</label>
+  <input
+  id="description"
+  type="textarea"
+  placeholder="Beschreibung"
+  name="description"
+  required="true"
+  value={% if article == undefined %}""{% else %}"{{ article.description }}"{% endif %}>
+
+  <label for="base_price">Einstiegspreis</label>
+  <input
+  id="base_price"
+  type="number"
+  placeholder="300"
+  name="base_price"
+  required="true"
+  value={% if article == undefined %}""{% else %}"{{ article.base_price }}"{% endif %}>
+
+  <label for="instant_buy_price">Sofort-Kaufpreis</label>
+  <input
+  id="instant_buy_price"
+  type="number"
+  placeholder="750"
+  name="instant_buy_price"
+  required="true"
+  value={% if article == undefined %}""{% else %}"{{ article.instant_buy_price }}"{% endif %}>
+
+  <label for="image">Bilddatei</label>
+  <input
+  id="image"
+  type="file"
+  name="image"
+  {% if not article.image_filename %}
+    required="true"
+  {% endif %}
+  value="">
+
+  <input type="submit" value="OK">
+  </form>
+
+  {% if errors %}
+                                                                                                                                                                                                       <ul>
+                                                                                                                                                                                                       {% for error in errors %}
+                                                                                                                                                                                                       <li>{{ error.msg }}</li>
+                                                                                                                                                                                                       {% endfor %}
+                                                                                                                                                                                                       </ul>
+                                                                                                                                                                                                     {% endif %}
+{% endblock %}

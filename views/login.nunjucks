@@ -1,0 +1,33 @@
+{% extends "layout.nunjucks" %}
+
+{% block content %}
+
+  <section id="login">
+  <h2>Anmelden</h2>
+
+  {% if error %}
+  <p class="error-message"><em>{{ error }}</em></p>
+  {% endif %}
+    <form method="POST">
+      <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+      <label for="email">E-Mail</label>
+      <input type="email"
+        id="email"
+        name="email"
+        required="true">
+
+      <label for="password">Passwort</label>
+      <input type="password"
+        id="password"
+        name="password"
+        required="true">
+
+      <input type="submit" value="anmelden" class="box-button">
+    </form>
+  </section>
+  <section id="register">
+    <h2>Noch kein Benutzerkonto?</h2>
+    <p class="box-button">Registrieren</p>
+  </section>
+
+{% endblock %}

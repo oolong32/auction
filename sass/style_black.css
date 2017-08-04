@@ -1,0 +1,292 @@
+// $font: -apple-system, BlinkMacSystemFont;
+$font: sans-serif;
+$basecol: random(360);
+$col1: HSL($basecol, 100%, 50%);
+$col2: HSL(($basecol+40)%360, 100%, 55%);
+$col3: HSL(($basecol+80)%360, 100%, 60%);
+$col4: HSL(($basecol+120)%360, 100%, 65%);
+$col5: HSL(($basecol+160)%360, 100%, 70%);
+$bg: #010101;
+
+/* Meyer’s Reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* no mo’ reset */
+
+body {
+	font-family: 'InputMonoNarrow-Thin', $font;
+	font-size: 14px;
+	line-height: 1.3;
+	color: $col1;
+	background: $bg;
+        /* LAYOUT */
+        height: 92vh;
+        padding: 1em 0 0 2em;
+        /* FLEX */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+}
+
+header {
+	margin: 1em 0;
+}
+
+nav {
+	margin-bottom: 2em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+}
+
+h1 { font-size: 2em;}
+h2 { font-size: 1.75em;}
+h3 { font-size: 1.5em;}
+h4 { font-size: 1.25em;}
+h5 { font-size: 1em;}
+h6 { font-size: 1em;}
+
+em { font-style: italic; font-weight: 300; }
+strong { font-weight: bold; }
+
+nav section {
+	margin: 0;
+}
+
+nav section h2 {
+	font-size: 1em;
+	font-weight: normal;
+	margin: 0;
+}
+
+
+main h2 {
+	margin: 0 0 0.25em;
+}
+
+nav a { text-decoration: none;}
+nav a:link,
+nav a:visited {
+	color: $col2;
+}
+
+nav a:hover,
+nav a:active,
+nav a:focus {
+	color: $col5;
+}
+
+p {
+	margin: 0;
+}
+
+p#instant-buy {
+	border: 1px solid $col4;
+	padding: 6px 5px;
+	display: inline-block;
+	box-shadow: 5px 3px 0 $col4;
+	margin: 0.5em 0 0.75em;
+}
+
+ul {
+	list-style: none;
+	margin: 0; padding: 0;
+}
+
+dl dt {
+	color: $col4;
+}
+
+dl dd {
+	margin: 0 0 0.3em 0;
+}
+
+li::before {
+	content: "– ";
+}
+
+section {
+	margin-bottom: 1em;
+}
+
+section#article-details,
+section#bids {
+	display: grid;
+	grid-column-gap: 10px;
+	grid-row-gap: 0;
+	grid-template-columns: [left] auto [right] 450px;
+	align-items: start;
+}
+
+section#article-details img {
+	grid-row: 1 / span 6;
+}
+
+section h3 {
+	grid-column: 2;
+	border-top: 3px solid $col1;
+	margin-bottom: 0;
+}
+
+section#article-details p {
+	grid-column: 2;
+}
+
+section#article-details dl {
+	grid-column: 2;
+	align-self: start;
+
+	display: grid;
+	grid-template-columns: [sub-left] auto [sub-right] 300px;
+	grid-column-gap: 10px;
+	grid-row-gap: 0;
+	align-content: start;
+
+	margin-bottom: 2em;
+}
+
+section#article-details dt {
+	grid-column: 1;
+	text-align: right;
+}
+
+section#article-details dd {
+	margin: 0;
+	grid-column: 2;
+}
+
+section#bids #bid-list {
+	grid-colum: 1;
+}
+
+section#bids #bid {
+	grid-colum: 2;
+}
+
+img {
+	max-width: 300px;
+	height: auto;
+	grid-column: 1;
+}
+
+#article-details p {
+	grid-area: "right";
+}
+
+h1 a { text-decoration: none; color: fuchsia;}
+
+a { text-decoration: none; }
+a:link, a:visited {
+	color: $col3;
+}
+
+a:hover, a:focus, a:active {
+	color: $col5;
+}
+
+form {
+	display: grid;
+	grid-template-columns: [left] auto [right] 300px;
+	grid-gap: 5px;
+}
+
+form input[type="submit"],
+form input[type="text"],
+form input[type="textarea"] {
+	font-family: inherit; 
+}
+
+form label {
+	grid-column: 1;
+	text-align: right;
+}
+
+form button,
+form input {
+	grid-column: 2;
+}
+
+form input[type="submit"] {
+	justify-self: start;
+	color: $col3;
+	background: $col1;
+	border: 4px solid $col1;
+	border-radius: 10px;
+	padding: 4px 6px 2px;
+	font-weight: bold;
+	letter-spacing: 2px;
+}
+
+/* GRID FTW */
+@supports ( display: grid ) {
+	body {
+		display: grid;
+		grid-template-columns: 1fr minmax(600px, 800px) 1fr;
+	}
+
+	header,
+	nav,
+	main,
+	footer {
+		grid-column: 2;
+	}
+
+	nav {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-gap: 20px;
+	}
+
+	section#register-login {
+		display: grid;
+		grid-template-columns: [left] auto [right] 450px;
+	}
+	section#register-login h3,
+	section#register-login p {
+		grid-column: 2;
+	}
+}

@@ -1,0 +1,33 @@
+{% extends "layout.nunjucks" %}
+
+{% block content %}
+  <h2>{{ title }}</h2>
+
+  <form method="POST" action="">
+    <label for="first_name">Vorname</label>
+    <input
+      id="first_name"
+      type="text"
+      placeholder=""
+      name="first_name"
+      required="true"
+      value={% if user == undefined %}""{% else %}{{ user.first_name }}{% endif %}>
+    <label for="last_name">Nachname</label>
+    <input
+      id="last_name"
+      type="text"
+      placeholder=""
+      name="last_name"
+      required="true"
+      value={% if user == undefined %}""{% else %}{{ user.last_name }}{% endif %}>
+    <label for="email">E-Mail Adresse</label>
+    <input
+      id="email"
+      type="text"
+      placeholder="email"
+      name="email"
+      required="true"
+      value={% if user == undefined %}""{% else %}{{ user.email }}{% endif %}>
+    <button type="submit">Registrieren</button>
+  </form>
+{% endblock %}
