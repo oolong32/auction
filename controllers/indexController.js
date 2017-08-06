@@ -28,6 +28,9 @@ exports.index = function(req, res) {
         .exec(callback);
     },
     function(article, callback) {
+      if (!id) {
+        res.render('index', { title: 'Keine Auktion', article: null, bids: null, csrfToken: req.csrfToken() });
+      }
       var id = article[0]._id;
       Bid.find({ 'article': id }).populate('user').sort({ 'amount': -1 }).exec(function(err, bids) {
         if (err) { console.error('Trubba not, bids defunct: ' + err); }
