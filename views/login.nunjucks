@@ -27,7 +27,7 @@
   </section>
   <section id="register">
     <h2>Noch kein Benutzerkonto?</h2>
-    <p class="box-button">Registrieren</p>
+    <p class="box-button"><a href="/register">Registrieren</a></p>
   </section>
 
 {% endblock %}

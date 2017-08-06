@@ -7,7 +7,7 @@
   <section id="article-details">
 
   {% if article.image_filename %}
-    <img src="{{ path }}uploads/{{ article.image_filename }}" alt="{{ article.description }}">
+    <img src="{{ path }}/uploads/{{ article.image_filename }}" alt="{{ article.description }}">
   {% else %}
     <p>Keine Bilddatei.</p>
   {% endif %}
