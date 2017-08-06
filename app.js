@@ -17,12 +17,12 @@ var app = express();
 //Set up mongoose connection
 // var mongoDB = 'mongodb://localhost:27017';
 // dokku mongo link
-var mongoDB = 'mongodb://fubar:4dc7b92834830c939e8cf5a955875394@dokku-mongo-fubar:27017/fubar';
+var mongoDB = process.env.MONGODB_URI || 'mongodb://fubar:4dc7b92834830c939e8cf5a955875394@dokku-mongo-fubar:27017/fubar';
 mongoose.connect(mongoDB);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-var listen = ['::ffff:127.0.0.1', 3000];
+var listen = ['::ffff:127.0.0.1', 5000];
 
 // app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'nunjucks');
