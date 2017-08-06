@@ -20,7 +20,7 @@
     {# <h2>{{ title }}</h2> #}
 
     <section id="article-details">
-      <img src="{{ path }}uploads/{{ article.image_filename }}" alt="{{ article.description }}">
+      <img src="{{ path }}/uploads/{{ article.image_filename }}" alt="{{ article.description }}">
       <h2>{{ article.title }}</h2>
       <p id="description">{{ article.description }}</p>
       <dl>

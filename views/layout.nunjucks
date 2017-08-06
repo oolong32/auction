@@ -9,6 +9,8 @@
   etc.
   No Frameworks, no Post-Its
 -->
+{# set path = "http://localhost:3000/" #}
+{% set path = "." %}
 <head>
   <meta charset="UTF-8">
   <title>Françoise Nussbaumer Bild-Auktion – {{ title }}</title>
@@ -17,9 +19,9 @@
   {#
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   #}
-  <link rel="stylesheet" href="/reset.css">
-  <link rel="stylesheet" href="/fonts.css">
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="{{ path }}/reset.css">
+  <link rel="stylesheet" href="{{ path }}/fonts.css">
+  <link rel="stylesheet" href="{{ path }}/style.css">
 </head>
 
 <body>
@@ -28,7 +30,6 @@
   </header>
 
   <main>
-  {% set path = "http://localhost:3000/" %}
   {% block content %}
     <p>if you see this, there’s a mistake in a template.</p>
   {% endblock %}
