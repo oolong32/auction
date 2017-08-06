@@ -28,7 +28,7 @@ exports.index = function(req, res) {
         .exec(callback);
     },
     function(article, callback) {
-      if (!id) {
+      if (!article[0]) {
         res.render('index', { title: 'Keine Auktion', article: null, bids: null, csrfToken: req.csrfToken() });
       }
       var id = article[0]._id;
