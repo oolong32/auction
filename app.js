@@ -22,7 +22,8 @@ mongoose.connect(mongoDB);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-var listen = ['::ffff:127.0.0.1', 5000];
+var port = process.env.PORT || 3000;
+var listen = ['::ffff:127.0.0.1', port];
 
 // app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'nunjucks');
@@ -104,7 +105,8 @@ app.use(function(err, req, res, next) {
   res.render('error.nunjucks');
 });
 
-var server = app.listen(listen[1], listen[0]);
+var server = app.listen(listen[1], listen[0]); // läuft das mit dokku?
+// var server = app.listen(port);
 
 console.log('server started on port %s', listen[1]);
 
