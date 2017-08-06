@@ -43,7 +43,6 @@
         <dd><a href="{{ article.url }}">{{ article._id}}</a></dd>
         #}
       </dl>
-      </dl>
     </section>
 
     <section id="bids">
