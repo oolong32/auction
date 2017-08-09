@@ -13,8 +13,8 @@ var transporter = nodemailer.createTransport({
   port: 587,
   secure: false, // secure:true for port 465, secure:false for port 587
   auth: {
-    user: 'test@typo-summer.ch',
-    pass: '>D[cZek8x(cpLnR'
+    user: 'test@typo-summer.ch', // <----------------===============/////////////=?============ ÄNDERN !!!!!!!!!!!!!!!!!!!
+    pass: '>D[cZek8x(cpLnR'      // <----------------===============/////////////=?============ ÄNDERN !!!!!!!!!!!!!!!!!!!
   }
 });
 
@@ -23,7 +23,7 @@ exports.index = function(req, res) {
   async.waterfall([
     function(callback) {
       Article.find({})
-        .sort({ 'createdAt': -1 })
+        .sort({ 'createdAt': -1 }) // neuster Eintrag
         .limit(1)
         .exec(callback);
     },
@@ -41,7 +41,7 @@ exports.index = function(req, res) {
     }
   ],
     function(err, results) {
-      if (err) {console.error('Problem querying Database:', err);}
+      if (err) { console.error('Problem querying Database:', err); }
 
       var article = results[0];
       var highest_bid = results[1][0];
@@ -59,10 +59,10 @@ exports.index = function(req, res) {
           Article.findByIdAndUpdate(article._id, {$set: {active: false, sold: false}}, {new: true}, function(err, updated_article) {
             if (err) {console.log(err);}
             // send confirmation mail to seller
-            var buyer_mail = 'josef.renner@gmail.com'; // <---- ändern ----- !!!!!!!!!!!!!!!!!!!
+            var seller_mail = 'josef.renner@gmail.com'; // <---- ändern ----- !!!!!!!!!!!!!!!!!!!
             var mailOptions = {
-              from: '"Buzi Bau" <test@typo-summer.ch>', // sender address
-              to: buyer_mail, // list of receivers
+              from: '"Françoise Nussbaumer" <info@francoisenussbaumer.ch>', // Absender
+              to: seller_mail,
               subject: 'Nicht versteigert: ' + updated_article.title, // Subject
               text: 'Es gab keine Gebote für das Bild «' + updated_article.title + '». Die Auktion ging am ' + updated_article.expiration_formatted + 'zu Ende.' // plain text body
             }; 
@@ -77,7 +77,12 @@ exports.index = function(req, res) {
             return;
           });
         } else { // there are bids, proceed
-          // update article: sold, inactive
+          //
+          // Zu welchem Zeitpunkt passiert dies?
+          // Artikel ist nicht mehr aktiv weil Zeit abgelaufen, es gibt mindestens ein Gebot
+          // Die Index-Seite wurde aufgerufen.
+          //
+          // Update article: sold, inactive
           Article.findByIdAndUpdate(article._id, {$set: {active: false, sold: true}}, {new: true}, function(err, updated_article) {
             if (err) {console.log(err);}
             console.log('updated article:');
@@ -85,9 +90,9 @@ exports.index = function(req, res) {
             // send confirmation mail to buyer
             var buyer_mail = highest_bid.user.email;
             var mailOptions = {
-              from: '"Buzi Bau" <test@typo-summer.ch>', // sender address
-              to: buyer_mail, // list of receivers
-              subject: 'Ersteigert: ' + updated_article.title, // Subject
+              from: '"Françoise Nussbaumer" <info@francoisenussbaumer.ch>', // Absender
+              to: buyer_mail, // Empfänger
+              subject: 'Ersteigert: ' + updated_article.title, // Betreff
               text: 'Herzlichen Glückwunsch, Sie haben das Bild «' + updated_article.title + '» für CHF ' +  highest_bid.amount + '.— ersteigert.' // plain text body
             }; 
             transporter.sendMail(mailOptions, function(error, info) {
@@ -136,7 +141,7 @@ exports.bid = function(req, res) {
       });
     process_valid_form(bid, results.user[0].email, update_base_price);
   } else {
-    // req.session.bid_err = 'Bid too low.'
+    // req.session.bid_err = 'Bid too low.' < ---------------------------------was, was, was – das brauchts genau noch !!!!!!!!!!!
     res.redirect('/');
     return;
   }
@@ -155,7 +160,7 @@ exports.bid = function(req, res) {
 
       // Confirmation Mail
       var mailOptions = {
-        from: '"Buzi Bau" <test@typo-summer.ch>', // sender address
+        from: '"Françoise Nussbaumer" <test@typo-summer.ch>', // sender addressa ((((((((((((((((((((((((((((((((((((((((((((((((((
         to: mail, // list of receivers
         subject: 'Gebot eingegangen', // Subject
         text: 'Ihr Gebot über ' + bid.amount + ' CHF ist eingeangen – vielen Dank.' // plain text body
@@ -177,12 +182,13 @@ exports.bid = function(req, res) {
 exports.instant_buy = function(req, res) {
   // Aktuellstes Angebot finden
   Article.find({})
-    .sort({ 'date': -1 })
+    .sort({ 'createdAt': -1 })
     .limit(1)
     .exec(function(err, data) {
       var article = data[0];
       var price = data[0].instant_buy_price;
-      console.log('preis:' + price);
+      // console.log('preis:' + price);
+      console.log('verkauft:', article.title);
       // Angebotsstatus auf verkauft und inaktiv setzen
       Article.findByIdAndUpdate( article._id, { sold: true, active: false }, function(err, updated_article) {
         if (err) {
@@ -217,18 +223,21 @@ exports.instant_buy = function(req, res) {
             }
             console.log('Message %s sent: %s', info.messageId, info.response);
           }); 
-                res.redirect('/'); // gut wär natürlich eine art bestätigungsseite
-              });
-            });
-          });
+          res.redirect('/'); // gut wär natürlich eine art bestätigungsseite
+          // das hier ginge auch, aber eigentlich ist das doch nicht nötig?????????? // res.render('index', { title: 'Versteigerung beendet', article: updated_article });
+          // hier müssen die variablen noch upgedated werden!
+          // und … es gibt noch keine updates (verkauft/zu ende etc.)
         });
-    };
+      });
+    });
+  });
+};
 
 
 // schnell, schnell Artikel wieder einstellen
 exports.reset_article = function(req, res) {
   Article.find({})
-    .sort({ 'date': -1 })
+    .sort({ 'createdAt': -1 })
     .limit(1)
     .exec(function(err, data) {
       var article = data[0];

@@ -5,13 +5,15 @@ $text: 400;
 $fett: 600;
 
 $baseCol: 210;
-$baseColLeft: 240;
-$baseColRight: 180;
+$baseColLeft: $baseCol + 30;
+$baseColRight: $baseCol - 30;
+$contrast: ($baseCol + 90) % 360;
 $col: hsl($baseCol, 100%, 20%);
 $colLeft: hsl($baseColLeft, 5%, 95%);    /* Background Body  */
 $colRight: hsl($baseColRight, 30%, 95%); /* Background Boxes */
 $linkCol: hsl($baseCol, 80%, 35%);
 $linkColActive: hsl($baseCol, 100%, 50%);
+$accent: hsl($contrast, 100%, 50%);
 
 $bg: whiteSmoke;
 
@@ -38,6 +40,7 @@ header, footer {
 	padding: 1em 0 0.8em;
 	box-shadow: 4px 3px 0 $col;
 	background: $colRight;
+	background: white;
 }
 
 nav { display: none; }
@@ -70,7 +73,8 @@ p { font-size: 1em;}
 em { font-style: italic; }
 strong { font-weight: $fett; }
 #username { }
-.error-message { color: red; }
+h2#article-details-title,
+.error-message { color: $accent; }
 
 /* Layout Basics (Mobile) */
 
@@ -262,7 +266,7 @@ form input[type="submit"] {
 		align-items: end;
 	}
 	section#bid-ui h2 { /* Bieten/Angebot beendet */
-		grid-row: 1;
+		grid-column: 1/-1;
 	}
 	section#bid-ui p { /* Aufforderung zum Anmelden, Text bei Angebotsende */
 		grid-row: 2;
@@ -315,7 +319,19 @@ form input[type="submit"] {
 	dl#article-bids dd {
 		grid-column: 2;
 	}
-
+	/* Article Create */
+	h2#article-create-title { grid-column: 1/-1; }
+	form#article-create-form { grid-column : 1/-1; }
+	/* Article Details */
+	h2#article-details-title { grid-column: 1/-1; }
+	section#article-details { grid-column : 1/-1; }
+	section#administration {
+		grid-column: 1/-1;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-gap: 0.25em;
+	}
+	section#administration h2 { grid-column: 1/-1; grid-row: 1; }
 }
 
 /* Media Queries */
@@ -360,7 +376,7 @@ form input[type="submit"] {
 			// grid-row: 3;
 		}
 		section#bid-ui h2 {
-			grid-column: 2;
+			grid-column: 1/-1;
 			grid-row: 1;
 		}
 		section#bid-ui #login-please {
@@ -390,6 +406,14 @@ form input[type="submit"] {
 		section#bid-list #article-bids {
 			grid-column: 3/-1;
 		}
+		form#article-create-form {
+			grid-column: 1/-1;
+			display: grid;
+			grid-template-columns: auto 1fr;
+			grid-gap: 0.25em;
+		}
+		form#article-create-form label { grid-column: 1;}
+		form#article-create-form input { grid-column: 2;}
 	}
 }
 
@@ -398,6 +422,19 @@ form input[type="submit"] {
 	h1 { font-size: 1.65em; font-weight: 400; }
 	h2 { font-size: 1em; margin: 0;}
 	nav, footer {font-size: 0.75em;}
+	section#register-login #logout,
+	section#register-login p,
+	section#article-details dl,
+	section#article-details p#description,
+	section#bid-ui p#next-auction,
+	section#bid-ui form,
+	section#bid-ui p#instant-buy,
+	section#bid-ui #login-please,
+	section#bid-list dl,
+	section#administration p,
+	form#article-create-form {
+		font-size: 0.7em;
+	}
 	@supports (display: grid) {
 		body {
 			display: grid;
@@ -423,12 +460,11 @@ form input[type="submit"] {
 			text-align: left;
 		}
 		section#register-login #logout {
-			font-size: 0.75em;
 			grid-column: 3/-1;
 		}
 		section#article-image {
 			grid-column: 1/3;
-			grid-row: 2/4;
+			grid-row: 2/6;
 		}
 		section#article-details {
 			grid-column: 3;
@@ -457,15 +493,6 @@ form input[type="submit"] {
 			grid-column: 1;
 			margin-bottom: 0.75em;
 		}
-		section#register-login p,
-		section#article-details dl,
-		section#article-details p#description,
-		section#bid-ui form,
-		section#bid-ui p#instant-buy,
-		section#bid-ui #login-please,
-		section#bid-list dl {
-			font-size: 0.7em;
-		}
 		/* Bid Section */
 		section#bid-ui {
 			grid-column: 3/-1;
@@ -478,7 +505,7 @@ form input[type="submit"] {
 			grid-column: 1/-1;
 		}
 		section#bid-ui h2 {
-			grid-column: 1;
+			grid-column: 1/-1;
 			grid-row: 1;
 		}
 		section#bid-ui #instant-buy {
@@ -505,10 +532,9 @@ form input[type="submit"] {
 		}
 		/* Bid List Section */
 		section#bid-list {
-			grid-row: 5;
-		}
-		section#bid-list #article-bids {
 			grid-column: 3/-1;
+		}
+		section#bid-list {
 		}
 		p#instant-buy {
 			    margin: 0.5em 0 0;
@@ -516,5 +542,18 @@ form input[type="submit"] {
 		section#bid-list dl {
 			grid-row-gap: 0.25em;
 		}
+		section#administration { grid-column : -2/-1; }
+		form#article-create-form {
+			grid-column: 1/-1;
+			display: grid;
+			grid-template-columns: auto 1fr 1fr;
+			grid-gap: 0.25em;
+			margin-bottom: 3em;
+			align-items: center;
+		}
+		form#article-create-form label { grid-column: 1;}
+		form#article-create-form input { grid-column: 2/-1;}
+		form#article-create-form input[type="number"] { grid-column: 2/-2; width: 100%; }
+		form#article-create-form input[type="submit"] { grid-column: 2/-2;}
 	}
 }

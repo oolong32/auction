@@ -9,8 +9,8 @@
   etc.
   No Frameworks, no Post-Its
 -->
-{# set path = "http://localhost:3000" #}
-{% set path = "http://139.162.133.127" %}
+{% set path = "http://localhost:3000" %}
+{# set path = "http://139.162.133.127" #}
 <head>
   <meta charset="UTF-8">
   <title>Françoise Nussbaumer Bild-Auktion – {{ title }}</title>

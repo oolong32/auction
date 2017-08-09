@@ -2,17 +2,18 @@
 
 {% block content  %}
 
-  <h2>{{ title }}</h2>
+  <h2 id="article-details-title">Administration: {{ title }}</h2>
 
-  <section id="article-details">
-
+  <section id="article-image">
   {% if article.image_filename %}
     <img src="{{ path }}/uploads/{{ article.image_filename }}" alt="{{ article.description }}">
   {% else %}
     <p>Keine Bilddatei.</p>
   {% endif %}
+  </section>
 
-  <h3>{{ article.title }}</h3>
+  <section id="article-details">
+  <h2>{{ article.title }}</h2>
 
     <dl>
       <dt>Beschrieb</dt>
@@ -30,8 +31,16 @@
       <dt>ID</dt>
       <dd>{{ article._id}}</dd>
     </dl>
+  </section>
 
-    <h3>Gebote</h3>
+  <section id="administration">
+    <h2>Bearbeiten</h2>
+    <p class="box-button"><a href="{{ article.url }}/update">aktualisieren</a></p>
+    <p class="box-button"><a href="{{ article.url }}/delete">löschen</a></p>
+  </section>
+
+  <section id="bid-list">
+    <h2>Gebote</h2>
 
     {% if bid_list | length %}
     <dl id="article-bids">
@@ -44,10 +53,5 @@
     <p>Noch keine Gebote.</p>
     {% endif %}
     
-    <h3>Administration</h3>
-
-    <p><a href="{{ article.url }}/update">aktualisieren</a></p>
-    <p><a href="{{ article.url }}/delete">löschen</a></p>
   </section>
-
 {% endblock %}

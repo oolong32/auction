@@ -83,7 +83,7 @@
 
       {% else %}
       <h2>Auktion für dieses Bild beendet</h2>
-      <p>Das nächste Angebot wird in Kürze aufgeschaltet. Informieren Sie sich <a href="#">hier</a> und <a href="#">hier</a> oder melden Sie sich für den <a href="#">Newsletter</a> an, um auf dem Laufenden zu bleiben.</p>
+      <p id="next-auction">Das nächste Angebot wird in Kürze aufgeschaltet. Informieren Sie sich <a href="#">hier</a> und <a href="#">hier</a> oder melden Sie sich für den <a href="#">Newsletter</a> an, um auf dem Laufenden zu bleiben.</p>
       {% endif %}
       </section>
 
