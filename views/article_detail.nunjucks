@@ -2,7 +2,7 @@
 
 {% block content  %}
 
-  <h2 id="article-details-title">Administration: {{ title }}</h2>
+  <h2 id="article-details-title">Top Secret: {{ title }}</h2>
 
   <section id="article-image">
   {% if article.image_filename %}
@@ -34,8 +34,8 @@
   </section>
 
   <section id="administration">
-    <h2>Bearbeiten</h2>
-    <p class="box-button"><a href="{{ article.url }}/update">aktualisieren</a></p>
+    <h2>Adminstration</h2>
+    <p class="box-button"><a href="{{ article.url }}/update">bearbeiten</a></p>
     <p class="box-button"><a href="{{ article.url }}/delete">löschen</a></p>
   </section>
 
