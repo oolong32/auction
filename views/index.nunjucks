@@ -28,11 +28,11 @@
         <dd><span class="currency">CHF</span> {{ article.base_price + 5 }}.—</dd>
         <dt>Sofort-kaufen</dt>
         <dd><span class="currency">CHF</span> {{ article.instant_buy_price }}.—</dd>
-        <dt>Eingestellt</dt>
-        <dd><time datetime="{{ article.date_unformatted}}">{{ article.date_formatted}}</time> Uhr</dd>
-        <dt>Endet</dt>
+        <dt>Auktion endet</dt>
         <dd><time datetime="{{ article.expiration_unformatted }}">{{ article.expiration_formatted }}</time> Uhr</dd>
         {#
+        <dt>Eingestellt</dt>
+        <dd><time datetime="{{ article.date_unformatted}}">{{ article.date_formatted}}</time> Uhr</dd>
         <dt>Zuletzt bearbeitet am</dt>
         <dd><time>{{ article.updated_formatted}}</time> Uhr</dd>
         <dt>Status</dt>
