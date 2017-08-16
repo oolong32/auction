@@ -2,12 +2,7 @@
 <html lang="de">
 <!--
   Design & Coding: Josef Renner, josefrenner.ch
-  Built with
-  - Node/Express
-  - MongoDB
-  - Sass/Nunjucks
-  etc.
-  No Frameworks, no Post-Its
+  Built with Node/Express
 -->
 {# set path = "http://localhost:3000" #}
 {% set path = "http://139.162.133.127" %}
