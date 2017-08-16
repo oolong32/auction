@@ -11,11 +11,13 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 var sessions = require('client-sessions');
 
-var auction = require('./routes/auction');  // Import routes for "auction" area of site (which is all of it)
+var auction = require('./routes/auction');  // Import routes for "auction" area of site (which currently is all of it)
 var app = express();
 
 //Set up mongoose connection
 // var mongoDB = 'mongodb://localhost:27017';
+
+// Herr Renner, bitte finden sie endlich eine sauberer Lösung, um die Pfade je nach environment sauber zu schreiben.
 // dokku mongo link
 var mongoDB = process.env.MONGODB_URI || 'mongodb://fubar:4dc7b92834830c939e8cf5a955875394@dokku-mongo-fubar:27017/fubar';
 // var mongoDB = 'mongodb://localhost:27017' || 'mongodb://fubar:4dc7b92834830c939e8cf5a955875394@dokku-mongo-fubar:27017/fubar';
@@ -66,20 +68,11 @@ app.use(function(req, res, next) {
   }
 });
 
-// function requireLogin(req, res, next) {
-//   if (!req.user) {
-//     res.redirect('/login');
-//   } else {
-//     next();
-//   }
-// }
-// bis hier Middleware für Passwortabfrage
-
 // log http requests
 app.use(morgan('dev'));
 
 // write stylesheet from sass to public
-// must come before express.static
+// must come before express.static (!)
 app.use(sassMiddleware({
   src: path.join(__dirname, '/sass'),
   dest: path.join(__dirname, '/public'),

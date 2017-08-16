@@ -5,7 +5,7 @@
   <ul>
   {% if user_list %}
     {% for user in user_list %}
-      <li><a href="{{ user.url }}">{{ user.name }}</a></li>
+      <li><a href="{{ user.url }}"><span class="username">{{ user.name }}</span></a></li>
     {% endfor %}
   {% else %}
     <p>Keine Benutzer gefunden.</p>

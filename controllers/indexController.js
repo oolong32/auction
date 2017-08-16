@@ -59,7 +59,7 @@ exports.index = function(req, res) {
           Article.findByIdAndUpdate(article._id, {$set: {active: false, sold: false}}, {new: true}, function(err, updated_article) {
             if (err) {console.log(err);}
             // send confirmation mail to seller
-            var seller_mail = 'josef.renner@gmail.com'; // <---- ändern ----- !!!!!!!!!!!!!!!!!!!
+            var seller_mail = 'josef.renner@gmail.com'; // <------------------------------ ändern ----- !!!!!!!!!!!!!!!!!!!
             var mailOptions = {
               from: '"Françoise Nussbaumer" <info@francoisenussbaumer.ch>', // Absender
               to: seller_mail,
@@ -73,14 +73,13 @@ exports.index = function(req, res) {
               console.log('Message %s sent: %s', info.messageId, info.response);
             }); 
             // proceed to render 
-            res.render('index', { title: 'Versteigerung beendet', article: updated_article, bids: results[1], csrfToken: req.csrfToken() });
+            res.render('index', { title: 'Auktion beendet', article: updated_article, bids: results[1], csrfToken: req.csrfToken() });
             return;
           });
         } else { // there are bids, proceed
           //
           // Zu welchem Zeitpunkt passiert dies?
-          // Artikel ist nicht mehr aktiv weil Zeit abgelaufen, es gibt mindestens ein Gebot
-          // Die Index-Seite wurde aufgerufen.
+          // (Artikel ist nicht mehr aktiv weil Zeit abgelaufen, es gibt mindestens ein Gebot)
           //
           // Update article: sold, inactive
           Article.findByIdAndUpdate(article._id, {$set: {active: false, sold: true}}, {new: true}, function(err, updated_article) {
@@ -108,7 +107,7 @@ exports.index = function(req, res) {
         }
       } else { // article hasn’t expired yet OR is already sold
         // Titel "übersicht" muss besser werden
-        res.render('index', { title: 'Versteigerung', article: results[0], bids: results[1], csrfToken: req.csrfToken() /* bid_success: req.session.bid_success ? req.session.bid_success : null, bid_err: req.session.bid_err ? req.session.bid_err : null */ });
+        res.render('index', { title: 'Auktion', article: results[0], bids: results[1], csrfToken: req.csrfToken() /* bid_success: req.session.bid_success ? req.session.bid_success : null, bid_err: req.session.bid_err ? req.session.bid_err : null */ });
       }
   });
 };
@@ -223,10 +222,10 @@ exports.instant_buy = function(req, res) {
             }
             console.log('Message %s sent: %s', info.messageId, info.response);
           }); 
-          res.redirect('/'); // gut wär natürlich eine art bestätigungsseite
-          // das hier ginge auch, aber eigentlich ist das doch nicht nötig?????????? // res.render('index', { title: 'Versteigerung beendet', article: updated_article });
-          // hier müssen die variablen noch upgedated werden!
-          // und … es gibt noch keine updates (verkauft/zu ende etc.)
+          res.redirect('/'); // besser wäre natürlich eine art bestätigungsseite/modal
+          // folgendes ginge auch, aber eigentlich nicht nötig?????????? // res.render('index', { title: 'Versteigerung beendet', article: updated_article });
+          // Prüfen: müssen die variablen hier noch upgedated werden?
+          // und … gibt es schon updates? (verkauft/zu ende etc.)
         });
       });
     });

@@ -1,8 +1,7 @@
 {% extends "layout.nunjucks" %}
 
 {% block content %}
-
-                                                                                                           <section id="registration">
+  <section id="registration">
     <h2>Benutzerkonto erstellen</h2>
 
     {% if error %}

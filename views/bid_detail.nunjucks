@@ -1,16 +1,19 @@
 {% extends "layout.nunjucks" %}
 
 {% block content %}
-  <h2>{{ title }}</h2>
-  <dl>
-    <dt>Betrag</dt>
-    <dd>CHF {{ bid.amount }}</dd>
-    <dt>Bild</dt>
-    <dd><a href="{{ bid.article.url }}">{{ bid.article.title }}</a></dd>
-    <dt>Bieter</dt>
-    <dd><a href="{{ bid.user.url }}">{{ bid.user.name }}</a></dd>
-  </dl>
-  <hr>
-  <p><a href="{{ bid.url }}/delete">Gebot löschen</a></p>
+  <h2 class="top-secret">{{ title }}</h2>
+  <section id="bid-details">
+    <dl>
+      <dt>Betrag</dt>
+      <dd><span class="currency">CHF</span> {{ bid.amount }}</dd>
+      <dt>Bild</dt>
+      <dd><a href="{{ bid.article.url }}">{{ bid.article.title }}</a></dd>
+      <dt>Bieter</dt>
+      <dd><a href="{{ bid.user.url }}"><span class="username">{{ bid.user.name }}</span></a></dd>
+    </dl>
+  </section>
+  <section id="bid-delete">
+    <p class="box-button"><a href="{{ bid.url }}/delete">Gebot löschen</a></p>
+  </section>
 {% endblock %}
 

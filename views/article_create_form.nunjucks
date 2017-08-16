@@ -1,7 +1,7 @@
 {% extends "layout.nunjucks" %}
 
 {% block content %}
-  <h2 id="article-create-title">{{ title }}</h2>
+  <h2 id="article-create-title" class="top-secret">{{ title }}</h2>
   {% if article.image_filename %}
   <img src="{{ path }}uploads/{{ article.image_filename }}" alt="{{ article.description }}">
   {% endif %}

@@ -6,9 +6,94 @@
     <p>Error getting content.</p>
   {% else %}
 
+  <h2>{{ title }}</h2>
+
+  <section id="article-image">
+    <img src="{{ path }}/uploads/{{ article.image_filename }}" alt="{{ article.description }}">
+  </section>
+
+  <section id="article-details">
+    {# kommt weg: <h2>{{ article.title }}</h2> #}
+    <p id="description">{{ article.description }}</p>
+    <p class="auction-details">Mindestgebot <span class="currency">CHF</span> {{ article.base_price + 5 }}.—</p>
+    <p class="auction-details">Sofort-kaufen <span class="currency">CHF</span> {{ article.instant_buy_price }}.—</p>
+    <p class="auction-details">Verbleibende Zeit: <time datetime="{{ article.remaining_formatted }}">{{ article.remaining_formatted }}</time></p>
+      {#
+      <dt>Auktion endet</dt>
+      <dd><time datetime="{{ article.expiration_unformatted }}">{{ article.expiration_formatted }}</time> Uhr</dd>
+      <dt>Eingestellt</dt>
+      <dd><time datetime="{{ article.date_unformatted}}">{{ article.date_formatted}}</time> Uhr</dd>
+      <dt>Zuletzt bearbeitet am</dt>
+      <dd><time>{{ article.updated_formatted}}</time> Uhr</dd>
+      <dt>Status</dt>
+      <dd>{{ "Verkauft" if article.sold else "Zu verkaufen" }}</dd>
+      <dt>Aktiv</dt>
+      <dd>{{ article.active}}</dd>
+      <dt>ID</dt>
+      <dd><a href="{{ article.url }}">{{ article._id}}</a></dd>
+      #}
+  </section>
+
+  <section id="bid-ui">
+    {% if article.active %}
+
+    <h2>Bieten</h2>
+    {% if user %}
+
+    <form method="POST" action="">
+      <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+      <input type="hidden" id="article" name="article" value="{{ article._id }}">
+      <label for="amount">Betrag</label>
+      <input
+        type="number"
+        id="amount"
+        step="5"
+        placeholder=""
+        name="amount"
+        required="true"
+        value={% if bid == undefined %}"{{ article.base_price + 5 }}"{% else %}{{ bid.amount }}{% endif %}>
+      <button type="submit" class="box-button">Gebot abgeben</button>
+    </form>
+
+    <p id="instant-buy" class="box-button"><a href="/instant-buy">Für {{ article.instant_buy_price }}.— sofort kaufen</a></p>
+
+    {% else %}
+      <p id="login-please">Zum Bieten müssen Sie <a href="/login">angemeldet</a> sein.</p>
+    {% endif %}
+    {# if bid_err %}
+      <p>Gebot zu tief. Gebote erfolgen in Fünf-Franken-Schritten.</p>
+    {% endif #}
+
+
+    {# if bid_success %}
+    <p>Danke für Ihr Gebot.</p>
+    {% endif #}
+
+    {% else %}
+    <h2>Auktion für dieses Bild beendet</h2>
+    <p id="next-auction">Das nächste Angebot wird in Kürze aufgeschaltet. Informieren Sie sich <a href="#">hier</a> und <a href="#">hier</a> oder melden Sie sich für den <a href="#">Newsletter</a> an.</p>
+    {% endif %}
+    </section>
+
+    <section id="bid-list">
+      {% if bids | length %}
+        <h2>Gebote</h2>
+        <ul id="article-bids">
+        {% for bid in bids %}
+          <li><span class="currency">CHF</span> <a href="{{ bid.url }}">{{ bid.amount }}</a>.—</li>
+          {# <dd>von <a href="{{ bid.user.url }}"><span class="username">{{ bid.user.name }}</span></a></dd> #}
+        {% endfor %}
+        </ul>
+      {% elif not article.sold and not article.active %}
+        <h2>Es gab keine Gebote.</h2>
+      {% else %}
+        <h2>Noch keine Gebote.</h2>
+      {% endif %}
+    </section>
+
     <section id="register-login">
       {% if user %}
-      <p id="logged-in">Angemeldet als <span id="username">{{ user.name }}</span></p>
+      <p id="logged-in">Angemeldet als <span class="username">{{ user.name }}</span></p>
       {#
       <p class="box-button" id="logout"><a href="/logout">Abmelden</a></p>
       #}
@@ -17,91 +102,6 @@
       <p class="box-button" id="login"><a href="/login">Anmelden</a></p>
     {% endif %}
     </section>
-
-    <section id="article-image">
-      <img src="{{ path }}/uploads/{{ article.image_filename }}" alt="{{ article.description }}">
-    </section>
-
-    <section id="article-details">
-      <h2>{{ article.title }}</h2>
-      <p id="description">{{ article.description }}</p>
-      <dl>
-        <dt>Mindestgebot</dt>
-        <dd><span class="currency">CHF</span> {{ article.base_price + 5 }}.—</dd>
-        <dt>Sofort-kaufen</dt>
-        <dd><span class="currency">CHF</span> {{ article.instant_buy_price }}.—</dd>
-        <dt>Auktion endet</dt>
-        <dd><time datetime="{{ article.expiration_unformatted }}">{{ article.expiration_formatted }}</time> Uhr</dd>
-        {#
-        <dt>Eingestellt</dt>
-        <dd><time datetime="{{ article.date_unformatted}}">{{ article.date_formatted}}</time> Uhr</dd>
-        <dt>Zuletzt bearbeitet am</dt>
-        <dd><time>{{ article.updated_formatted}}</time> Uhr</dd>
-        <dt>Status</dt>
-        <dd>{{ "Verkauft" if article.sold else "Zu verkaufen" }}</dd>
-        <dt>Aktiv</dt>
-        <dd>{{ article.active}}</dd>
-        <dt>ID</dt>
-        <dd><a href="{{ article.url }}">{{ article._id}}</a></dd>
-        #}
-      </dl>
-    </section>
-
-    <section id="bid-ui">
-      {% if article.active %}
-
-      <h2>Bieten</h2>
-      {% if user %}
-      <p id="instant-buy" class="box-button">Für {{ article.instant_buy_price }}.— <a href="/instant-buy">sofort kaufen</a></p>
-
-      <form method="POST" action="">
-        <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-        <input type="hidden" id="article" name="article" value="{{ article._id }}">
-        <label for="amount">Betrag</label>
-        <input
-          type="number"
-          id="amount"
-          step="5"
-          placeholder=""
-          name="amount"
-          required="true"
-          value={% if bid == undefined %}"{{ article.base_price + 5 }}"{% else %}{{ bid.amount }}{% endif %}>
-        <button type="submit" class="box-button">Gebot abgeben</button>
-      </form>
-
-      {% else %}
-        <p id="login-please">Zum Bieten müssen Sie <a href="/login">angemeldet</a> sein.</p>
-      {% endif %}
-      {# if bid_err %}
-        <p>Gebot zu tief. Gebote erfolgen in Fünf-Franken-Schritten.</p>
-      {% endif #}
-
-
-      {# if bid_success %}
-      <p>Danke für Ihr Gebot.</p>
-      {% endif #}
-
-      {% else %}
-      <h2>Auktion für dieses Bild beendet</h2>
-      <p id="next-auction">Das nächste Angebot wird in Kürze aufgeschaltet. Informieren Sie sich <a href="#">hier</a> und <a href="#">hier</a> oder melden Sie sich für den <a href="#">Newsletter</a> an, um auf dem Laufenden zu bleiben.</p>
-      {% endif %}
-      </section>
-
-      <section id="bid-list">
-        {% if bids | length %}
-          <h2>Gebote</h2>
-          <dl id="article-bids">
-          {% for bid in bids %}
-            <dt><span class="currency">CHF</span> <a href="{{ bid.url }}">{{ bid.amount }}</a>.—</dt>
-            <dd>von <a href="{{ bid.user.url }}">{{ bid.user.name }}</a></dd>
-          {% endfor %}
-          </dl>
-        {% elif not article.sold and not article.active %}
-          <h2>Es gab keine Gebote.</h2>
-        {% else %}
-          <h2>Noch keine Gebote.</h2>
-        {% endif %}
-      </section>
 
   {% endif %} {# bezieht sich auf ganz oben, error oder nicht #}
 {% endblock %}

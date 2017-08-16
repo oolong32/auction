@@ -13,20 +13,21 @@
 {% set path = "http://139.162.133.127" %}
 <head>
   <meta charset="UTF-8">
-  <title>Françoise Nussbaumer Bild-Auktion – {{ title }}</title>
+  <title>Françoise Nussbaumer – Bild des Tages – {{ title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {# <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"> #}
   {#
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   #}
+  {# <link rel="stylesheet" href="{{ path }}/fonts.css"> #}
   <link rel="stylesheet" href="{{ path }}/reset.css">
-  <link rel="stylesheet" href="{{ path }}/fonts.css">
+  <link href="https://fonts.googleapis.com/css?family=Old+Standard+TT" rel="stylesheet">
   <link rel="stylesheet" href="{{ path }}/style.css">
 </head>
 
 <body>
   <header>
-    <h1><a href="/">Françoise Nussbaumer — Auktionen</a></h1>
+    <h1><a href="/"><small>Françoise Nussbaumer</small><br>Bild des Tages</a></h1>
   </header>
 
   <main>
@@ -66,8 +67,5 @@
   <footer>
     <p>© Françoise Nussbaumer – <a href="mailto:admin@francoisenussbaumer.ch">Kontakt</a></p>
   </footer>
-  {#
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  #}
 </body>
 </html>

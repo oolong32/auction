@@ -2,7 +2,7 @@
 
 {% block content  %}
 
-  <h2 id="article-details-title">Top Secret: {{ title }}</h2>
+  <h2 class="top-secret">Top Secret: {{ title }}</h2>
 
   <section id="article-image">
   {% if article.image_filename %}

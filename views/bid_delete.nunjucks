@@ -1,14 +1,14 @@
 {% extends "layout.nunjucks" %}
 
 {% block content %}
-  <h2>{{ title }}</h2>
+  <h2 class="top-secret">{{ title }}</h2>
   <dl>
     <dt>Betrag</dt>
-    <dd>CHF {{ bid.amount }}</dd>
+    <dd><span class="currency">CHF</span> {{ bid.amount }}</dd>
     <dt>Bild</dt>
     <dd><a href="{{ bid.article.url }}">{{ bid.article.title }}</a></dd>
     <dt>Bieter</dt>
-    <dd><a href="{{ bid.user.url }}">{{ bid.user.name }}</a></dd>
+    <dd><a href="{{ bid.user.url }}"><span class="username">{{ bid.user.name }}</span></a></dd>
   </dl>
 
   <p>Soll dieses Gebot gelöscht werden?</p>
@@ -20,6 +20,6 @@
       required="true"
       name="bidid"
       value="{{ bid._id }}">
-    <button type="submit">Delete</button>
+    <button type="submit" class="box-button">Delete</button>
   </form>
 {% endblock %}
