@@ -85,7 +85,7 @@ Todo:
         <h2>Gebote</h2>
         <ul id="article-bids">
         {% for bid in bids %}
-          <li><span class="currency">CHF</span> <a href="{{ bid.url }}">{{ bid.amount }}</a>.— von <a href="{{ bid.user.url }}"><span class="username">{{ bid.user.first_name }}</span></a></li>
+          <li><span class="currency">CHF</span> {#<a href="{{ bid.url }}">#}{{ bid.amount }}{#</a>#}.— von {#<a href="{{ bid.user.url }}">#}<span class="username">{{ bid.user.first_name }}</span>{#</a>#}</li>
         {% endfor %}
         </ul>
       {% elif not article.sold and not article.active %}
