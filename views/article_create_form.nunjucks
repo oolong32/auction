@@ -2,8 +2,11 @@
 
 {% block content %}
   <h2 id="article-create-title" class="top-secret">{{ title }}</h2>
+
   {% if article.image_filename %}
-  <img src="{{ path }}uploads/{{ article.image_filename }}" alt="{{ article.description }}">
+  <section id="article-image">
+    <img src="{{ path }}/uploads/{{ article.image_filename }}" alt="{{ article.title }}, {{ article.description }}">
+  </section>
   {% endif %}
 
  {# was macht das hier??? <p>{{ article.description }}</p>
@@ -25,7 +28,7 @@
   <input
   id="description"
   type="textarea"
-  placeholder="Beschreibung"
+  placeholder="24 x 30 cm, Text …"
   name="description"
   required="true"
   value={% if article == undefined %}""{% else %}"{{ article.description }}"{% endif %}>
@@ -37,7 +40,7 @@
   placeholder="300"
   name="base_price"
   required="true"
-  value={% if article == undefined %}""{% else %}"{{ article.base_price }}"{% endif %}>
+  value={% if article == undefined %}""{% else %}"{{ article.start_price }}"{% endif %}>
 
   <label for="instant_buy_price">Sofort-Kaufpreis</label>
   <input

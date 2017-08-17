@@ -60,7 +60,31 @@
   </nav>
 
   <footer>
-    <p>© Françoise Nussbaumer – <a href="mailto:admin@francoisenussbaumer.ch">Kontakt</a></p>
+    <p>© <a href="https://francoisenussbaumer.ch" target="_blank">Françoise Nussbaumer</a> – <a href="mailto:mail@francoisenussbaumer.ch">Kontakt</a><br>
+    Design & Programmierung: <a href="https://josefrenner.ch" target="_blank">Josef Renner</a>
+    </p>
   </footer>
+
+  <script>
+    // Einen Verlauf in der Auflistung der Gebote
+    if (document.querySelector('#article-bids')) {
+      var bid_list = document.querySelectorAll('#article-bids li');
+      /* var bids = bid_list.childNodes; */
+      var bid_count = bid_list.length;
+      // Der Verlauf wird ab 6 Geboten gezeichnet.
+      if (bid_count >= 6) {
+        // Liste halbieren oder dritteln
+        var i = (bid_count > 10) ? Math.floor(bid_count/4) : Math.floor(bid_count/3);
+        var factor = 1 / bid_count; // Schritt, um den die Deckkraft verringert wird
+        var opacity_value = 1;
+        for (; i<bid_count; i++) {
+          opacity_value -= factor;
+          console.log(bid_list[i]);
+          var li = bid_list[i];
+          li.style.opacity = opacity_value;
+        }
+      }
+    }
+  </script>
 </body>
 </html>

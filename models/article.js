@@ -8,7 +8,8 @@ var ArticleSchema = Schema({
   // image_name: {type: String, required: true}, // <----------------- ???
   // image_url: {type: String, required: true},  // <----------------- ???
   description: {type: String, required: true},
-  base_price: {type: Number, required: true, validate: {validator: Number.isInteger, message: '{Value} ist keine Zahl.'}},
+  start_price: {type: Number, required: true, validate: {validator: Number.isInteger, message: '{Value} ist keine Zahl.'}}, // stays the same
+  base_price: {type: Number, required: true, validate: {validator: Number.isInteger, message: '{Value} ist keine Zahl.'}},  // gets updated
   instant_buy_price: {type: Number, required: true, validate: {validator: Number.isInteger, message: '{Value} ist keine Zahl.'}},
   sold: {type: Boolean, required: true, default: false},
   active: {type: Boolean, required: true, default: true},

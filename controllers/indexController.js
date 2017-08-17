@@ -9,12 +9,12 @@ var nodemailer = require('nodemailer');
 // Nodemailer
 // create reusable transporter object using the default SMTP transport
 var transporter = nodemailer.createTransport({
-  host: 'smtp.onlime.ch',
-  port: 587,
+  host: 'login-111.hoststar.ch',
+  port: 25,
   secure: false, // secure:true for port 465, secure:false for port 587
   auth: {
-    user: 'test@typo-summer.ch', // <----------------===============/////////////=?============ ÄNDERN !!!!!!!!!!!!!!!!!!!
-    pass: '>D[cZek8x(cpLnR'      // <----------------===============/////////////=?============ ÄNDERN !!!!!!!!!!!!!!!!!!!
+    user: 'web21p3',
+    pass: 'P1pap1pa'
   }
 });
 
@@ -59,9 +59,9 @@ exports.index = function(req, res) {
           Article.findByIdAndUpdate(article._id, {$set: {active: false, sold: false}}, {new: true}, function(err, updated_article) {
             if (err) {console.log(err);}
             // send confirmation mail to seller
-            var seller_mail = 'josef.renner@gmail.com'; // <------------------------------ ändern ----- !!!!!!!!!!!!!!!!!!!
+            var seller_mail = 'mail@francoisenussbaumer.ch';
             var mailOptions = {
-              from: '"Françoise Nussbaumer" <info@francoisenussbaumer.ch>', // Absender
+              from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // Absender
               to: seller_mail,
               subject: 'Nicht versteigert: ' + updated_article.title, // Subject
               text: 'Es gab keine Gebote für das Bild «' + updated_article.title + '». Die Auktion ging am ' + updated_article.expiration_formatted + 'zu Ende.' // plain text body
@@ -89,10 +89,10 @@ exports.index = function(req, res) {
             // send confirmation mail to buyer
             var buyer_mail = highest_bid.user.email;
             var mailOptions = {
-              from: '"Françoise Nussbaumer" <info@francoisenussbaumer.ch>', // Absender
+              from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // Absender
               to: buyer_mail, // Empfänger
               subject: 'Ersteigert: ' + updated_article.title, // Betreff
-              text: 'Herzlichen Glückwunsch, Sie haben das Bild «' + updated_article.title + '» für CHF ' +  highest_bid.amount + '.— ersteigert.' // plain text body
+              text: 'Guten Tag ' + highest_bid.user.name + '\r\rHerzlichen Glückwunsch, Sie haben das Bild «' + updated_article.title + '» für CHF ' +  highest_bid.amount + '.— ersteigert.' // plain text body
             }; 
             transporter.sendMail(mailOptions, function(error, info) {
               if (error) {
@@ -138,7 +138,8 @@ exports.bid = function(req, res) {
         article: req.body.article,
         user: results.user[0]._id
       });
-    process_valid_form(bid, results.user[0].email, update_base_price);
+    var username = req.session.user.name;
+    process_valid_form(bid, results.user[0].email, username, update_base_price);
   } else {
     // req.session.bid_err = 'Bid too low.' < ---------------------------------was, was, was – das brauchts genau noch !!!!!!!!!!!
     res.redirect('/');
@@ -152,17 +153,17 @@ exports.bid = function(req, res) {
     });
   }
 
-  function process_valid_form(bid, mail, callback) {
+  function process_valid_form(bid, mail, username, callback) {
     bid.save(function (err) {
       if (err) { return next(err); }
       // Bid saved. Redirect to bid detail page
 
       // Confirmation Mail
       var mailOptions = {
-        from: '"Françoise Nussbaumer" <test@typo-summer.ch>', // sender addressa ((((((((((((((((((((((((((((((((((((((((((((((((((
+        from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>',
         to: mail, // list of receivers
         subject: 'Gebot eingegangen', // Subject
-        text: 'Ihr Gebot über ' + bid.amount + ' CHF ist eingeangen – vielen Dank.' // plain text body
+        text: 'Guten Tag ' + username + '\r\rIhr Gebot über ' + bid.amount + ' CHF ist eingeangen – vielen Dank.\r\rFreundliche Grüsse\r--\rBILD DES TAGES\rauction.francoisenussbaumer.ch\rFrançoise Nussbaumer\rmail@francoisenussbaumer.ch' // plain text body
       }; 
       transporter.sendMail(mailOptions, function(error, info) {
         if (error) {
@@ -211,10 +212,10 @@ exports.instant_buy = function(req, res) {
 
           // Confirmation Mail
           var mailOptions = {
-            from: '"Buzi Bau" <test@typo-summer.ch>', // sender address
+            from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // sender address
             to: user[0].email, // list of receivers
             subject: 'Ersteigert: ' + updated_article.title, // Subject
-            text: 'Sie haben das Bild «' + updated_article.title + '» für ' + bid.amount + ' CHF ersteigert – herzlichen Glückwunsch.' // plain text body
+            text: 'Guten Tag ' + user[0].name + '\r\rSie haben das Bild «' + updated_article.title + '» für ' + bid.amount + ' CHF ersteigert – herzlichen Glückwunsch.\r\rFrançoise Nussbaumer wird Sie in Kürze kontaktieren, um den Versand zu klären.\r\rFreundliche Grüsse\r--\rBILD DES TAGES\rauction.francoisenussbaumer.ch\rFrançoise Nussbaumer\rmail@francoisenussbaumer.ch' // plain text body
           }; 
           transporter.sendMail(mailOptions, function(error, info) {
             if (error) {

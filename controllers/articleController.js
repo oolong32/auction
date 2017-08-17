@@ -95,7 +95,8 @@ exports.article_create_post = function(req, res, next) {
   var article = new Article(
     { title: req.body.title,
       description: req.body.description,
-      base_price: req.body.base_price - 5, // Trick 77, damit es richtig beginnt
+      start_price: req.body.base_price, // Grundpreis, ändert sich nicht
+      base_price: req.body.base_price - 10, // Trick 77, damit es richtig beginnt
       instant_buy_price: req.body.instant_buy_price,
       image_filename: req.file.filename
     });
@@ -195,7 +196,8 @@ exports.article_update_post = function(req, res, next) {
     article = new Article(
       { title: req.body.title,
         description: req.body.description,
-        base_price: req.body.base_price,
+        start_price: req.body.base_price,
+        base_price: req.body.base_price, // dieses Feld wird später mit jedem Gebot erhöht
         instant_buy_price: req.body.instant_buy_price,
         // if there was an upload we want the new image, else the existing one
         image_filename: req.file ? req.file.filename : foo.image_filename, // can’t get only foo.image_filename, because database update (see above) might not be done yet.

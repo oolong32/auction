@@ -14,14 +14,17 @@
     {% endfor %}
     </dl>
   {% else %}
-    <p><em>Soll dieses Bild gelöscht werden?</em></p>
-    <section id="article-details">
       {% if article.image_filename %}
-      <img src="{{ path }}uploads/{{ article.image_filename }}" alt="{{ article.description }}">
+      <section id="article-image"> 
+        <img src="{{ path }}/uploads/{{ article.image_filename }}" alt="{{ article.title }}, {{ article.description }}">
+      </section>
       {% else %}
       <p>Keine Bilddatei.</p>
       {% endif %}
-      <dl>
+    <section id="article-details">
+      <p>Soll dieses Bild gelöscht werden?</p>
+
+      <dl id="admin-details">
         <dt>Beschrieb</dt>
         <dd>{{ article.description }}</dd>
         <dt>Einstiegspreis</dt>
@@ -34,14 +37,15 @@
         <dd>{{ article._id}}</dd>
       </dl>
     </section>
-    <form method="POST" action="">
+
+    <form method="POST" action="" id="delete-form">
       <input
       type="hidden"
       id="articleid"
       required="true"
       name="articleid"
       value="{{ article._id }}">
-      <button type="submit">Delete</button>
+      <button type="submit" class="box-button">Delete</button>
     </form>
   {% endif %}
 {% endblock %}

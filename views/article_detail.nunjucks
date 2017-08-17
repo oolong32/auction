@@ -6,20 +6,18 @@
 
   <section id="article-image">
   {% if article.image_filename %}
-    <img src="{{ path }}/uploads/{{ article.image_filename }}" alt="{{ article.description }}">
+    <img src="{{ path }}/uploads/{{ article.image_filename }}" alt="{{ article.title }}, {{ article.description }}">
   {% else %}
     <p>Keine Bilddatei.</p>
   {% endif %}
   </section>
 
   <section id="article-details">
-  <h2>{{ article.title }}</h2>
+  <p>{{ article.title }}, {{ article.description }}</p>
 
-    <dl>
-      <dt>Beschrieb</dt>
-      <dd>{{ article.description }}</dd>
+    <dl id="admin-details">
       <dt>Einstiegspreis</dt>
-      <dd><span class="currency">CHF</span> {{ article.base_price }}</dd>
+      <dd><span class="currency">CHF</span> {{ article.start_price }}</dd>
       <dt>Sofort kaufen</dt>
       <dd><span class="currency">CHF</span> {{ article.instant_buy_price }}</dd>
       <dt>Eingestellt am</dt>
@@ -33,11 +31,6 @@
     </dl>
   </section>
 
-  <section id="administration">
-    <h2>Adminstration</h2>
-    <p class="box-button"><a href="{{ article.url }}/update">bearbeiten</a></p>
-    <p class="box-button"><a href="{{ article.url }}/delete">löschen</a></p>
-  </section>
 
   <section id="bid-list">
     <h2>Gebote</h2>
@@ -52,6 +45,11 @@
     {% else %}
     <p>Noch keine Gebote.</p>
     {% endif %}
-    
+  </section>
+
+  <section id="administration">
+    <h2>Adminstration</h2>
+    <p class="box-button"><a href="{{ article.url }}/update">bearbeiten</a></p>
+    <p class="box-button"><a href="{{ article.url }}/delete">löschen</a></p>
   </section>
 {% endblock %}

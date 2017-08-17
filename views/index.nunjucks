@@ -14,13 +14,13 @@ Todo:
   <h2>{{ title }}</h2>
 
   <section id="article-image">
-    <img src="{{ path }}/uploads/{{ article.image_filename }}" alt="{{ article.description }}">
+    <img src="{{ path }}/uploads/{{ article.image_filename }}" alt="{{ article.title }}, {{ article.description }}">
   </section>
 
   <section id="article-details">
     {# kommt weg: <h2>{{ article.title }}</h2> #}
-    <p id="description">{{ article.description }}</p>
-    <p class="auction-details">Mindestgebot <span class="currency">CHF</span> {{ article.base_price + 5 }}.—</p>
+    <p id="description">{{ article.title }}, {{ article.description }}</p>
+    <p class="auction-details">Einstiegspreis <span class="currency">CHF</span> {{ article.start_price }}.—</p>
     <p class="auction-details">Sofort-kaufen <span class="currency">CHF</span> {{ article.instant_buy_price }}.—</p>
     <p class="auction-details">Verbleibende Zeit: <time datetime="{{ article.remaining_formatted }}">{{ article.remaining_formatted }}</time></p>
       {#
@@ -48,15 +48,15 @@ Todo:
     <form method="POST" action="">
       <input type="hidden" name="_csrf" value="{{ csrfToken }}">
       <input type="hidden" id="article" name="article" value="{{ article._id }}">
-      <label for="amount">Betrag</label>
+      <label for="amount">Ich biete <span class="currency">CHF</span></label>
       <input
         type="number"
         id="amount"
-        step="5"
+        step="10"
         placeholder=""
         name="amount"
         required="true"
-        value={% if bid == undefined %}"{{ article.base_price + 5 }}"{% else %}{{ bid.amount }}{% endif %}>
+        value={% if bid == undefined %}"{{ article.base_price + 10 }}"{% else %}{{ bid.amount }}{% endif %}>
       <button type="submit" class="box-button">Gebot abgeben</button>
     </form>
 
@@ -76,7 +76,7 @@ Todo:
 
     {% else %}
     <h2>Auktion für dieses Bild beendet</h2>
-    <p id="next-auction">Das nächste Angebot wird in Kürze aufgeschaltet. Informieren Sie sich <a href="#">hier</a> und <a href="#">hier</a> oder melden Sie sich für den <a href="#">Newsletter</a> an.</p>
+    <p id="next-auction">Das nächste Angebot wird in Kürze aufgeschaltet. Abonnieren Sie den <a target="_blank" href="http://francoisenussbaumer.us15.list-manage.com/subscribe?u=c3c1b11be1b7631b7327939cc&id=6d259a4f6b">Newsletter</a> oder folgen Sie mir auf <a target="_blank" href="https://www.facebook.com/franzinussbaumer">Facebook</a>.</p>
     {% endif %}
     </section>
 
@@ -85,8 +85,7 @@ Todo:
         <h2>Gebote</h2>
         <ul id="article-bids">
         {% for bid in bids %}
-          <li><span class="currency">CHF</span> <a href="{{ bid.url }}">{{ bid.amount }}</a>.—</li>
-          {# <dd>von <a href="{{ bid.user.url }}"><span class="username">{{ bid.user.name }}</span></a></dd> #}
+          <li><span class="currency">CHF</span> <a href="{{ bid.url }}">{{ bid.amount }}</a>.— von <a href="{{ bid.user.url }}"><span class="username">{{ bid.user.first_name }}</span></a></li>
         {% endfor %}
         </ul>
       {% elif not article.sold and not article.active %}

@@ -1,9 +1,6 @@
 /* Todo 
 
 - Breakpoints zu nahe beieinander
-- Upload Formular Layout
-- Artikel-Detailseite Layout
-- Artikel-Updateseite Layout
 - Farben aufräumen – nach den letzten Änderungen sind einige Werte obsolet.
 
 
@@ -22,9 +19,7 @@ $baseColRight: $baseCol - 30;
 $contrast: ($baseCol + 90) % 360;
 $bg: ($baseCol - 160);
 $col: hsl($baseCol, 100%, 0%);
-$colLeft: hsl($baseColLeft, 5%, 95%);    /* Background Body  */
-$colRight: hsl($baseColRight, 30%, 95%); /* Background Boxes */
-$linkCol: hsl($baseCol, 80%, 35%);
+$headCol: hsl(25, 10%, 50%); 
 $linkColActive: hsl($baseCol, 100%, 50%);
 $accent: hsl($contrast, 100%, 50%);
 $background: hsl($bg, 15%, 80%);
@@ -44,7 +39,6 @@ body {
 	color: $col;
 	// background: $bg;
 	background: $background;
-	// background: $colRight;
 	padding: 0 0.25em 0 0.3em;
 }
 
@@ -132,31 +126,26 @@ section#registration form input[type="submit"] {
 footer { margin: 4em 0 1em;}
 
 /* Links */
-a { text-decoration: none; }
+a {  }
 a:link, a:visited { color: $col; }
 a:hover, a:focus, a:active { color: $linkColActive; }
 
-nav a { text-decoration: none;}
-nav a:link,
-nav a:visited {
-	color: $linkCol;
-}
-
-nav a:hover,
-nav a:active,
-nav a:focus {
-	color: $linkColActive;
-}
 h1 a,
 h1 a:link,
-h1 a:visited { color: $col;}
+h1 a:visited { color: $headCol;}
+h1 a small,
+h1 a:link small,
+h1 a:visited small { color: $col;}
+
+h1 a,
+.box-button a,
+footer a { text-decoration: none; }
 
 
 .box-button {
 	// font-variant-caps: all-small-caps;
 	// ios macht hackfleisch aus Kapitälchen :-(
 	font-weight: 400;
-	// color: $linkCol;
 	color: $col;
 	/* cursor: pointer; verwirrend! */
 	text-align: center;
@@ -164,7 +153,6 @@ h1 a:visited { color: $col;}
 	padding: 0.4em 0.5em 0.25em;
 	display: inline-block;
 	box-shadow: 4px 3px 0 $col;
-	// background: $colRight;
 	background: $backgroundLight;
 }
 
@@ -246,6 +234,9 @@ form input[type="submit"] {
 	font-size: 1em;
 }
 
+form#delete-form { width: 100%; }
+form#delete-form button { display: block; }
+
 /* GRID */
 @supports ( display: grid ) {
 	dt,
@@ -302,6 +293,14 @@ form input[type="submit"] {
 		padding-right: 0;
 		grid-column: 1/-1;
 	}
+	section#bid-list ul {
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+		justify-items: start;
+	}
+	section#bid-list ul li {
+		grid-column: 2;
+	}
 
 	/* Anmelden */
 	section#login,
@@ -356,6 +355,45 @@ form input[type="submit"] {
 	}
 	section#registration form input {}
 	section#registration form input[type="submit"] {  margin: 0; }
+
+	/* Bild erfassen */
+	form#article-create-form {
+		display: grid;
+		grid-template-columns: 1fr auto auto 1fr;
+		justify-items: stretch;
+		grid-gap: 0.25em;
+	}
+	form#article-create-form label {
+		grid-column: 2;
+		margin: 0;
+		padding: 0;
+		align-self: center;
+	}
+	form#article-create-form input {
+		grid-column: 3;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+	}
+
+	/* Administration: Bild-Details*/
+	dl#admin-details {
+		margin-top: 2em;
+		display: grid;
+		grid-template-columns: 1fr auto auto 1fr;
+		grid-gap: 0.25em;
+	}
+	dl#admin-details dt,
+	dl#admin-details dd { margin: 0; padding: 0; }
+	dl#admin-details dt {
+		grid-column: 2;
+		justify-self: end;
+	}
+	dl#admin-details dd {
+		grid-column: 3;
+		justify-self: start;
+	}
+
 }
 
 /* Media Queries */
@@ -370,7 +408,7 @@ form input[type="submit"] {
 }
 
 @media (min-width: 741px) {
-	body { font-size: 22px; }
+	body { font-size: 20px; }
 	header { margin-bottom: 2em;}
 	img { padding: 1em; }
 	@supports (display: grid) {
