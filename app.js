@@ -6,7 +6,6 @@ var morgan = require('morgan');
 var path = require('path');
 var expressValidator = require('express-validator');
 var bodyParser = require('body-parser');
-var favicon = require('serve-favicon');
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 var sessions = require('client-sessions');
@@ -34,9 +33,6 @@ nunjucks.configure(path.join(__dirname, '/views'), {
   autoescape: true,
   express: app
 });
-
-// Favicon
-app.use(favicon(path.join(__dirname, '/public', 'favicon.ico'))); // <------- oder auch nicht …
 
 // Middleware für Passwortabfrage
 app.use(sessions({
