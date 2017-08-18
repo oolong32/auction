@@ -5,7 +5,8 @@
   Built with Node/Express
 -->
 {# set path = "http://localhost:3000" #}
-{% set path = "http://139.162.133.127" %}
+{% set path = "http://auctio.francoisenussbaumer.ch" %}
+{# set path = "http://139.162.133.127" #}
 <head>
   <meta charset="UTF-8">
   <title>Françoise Nussbaumer – Bild des Tages – {{ title }}</title>
