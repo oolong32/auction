@@ -296,10 +296,11 @@ form#delete-form button { display: block; }
 	section#bid-list ul {
 		display: grid;
 		grid-template-columns: 1fr minmax(325px, auto) 1fr; /* Breitmöglichst auf schmalen Viewports */
-		justify-items: center;
+		justify-items: start;
 	}
 	section#bid-list ul li {
 		grid-column: 2;
+		white-space: nowrap;
 	}
 
 	/* Anmelden */
