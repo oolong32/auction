@@ -11,7 +11,7 @@
   <meta charset="UTF-8">
   <title>Françoise Nussbaumer – Bild des Tages – {{ title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
   {#
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   #}
