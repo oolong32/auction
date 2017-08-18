@@ -295,8 +295,8 @@ form#delete-form button { display: block; }
 	}
 	section#bid-list ul {
 		display: grid;
-		grid-template-columns: 1fr auto 1fr;
-		justify-items: start;
+		grid-template-columns: 1fr minmax(325px, auto) 1fr; /* Breitmöglichst auf schmalen Viewports */
+		justify-items: center;
 	}
 	section#bid-list ul li {
 		grid-column: 2;
