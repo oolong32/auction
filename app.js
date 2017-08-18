@@ -6,6 +6,7 @@ var morgan = require('morgan');
 var path = require('path');
 var expressValidator = require('express-validator');
 var bodyParser = require('body-parser');
+var favicon = require('serve-favicon');
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 var sessions = require('client-sessions');
@@ -18,8 +19,8 @@ var app = express();
 
 // Herr Renner, bitte finden sie endlich eine sauberer Lösung, um die Pfade je nach environment sauber zu schreiben.
 // dokku mongo link
-// var mongoDB = process.env.MONGODB_URI || 'mongodb://fubar:4dc7b92834830c939e8cf5a955875394@dokku-mongo-fubar:27017/fubar';
-var mongoDB = 'mongodb://localhost:27017' || 'mongodb://fubar:4dc7b92834830c939e8cf5a955875394@dokku-mongo-fubar:27017/fubar';
+var mongoDB = process.env.MONGODB_URI || 'mongodb://fubar:4dc7b92834830c939e8cf5a955875394@dokku-mongo-fubar:27017/fubar';
+// var mongoDB = 'mongodb://localhost:27017' || 'mongodb://fubar:4dc7b92834830c939e8cf5a955875394@dokku-mongo-fubar:27017/fubar';
 mongoose.connect(mongoDB);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
@@ -33,6 +34,9 @@ nunjucks.configure(path.join(__dirname, '/views'), {
   autoescape: true,
   express: app
 });
+
+// Favicon
+app.use(favicon(path.join(__dirname, '/public', 'favicon.ico'))); // <------- oder auch nicht …
 
 // Middleware für Passwortabfrage
 app.use(sessions({
