@@ -54,10 +54,11 @@ Todo:
         type="number"
         id="amount"
         step="10"
+        min={% if bid == undefined %}"{{ article.base_price + 10 }}"{% else %}"{{ bid.amount }}"{% endif %}
         placeholder=""
         name="amount"
         required="true"
-        value={% if bid == undefined %}"{{ article.base_price + 10 }}"{% else %}{{ bid.amount }}{% endif %}>
+        value={% if bid == undefined %}"{{ article.base_price + 10 }}"{% else %}"{{ bid.amount }}"{% endif %}>
       <button type="submit" class="box-button">Gebot abgeben</button>
     </form>
 
