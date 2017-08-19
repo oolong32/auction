@@ -107,8 +107,8 @@ exports.index = function(req, res) {
             var confirmationMailOptions = {
               from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // Absender
               to: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>',   // Empfänger
-              subject: 'Versteigert (Zeit abgelaufen): ' + updated_article.title, // Betreff
-              text: 'Die Auktion ist beendet. ' + highest_bid.user.name + ' (' + highest_bid.user.email + ') hat das Bild «' + updated_article.title + '» für ' +  highest_bid.amount + '.— ersteigert.' // plain text body
+              subject: 'Versteigert: ' + updated_article.title, // Betreff
+              text: highest_bid.user.name + ' (' + highest_bid.user.email + ') hat das Bild «' + updated_article.title + '» für CHF ' +  highest_bid.amount + '.— ersteigert.' // plain text body
             }; 
             transporter.sendMail(confirmationMailOptions, function(error, info) {
               if (error) {
@@ -255,36 +255,20 @@ exports.instant_buy = function(req, res) {
             console.log('Message %s sent: %s', info.messageId, info.response);
           }); 
 
-          // send confirmation mail to seller
-          var confirmationMailOptions = {
-            from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // Absender
-            to: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>',   // Empfänger
-            subject: 'Versteigert: ' + updated_article.title, // Betreff
-            text: highest_bid.user.name + ' (' + highest_bid.user.email + ') hat das Bild «' + updated_article.title + '» für ' +  highest_bid.amount + '.— ersteigert.' // plain text body
+          var confirmationMailOptionsmailOptions = {
+            from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // sender address
+            to: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // list of receivers
+            subject: 'Versteigert: ' + updated_article.title, // Subject
+            text: user[0].name + ' (' + user[0].mail + ') hat das Bild «' + updated_article.title + '» für ' + bid.amount + ' CHF ersteigert.' // plain text body
           }; 
           transporter.sendMail(confirmationMailOptions, function(error, info) {
             if (error) {
               return console.log(error);
             }
-            console.log(`Confirmation message %s sent: %s`, info.messageId, info.response);
+            console.log('Confirmation message %s sent: %s', info.messageId, info.response);
           }); 
-          
-          // proceed to render 
-          res.render('index', { title: 'Versteigerung beendet', article: updated_article, bids: results[1], csrfToken: req.csrfToken() });
-          return;
-        });
-      }
-    } else { // article hasn’t expired yet OR is already sold
-      // Titel "übersicht" muss besser werden
-      res.render('index', { title: 'Auktion', article: results[0], bids: results[1], csrfToken: req.csrfToken() /* bid_success: req.session.bid_success ? req.session.bid_success : null, bid_err: req.session.bid_err ? req.session.bid_err : null */ });
-    }
-});
-};
-
           res.redirect('/'); // besser wäre natürlich eine art bestätigungsseite/modal
           // folgendes ginge auch, aber eigentlich nicht nötig?????????? // res.render('index', { title: 'Versteigerung beendet', article: updated_article });
-          // Prüfen: müssen die variablen hier noch upgedated werden?
-          // und … gibt es schon updates? (verkauft/zu ende etc.)
         });
       });
     });
