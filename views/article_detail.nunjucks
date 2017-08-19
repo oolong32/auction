@@ -36,12 +36,11 @@
     <h2>Gebote</h2>
 
     {% if bid_list | length %}
-    <dl id="article-bids">
+    <ul id="article-bids">
       {% for bid in bid_list %}
-      <dt><span class="currency">CHF</span> <a href="{{ bid.url }}">{{ bid.amount }}</a></dt>
-      <dd>von <a href="{{ bid.user.url }}">{{ bid.user.name }}</a></dd>
+      <li><span class="currency">CHF</span> <a href="{{ bid.url }}">{{ bid.amount }}</a> von <a href="{{ bid.user.url }}">{{ bid.user.name }}</a></li>
       {% endfor %}
-    </dl>
+    </ul>
     {% else %}
     <p>Noch keine Gebote.</p>
     {% endif %}
