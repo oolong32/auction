@@ -80,26 +80,43 @@ exports.index = function(req, res) {
           //
           // Zu welchem Zeitpunkt passiert dies?
           // (Artikel ist nicht mehr aktiv weil Zeit abgelaufen, es gibt mindestens ein Gebot)
+          // Offensichtlich, wenn die Seite aus gerendert wird. Besser wäre eine unmittelbarere Lösung
           //
           // Update article: sold, inactive
           Article.findByIdAndUpdate(article._id, {$set: {active: false, sold: true}}, {new: true}, function(err, updated_article) {
             if (err) {console.log(err);}
-            console.log('updated article:');
+            console.log('Versteigert durch Timeout:');
             console.log(updated_article);
+
             // send confirmation mail to buyer
             var buyer_mail = highest_bid.user.email;
             var mailOptions = {
               from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // Absender
               to: buyer_mail, // Empfänger
               subject: 'Ersteigert: ' + updated_article.title, // Betreff
-              text: 'Guten Tag ' + highest_bid.user.name + '\r\rHerzlichen Glückwunsch, Sie haben das Bild «' + updated_article.title + '» für CHF ' +  highest_bid.amount + '.— ersteigert.' // plain text body
+              text: 'Guten Tag ' + highest_bid.user.name + '\r\rHerzlichen Glückwunsch, Sie haben das Bild «' + updated_article.title + '» für CHF ' +  highest_bid.amount + '.— ersteigert.\r\rFrançoise Nussbaumer wird Sie in Kürze kontaktieren, um den Versand zu klären.\r\rFreundliche Grüsse\r--\rBILD DES TAGES\rauction.francoisenussbaumer.ch\rFrançoise Nussbaumer\rmail@francoisenussbaumer.ch' // plain text body
             }; 
             transporter.sendMail(mailOptions, function(error, info) {
               if (error) {
                 return console.log(error);
               }
-              console.log('Message %s sent: %s', info.messageId, info.response);
+              console.log(`Message %s sent: %s`, info.messageId, info.response);
             }); 
+
+            // send confirmation mail to seller
+            var confirmationMailOptions = {
+              from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // Absender
+              to: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>',   // Empfänger
+              subject: 'Versteigert (Zeit abgelaufen): ' + updated_article.title, // Betreff
+              text: 'Die Auktion ist beendet. ' + highest_bid.user.name + ' (' + highest_bid.user.email + ') hat das Bild «' + updated_article.title + '» für ' +  highest_bid.amount + '.— ersteigert.' // plain text body
+            }; 
+            transporter.sendMail(confirmationMailOptions, function(error, info) {
+              if (error) {
+                return console.log(error);
+              }
+              console.log(`Confirmation message %s sent: %s`, info.messageId, info.response);
+            }); 
+            
             // proceed to render 
             res.render('index', { title: 'Versteigerung beendet', article: updated_article, bids: results[1], csrfToken: req.csrfToken() });
             return;
@@ -158,7 +175,7 @@ exports.bid = function(req, res) {
       if (err) { return next(err); }
       // Bid saved. Redirect to bid detail page
 
-      // Confirmation Mail
+      // Confirmation mail to bidder
       var mailOptions = {
         from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>',
         to: mail, // list of receivers
@@ -169,7 +186,21 @@ exports.bid = function(req, res) {
         if (error) {
           return console.log(error);
         }
-        console.log('Message %s sent: %s', info.messageId, info.response);
+        console.log(`Message %s sent: %s`, info.messageId, info.response);
+      }); 
+
+      // Confirmation mail to bidder
+      var confirmationMailOptions = {
+        from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>',
+        to: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>',
+        subject: 'Gebot eingegangen', // Subject
+        text: username + ' hat ' + bid.amount + '  geboten.'// plain text body
+      }; 
+      transporter.sendMail(confirmationMailOptions, function(error, info) {
+        if (error) {
+          return console.log(error);
+        }
+        console.log(`Message %s sent: %s`, info.messageId, info.response);
       }); 
 
       res.redirect('/');
@@ -223,6 +254,33 @@ exports.instant_buy = function(req, res) {
             }
             console.log('Message %s sent: %s', info.messageId, info.response);
           }); 
+
+          // send confirmation mail to seller
+          var confirmationMailOptions = {
+            from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // Absender
+            to: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>',   // Empfänger
+            subject: 'Versteigert: ' + updated_article.title, // Betreff
+            text: highest_bid.user.name + ' (' + highest_bid.user.email + ') hat das Bild «' + updated_article.title + '» für ' +  highest_bid.amount + '.— ersteigert.' // plain text body
+          }; 
+          transporter.sendMail(confirmationMailOptions, function(error, info) {
+            if (error) {
+              return console.log(error);
+            }
+            console.log(`Confirmation message %s sent: %s`, info.messageId, info.response);
+          }); 
+          
+          // proceed to render 
+          res.render('index', { title: 'Versteigerung beendet', article: updated_article, bids: results[1], csrfToken: req.csrfToken() });
+          return;
+        });
+      }
+    } else { // article hasn’t expired yet OR is already sold
+      // Titel "übersicht" muss besser werden
+      res.render('index', { title: 'Auktion', article: results[0], bids: results[1], csrfToken: req.csrfToken() /* bid_success: req.session.bid_success ? req.session.bid_success : null, bid_err: req.session.bid_err ? req.session.bid_err : null */ });
+    }
+});
+};
+
           res.redirect('/'); // besser wäre natürlich eine art bestätigungsseite/modal
           // folgendes ginge auch, aber eigentlich nicht nötig?????????? // res.render('index', { title: 'Versteigerung beendet', article: updated_article });
           // Prüfen: müssen die variablen hier noch upgedated werden?

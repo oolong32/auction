@@ -67,10 +67,6 @@ Todo:
     {% else %}
       <p id="login-please">Zum Bieten müssen Sie <a href="/login">angemeldet</a> sein.</p>
     {% endif %}
-    {# if bid_err %}
-      <p>Gebot zu tief. Gebote erfolgen in Fünf-Franken-Schritten.</p>
-    {% endif #}
-
 
     {# if bid_success %}
     <p>Danke für Ihr Gebot.</p>
