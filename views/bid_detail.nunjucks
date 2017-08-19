@@ -3,11 +3,11 @@
 {% block content %}
   <h2 class="top-secret">{{ title }}</h2>
   <section id="bid-details">
-    <dl>
+    <dl id="admin-bid-details">
       <dt>Betrag</dt>
       <dd><span class="currency">CHF</span> {{ bid.amount }}</dd>
       <dt>Bild</dt>
-      <dd><a href="{{ bid.article.url }}">{{ bid.article.title }}</a></dd>
+      <dd>‘<a href="{{ bid.article.url }}">{{ bid.article.title }}</a>’</dd>
       <dt>Bieter</dt>
       <dd><a href="{{ bid.user.url }}"><span class="username">{{ bid.user.name }}</span></a></dd>
     </dl>

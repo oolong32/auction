@@ -2,24 +2,29 @@
 
 {% block content %}
   <h2 class="top-secret">{{ title }}</h2>
-  <dl>
-    <dt>Betrag</dt>
-    <dd><span class="currency">CHF</span> {{ bid.amount }}</dd>
-    <dt>Bild</dt>
-    <dd><a href="{{ bid.article.url }}">{{ bid.article.title }}</a></dd>
-    <dt>Bieter</dt>
-    <dd><a href="{{ bid.user.url }}"><span class="username">{{ bid.user.name }}</span></a></dd>
-  </dl>
 
-  <p>Soll dieses Gebot gelöscht werden?</p>
-  <form method="POST" action="">
-    <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-    <input
-      type="hidden"
-      id="bidid"
-      required="true"
-      name="bidid"
+  <section id="bid-details">
+    <dl id="admin-bid-delete">
+      <dt>Betrag</dt>
+      <dd><span class="currency">CHF</span> {{ bid.amount }}</dd>
+      <dt>Bild</dt>
+      <dd>‘<a href="{{ bid.article.url }}">{{ bid.article.title }}</a>’</dd>
+      <dt>Bieter</dt>
+      <dd><a href="{{ bid.user.url }}"><span class="username">{{ bid.user.name }}</span></a></dd>
+    </dl>
+  </section>
+
+  <section id="bid-delete">
+    <p>Soll dieses Gebot gelöscht werden?</p>
+    <form method="POST" action="">
+      <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+      <input
+        type="hidden"
+        id="bidid"
+        required="true"
+        name="bidid"
       value="{{ bid._id }}">
-    <button type="submit" class="box-button">Delete</button>
-  </form>
+      <button type="submit" class="box-button">Delete</button>
+    </form>
+  </section>
 {% endblock %}

@@ -3,10 +3,10 @@
 {% block content %}
   <h2>{{ title }}</h2>
   {% if bid_list | length %}
-    <dl>
+    <dl id="admin-bid-list">
     {% for bid in bid_list %}
       <dt>CHF <a href="{{ bid.url }}">{{ bid.amount }}</a></dt>
-      <dd>Von <a href="{{ bid.user.url }}">{{ bid.user.name }}</a><br>für <em><a href="{{ bid.article.url }}">{{ bid.article.title }}</a></em></dd>
+      <dd>von <a href="{{ bid.user.url }}">{{ bid.user.name }}</a> für ‘<a href="{{ bid.article.url }}">{{ bid.article.title }}</a>’</dd>
     {% endfor %}
     </dl>
   {% else %}

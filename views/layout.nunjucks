@@ -4,8 +4,8 @@
   Design & Coding: Josef Renner, josefrenner.ch
   Built with Node/Express
 -->
-{# set path = "http://localhost:3000" #}
-{% set path = "https://auction.francoisenussbaumer.ch" %}
+{% set path = "http://localhost:3000" %}
+{# set path = "https://auction.francoisenussbaumer.ch" #}
 {# set path = "http://139.162.133.127" #}
 <head>
   <meta charset="UTF-8">

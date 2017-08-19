@@ -3,7 +3,7 @@
 {% block content %}
   <h2 class="top-secret">{{ title }}</h2>
   {% if article_list | length %}
-    <ul>
+    <ul id="admin-article-list">
     {% for article in article_list %}
       <li><a href="{{ article.url }}">{{ article.title }}</a></li>
     {% endfor %}

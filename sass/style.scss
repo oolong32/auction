@@ -295,7 +295,7 @@ form#delete-form button { display: block; }
 	}
 	section#bid-list ul {
 		display: grid;
-		grid-template-columns: 1fr minmax(325px, auto) 1fr; /* Breitmöglichst auf schmalen Viewports */
+		grid-template-columns: 1fr auto 1fr; /* Breitmöglichst auf schmalen Viewports */
 		justify-items: start;
 	}
 	section#bid-list ul li {
@@ -395,6 +395,42 @@ form#delete-form button { display: block; }
 		justify-self: start;
 	}
 
+	/* Administration: Auflistung Bilder */
+	ul#admin-article-list {
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+		grid-gap: 0.25em;
+	}
+	ul#admin-article-list li {
+		margin: 0; padding: 0;
+		grid-column: 2;
+	}
+	ul#admin-article-list li:before {
+		content: "– ";
+	}
+
+	/* Administration: Gebote */
+	dl#admin-bid-list,
+	dl#admin-bid-details,
+	dl#admin-bid-delete {
+		display: grid;
+		grid-template-columns: 1fr auto auto 1fr;
+		grid-gap: 0.25em;
+	}
+	dl#admin-bid-list dt,
+	dl#admin-bid-details dt,
+	dl#admin-bid-delete dt {
+		grid-column: 2;
+	}
+	dl#admin-bid-list dd,
+	dl#admin-bid-details dd,
+	dl#admin-bid-delete dd {
+		grid-column: 3;
+	}
+	dl#admin-bid-details dt,
+	dl#admin-bid-delete dt { justify-self: end; }
+	dl#admin-bid-details dd,
+	dl#admin-bid-delete dd { justify-self: start; }
 }
 
 /* Media Queries */
