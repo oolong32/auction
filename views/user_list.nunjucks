@@ -2,13 +2,13 @@
 
 {% block content %}
   <h2>{{ title}}</h2>
-  <ul>
   {% if user_list %}
+  <ul id="admin-user-list">
     {% for user in user_list %}
       <li><a href="{{ user.url }}"><span class="username">{{ user.name }}</span></a></li>
     {% endfor %}
+  </ul>
   {% else %}
     <p>Keine Benutzer gefunden.</p>
   {% endif %}
-  </ul>
 {% endblock %}

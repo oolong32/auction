@@ -6,7 +6,7 @@
     <p><span class="username">{{ user.name }}</span> – <a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
 
     {% if user_bids.length %}
-    <p><em>Diese Gebote sollten gelöscht werden, bevor dieser Benutzer gelöscht wird.</em></p>
+    <p>Diese Gebote sollten gelöscht werden, bevor dieser Benutzer gelöscht wird.</p>
     <h3>{{ user.first_name}}s Gebote</h3>
     <dl>
       {% for bid in user_bids %}
@@ -15,7 +15,7 @@
       {% endfor %}
     </dl>
     {% else %}
-      <p>Soll diese Benutzerin gelöscht werden?</p>
+      <p>Soll diese Benutzer_in gelöscht werden?</p>
       <form method="POST" action="">
         <input
           type="hidden"

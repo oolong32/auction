@@ -3,7 +3,7 @@
 {% block content %}
   <section id="user-details">
     <h2 class="top-secret"><span class="username">{{ user.name }}</span></h2>
-    <dl>
+    <dl id="admin-user-details">
       <dt>E-Mail</dt>
       <dd><a href="mailto:{{ user.email }}">{{ user.email }}</a></dd>
       <dt>ID</dt>
