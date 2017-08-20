@@ -31,12 +31,12 @@
   {% endblock %}
   </main>
 
+ {#
   <nav>
     <section>
       <h2 id="nav-users">Bieter</h2>
       <ul>
         <li><a href="/user">Auflistung</a></li>
-        {# <li><a href="/user/create">Neuen Bieter erstellen</a></li> #}
       </ul>
     </section>
 
@@ -53,11 +53,11 @@
       <h2>Gebote</h2>
       <ul>
         <li><a href="/bid">Auflistung</a></li>
-        {# <li><a href="/bid/create">Neues Gebot abgeben</a></li> #}
       </ul>
     </section>
 
   </nav>
+  #}
 
   <footer>
     <p>© <a href="https://francoisenussbaumer.ch" target="_blank">Françoise Nussbaumer</a> – <a href="mailto:mail@francoisenussbaumer.ch">Kontakt</a><br>

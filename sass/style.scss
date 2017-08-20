@@ -309,10 +309,12 @@ form#delete-form button { display: block; }
 		grid-gap: 0.25em;
 	}
 	section#login h2,
+	section#login p,
 	section#login form,
 	section#register h2,
 	section#register p,
 	section#registration h2,
+	section#registration p,
 	section#registration form {
 		grid-column: 2;
 		width: 100%;

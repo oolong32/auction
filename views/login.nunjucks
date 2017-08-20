@@ -6,7 +6,7 @@
   <h2>Anmelden</h2>
 
   {% if error %}
-  <p class="error-message"><em>{{ error }}</em></p>
+  <p class="error-message">{{ error }}</p>
   {% endif %}
     <form method="POST">
       <input type="hidden" name="_csrf" value="{{ csrfToken }}">
