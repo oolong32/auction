@@ -43,7 +43,7 @@ ArticleSchema
 ArticleSchema
 .virtual('expiration_formatted')
 .get(function () {
-  return moment(this.createdAt).add(7, 'days').locale('de-ch').format('lll');
+  return moment(this.createdAt).add(2, 'days').locale('de-ch').format('lll');
 });
 
 // Virtual for article’s date UNFORMATTED
@@ -65,6 +65,7 @@ ArticleSchema
 .virtual('remaining_formatted')
 .get(function () {
   // sollte 22 h vorher auf Stunden umstellen, ab 45 Min. zu Minuten.
+  // Hier keine Zeit, aber scheint redundant? Siehe expiration_formatted
   return moment(this.createdAt).add(2, 'days').locale('de-ch').fromNow(true);
 });
 
