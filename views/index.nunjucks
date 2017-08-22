@@ -22,7 +22,7 @@ Todo:
     <p id="description">{{ article.title }}, {{ article.description }}</p>
     <p class="auction-details">Einstiegspreis <span class="currency">CHF</span> {{ article.start_price }}.—</p>
 
-    <p class="auction-details">Gegenwärtiges Höchstgebot {% if bid == undefined %}Noch kein Gebot.{% else %}<span class="currency">CHF</span> {{ article.base_price }}.—</p>{% endif %}
+    <p class="auction-details">Gegenwärtiges Höchstgebot {% if bid == undefined %}(Noch kein Gebot.){% else %}<span class="currency">CHF</span> {{ article.base_price }}.—</p>{% endif %}
     <p class="auction-details">Sofort-kaufen <span class="currency">CHF</span> {{ article.instant_buy_price }}.—</p>
     <p class="auction-details">Verbleibende Zeit: <time datetime="{{ article.remaining_formatted }}">{{ article.remaining_formatted }}</time></p>
       {#
