@@ -57,7 +57,7 @@ ArticleSchema
 ArticleSchema
 .virtual('expiration_unformatted')
 .get(function () {
-  return moment(this.createdAt).add(7, 'days').locale('de-ch').format();
+  return moment(this.createdAt).add(2, 'days').locale('de-ch').format();
 });
 
 // Virtual for remaining time to expiration date
@@ -65,7 +65,7 @@ ArticleSchema
 .virtual('remaining_formatted')
 .get(function () {
   // sollte 22 h vorher auf Stunden umstellen, ab 45 Min. zu Minuten.
-  return moment(this.createdAt).add(7, 'days').locale('de-ch').fromNow(true);
+  return moment(this.createdAt).add(2, 'days').locale('de-ch').fromNow(true);
 });
 
 //Export model
