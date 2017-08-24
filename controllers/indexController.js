@@ -51,7 +51,8 @@ exports.index = function(req, res) {
       console.log(results[0])
       console.log(results[0].createdAt)
       var date = results[0].createdAt.getTime();
-      var expiration = date + 7*24*60*60*1000;
+      // expiration should come from database, this needs to be adressed soon
+      var expiration = date + 2*24*60*60*1000; // <---------------------------------------------- hard coded time, bad bad bad
       var remaining =  expiration - now;
 
       console.log("Verbleibende Zeit:");
