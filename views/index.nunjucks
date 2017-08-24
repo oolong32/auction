@@ -24,7 +24,10 @@ Todo:
 
     <p class="auction-details">Gegenwärtiges Höchstgebot {% if not bids %}(Noch kein Gebot.){% else %}<span class="currency">CHF</span> {{ article.base_price }}.—</p>{% endif %}
     <p class="auction-details">Sofort-kaufen <span class="currency">CHF</span> {{ article.instant_buy_price }}.—</p>
+    {% if article.status %} {# prüfen####################################################### #}
     <p class="auction-details">Verbleibende Zeit: <time datetime="{{ article.remaining_formatted }}">{{ article.remaining_formatted }}</time></p>
+    {% endif %}
+
       {#
       <dt>Auktion endet</dt>
       <dd><time datetime="{{ article.expiration_unformatted }}">{{ article.expiration_formatted }}</time> Uhr</dd>
