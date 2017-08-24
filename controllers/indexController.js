@@ -56,7 +56,7 @@ exports.index = function(req, res) {
 
       console.log("Verbleibende Zeit:");
       console.log(remaining);
-      console.log("Status: " + active);
+      console.log("Status: " + article.active);
       if (remaining <= 0 && article.active == true) { // expired but not sold
         if (!highest_bid) { // there are no bids
           Article.findByIdAndUpdate(article._id, {$set: {active: false, sold: false}}, {new: true}, function(err, updated_article) {
