@@ -55,9 +55,6 @@ exports.index = function(req, res) {
       var expiration = date + 2*24*60*60*1000; // <---------------------------------------------- hard coded time, bad bad bad
       var remaining =  expiration - now;
 
-      console.log("Verbleibende Zeit:");
-      console.log(remaining);
-      console.log("Status: " + article.active);
       if (remaining <= 0 && article.active == true) { // expired but not sold
         if (!highest_bid) { // there are no bids
           Article.findByIdAndUpdate(article._id, {$set: {active: false, sold: false}}, {new: true}, function(err, updated_article) {
