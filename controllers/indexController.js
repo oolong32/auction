@@ -222,7 +222,8 @@ exports.instant_buy = function(req, res) {
       // console.log('preis:' + price);
       console.log('verkauft:', article.title);
       // Angebotsstatus auf verkauft und inaktiv setzen
-      Article.findByIdAndUpdate( article._id, { sold: true, active: false }, function(err, updated_article) {
+      // base_price wird angepasst, daran lässt sich auch das höchstgebot ablesen
+      Article.findByIdAndUpdate( article._id, { base_price: price,  sold: true, active: false }, function(err, updated_article) {
         if (err) {
           console.error(err);
         }
@@ -256,7 +257,7 @@ exports.instant_buy = function(req, res) {
             console.log('Message %s sent: %s', info.messageId, info.response);
           }); 
 
-          var confirmationMailOptionsmailOptions = {
+          var confirmationMailOptions = {
             from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // sender address
             to: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // list of receivers
             subject: 'Versteigert: ' + updated_article.title, // Subject
