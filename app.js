@@ -14,13 +14,14 @@ var sessions = require('client-sessions');
 var auction = require('./routes/auction');  // Import routes for "auction" area of site (which currently is all of it)
 var app = express();
 
-//Set up mongoose connection
-// var mongoDB = 'mongodb://localhost:27017';
-
-// Herr Renner, bitte finden sie endlich eine sauberer Lösung, um die Pfade je nach environment sauber zu schreiben.
-// dokku mongo link
-var mongoDB = process.env.MONGODB_URI || 'mongodb://fubar:4dc7b92834830c939e8cf5a955875394@dokku-mongo-fubar:27017/fubar';
-// var mongoDB = 'mongodb://localhost:27017' || 'mongodb://fubar:4dc7b92834830c939e8cf5a955875394@dokku-mongo-fubar:27017/fubar';
+// mongoose connection
+// var mongoDB = process.env.MONGODB_URI || 'mongodb://fubar:4dc7b92834830c939e8cf5a955875394@dokku-mongo-fubar:27017/fubar';
+if ('development' === app.get('env')) {
+    var mongoDB = 'mongodb://localhost:27017';
+} else {
+  // dokku mongo link
+  var mongoDB = 'mongodb://fubar:4dc7b92834830c939e8cf5a955875394@dokku-mongo-fubar:27017/fubar';
+}
 mongoose.connect(mongoDB);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
@@ -36,7 +37,7 @@ nunjucks.configure(path.join(__dirname, '/views'), {
 });
 
 // Favicon
-app.use(favicon(path.join(__dirname, '/public', 'favicon.ico'))); // <------- oder auch nicht …
+app.use(favicon(path.join(__dirname, '/public', 'favicon.ico')));
 
 // Middleware für Passwortabfrage
 app.use(sessions({
@@ -47,8 +48,6 @@ app.use(sessions({
   httpOnly: true // don’t let browser javascript access cookies
 }));
 
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false })); // <-- im auth-tutorial ist es true – ist das relevant?
 app.use(expressValidator());
 
 var User = require('./models/user');
