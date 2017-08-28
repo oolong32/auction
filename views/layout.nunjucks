@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <!--
   Design & Coding: Josef Renner, josefrenner.ch
   Built with Node/Express
 -->
-{# set path = "http://localhost:3000" #}
-{% set path = "https://auction.francoisenussbaumer.ch" %}
-{# set path = "http://139.162.133.127" #}
+
+{# check environment and set path accordingly #}
+{% if settings.ev == "development" %}
+  {% set path = "http://localhost:3000" %}
+{% else %}
+  {% set path = "https://auction.francoisenussbaumer.ch" %}
+{% endif %}
+
 <head>
   <meta charset="UTF-8">
   <title>Françoise Nussbaumer – Bild des Tages – {{ title }}</title>
@@ -17,12 +23,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/manifest.json">
-  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#d4d1c4">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000">
   <meta name="theme-color" content="#d4d1c4">
 
-  {#
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  #}
   <link rel="stylesheet" href="{{ path }}/reset.css">
   <link href="https://fonts.googleapis.com/css?family=Old+Standard+TT" rel="stylesheet">
   <link rel="stylesheet" href="{{ path }}/style.css">

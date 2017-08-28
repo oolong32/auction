@@ -15,13 +15,13 @@ var auction = require('./routes/auction');  // Import routes for "auction" area 
 var app = express();
 
 // app.locals.env = process.env;
+console.log(app.locals);
 
 // mongoose connection
 if ('development' === app.get('env')) {
     var mongoDB = 'mongodb://localhost:27017';
 } else {
   // dokku mongo link
-  console.log(process.env.MONGO_URL);
   var mongoDB = process.env.MONGO_URL || 'mongodb://fubar:4dc7b92834830c939e8cf5a955875394@dokku-mongo-fubar:27017/fubar';
 }
 mongoose.connect(mongoDB);
