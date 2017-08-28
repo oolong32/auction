@@ -1,8 +1,3 @@
-{#
-Todo:
-– time tag braucht internationales format im attribut – oder gar nichts
-
-#}
 {% extends "layout.nunjucks" %}
 
 {% block content %}
@@ -18,7 +13,6 @@ Todo:
   </section>
 
   <section id="article-details">
-    {# kommt weg: <h2>{{ article.title }}</h2> #}
     <p id="description">{{ article.title }}, {{ article.description }}</p>
     <p class="auction-details">Einstiegspreis <span class="currency">CHF</span> {{ article.start_price }}.—</p>
 
@@ -31,7 +25,7 @@ Todo:
     <p class="auction-details">Sofort-kaufen <span class="currency">CHF</span> {{ article.instant_buy_price }}.—</p>
 
     {% if not article.sold %}
-    <p class="auction-details">Verbleibende Zeit: <time datetime="{{ article.remaining_formatted }}">{{ article.remaining_formatted }}</time></p>
+    <p class="auction-details">Verbleibende Zeit: <time datetime="{{ article.expiration_unformatted }}">{{ article.remaining_formatted }}</time></p>
     {% endif %}
 
       {#

@@ -14,13 +14,15 @@ var sessions = require('client-sessions');
 var auction = require('./routes/auction');  // Import routes for "auction" area of site (which currently is all of it)
 var app = express();
 
+// app.locals.env = process.env;
+
 // mongoose connection
-// var mongoDB = process.env.MONGODB_URI || 'mongodb://fubar:4dc7b92834830c939e8cf5a955875394@dokku-mongo-fubar:27017/fubar';
 if ('development' === app.get('env')) {
     var mongoDB = 'mongodb://localhost:27017';
 } else {
   // dokku mongo link
-  var mongoDB = 'mongodb://fubar:4dc7b92834830c939e8cf5a955875394@dokku-mongo-fubar:27017/fubar';
+  console.log(process.env.MONGO_URL);
+  var mongoDB = process.env.MONGO_URL || 'mongodb://fubar:4dc7b92834830c939e8cf5a955875394@dokku-mongo-fubar:27017/fubar';
 }
 mongoose.connect(mongoDB);
 var db = mongoose.connection;
