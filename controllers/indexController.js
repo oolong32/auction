@@ -200,9 +200,10 @@ mail@francoisenussbaumer.ch` // plain text body
       }); 
 
       // Confirmation mail to bidder
+      var adminAddress = (settings.env === 'development') ? '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>' : '"Josef Renner" <josef.renner@gmail.com>';
       var confirmationMailOptions = {
         from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>',
-        to: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>',
+        to: adminAddress,
         subject: 'Gebot eingegangen', // Subject
         text: username + ' hat ' + bid.amount + '  geboten.'// plain text body
       }; 
