@@ -17,6 +17,8 @@ var transporter = nodemailer.createTransport({
     pass: 'P1pap1pa'
   }
 });
+// change admin address depending on environment
+var adminAddress = (settings.env === 'development') ? '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>' : '"Josef Renner" <josef.renner@gmail.com>';
 
 // Main Page
 exports.index = function(req, res) {
@@ -63,7 +65,7 @@ exports.index = function(req, res) {
             var seller_mail = 'mail@francoisenussbaumer.ch';
             var mailOptions = {
               from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // Absender
-              to: seller_mail,
+              to: adminAddress,
               subject: 'Nicht versteigert: ' + updated_article.title, // Subject
               text: 'Es gab keine Gebote für das Bild «' + updated_article.title + '». Die Auktion ging am ' + updated_article.expiration_formatted + 'zu Ende.' // plain text body
             }; 
@@ -107,7 +109,7 @@ exports.index = function(req, res) {
             // send confirmation mail to seller
             var confirmationMailOptions = {
               from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // Absender
-              to: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>',   // Empfänger
+              to: adminAddress,                                             // Empfänger
               subject: 'Versteigert: ' + updated_article.title, // Betreff
               text: highest_bid.user.name + ' (' + highest_bid.user.email + ') hat das Bild «' + updated_article.title + '» für CHF ' +  highest_bid.amount + '.— ersteigert.' // plain text body
             }; 
@@ -200,7 +202,6 @@ mail@francoisenussbaumer.ch` // plain text body
       }); 
 
       // Confirmation mail to bidder
-      var adminAddress = (settings.env === 'development') ? '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>' : '"Josef Renner" <josef.renner@gmail.com>';
       var confirmationMailOptions = {
         from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>',
         to: adminAddress,
@@ -280,7 +281,7 @@ mail@francoisenussbaumer.ch` // plain text body
 
           var confirmationMailOptions = {
             from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // sender address
-            to: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // list of receivers
+            to: adminAddress, // list of receivers
             subject: 'Versteigert: ' + updated_article.title, // Subject
             text: user[0].name + ' (' + user[0].mail + ') hat das Bild «' + updated_article.title + '» für ' + bid.amount + ' CHF ersteigert.' // plain text body
           }; 
