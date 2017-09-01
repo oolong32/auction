@@ -48,8 +48,8 @@ exports.index = function(req, res) {
 
       // check date against expiration date
       var now = Date.now();
-      console.log(results[0])
-      console.log(results[0].createdAt)
+      // console.log(results[0])
+      // console.log(results[0].createdAt)
       var date = results[0].createdAt.getTime();
       // expiration should come from database, this needs to be adressed soon
       var expiration = date + 2*24*60*60*1000; // <---------------------------------------------- hard coded time, bad bad bad
@@ -181,7 +181,16 @@ exports.bid = function(req, res) {
         from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>',
         to: mail, // list of receivers
         subject: 'Gebot eingegangen', // Subject
-        text: 'Guten Tag ' + username + '\r\rIhr Gebot über ' + bid.amount + ' CHF ist eingeangen – vielen Dank.\r\rFreundliche Grüsse\r--\rBILD DES TAGES\rauction.francoisenussbaumer.ch\rFrançoise Nussbaumer\rmail@francoisenussbaumer.ch' // plain text body
+        text: `Guten Tag ${username}
+        
+        Ihr Gebot über ${bid.amount} CHF ist eingeangen – vielen Dank.
+        
+        Freundliche Grüsse
+        --
+        BILD DES TAGES
+        auction.francoisenussbaumer.ch
+        Françoise Nussbaumer
+        mail@francoisenussbaumer.ch` // plain text body
       }; 
       transporter.sendMail(mailOptions, function(error, info) {
         if (error) {
