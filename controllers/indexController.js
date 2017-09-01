@@ -182,15 +182,15 @@ exports.bid = function(req, res) {
         to: mail, // list of receivers
         subject: 'Gebot eingegangen', // Subject
         text: `Guten Tag ${username}
-        
-        Ihr Gebot über ${bid.amount} CHF ist eingeangen – vielen Dank.
-        
-        Freundliche Grüsse
-        --
-        BILD DES TAGES
-        auction.francoisenussbaumer.ch
-        Françoise Nussbaumer
-        mail@francoisenussbaumer.ch` // plain text body
+
+Ihr Gebot über ${bid.amount} CHF ist eingeangen – vielen Dank.
+
+Freundliche Grüsse
+--
+BILD DES TAGES
+auction.francoisenussbaumer.ch
+Françoise Nussbaumer
+mail@francoisenussbaumer.ch` // plain text body
       }; 
       transporter.sendMail(mailOptions, function(error, info) {
         if (error) {
@@ -257,7 +257,18 @@ exports.instant_buy = function(req, res) {
             from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // sender address
             to: user[0].email, // list of receivers
             subject: 'Ersteigert: ' + updated_article.title, // Subject
-            text: 'Guten Tag ' + user[0].name + '\r\rSie haben das Bild «' + updated_article.title + '» für ' + bid.amount + ' CHF ersteigert – herzlichen Glückwunsch.\r\rFrançoise Nussbaumer wird Sie in Kürze kontaktieren, um den Versand zu klären.\r\rFreundliche Grüsse\r--\rBILD DES TAGES\rauction.francoisenussbaumer.ch\rFrançoise Nussbaumer\rmail@francoisenussbaumer.ch' // plain text body
+            text: `Guten Tag ${user[0].name}
+ 
+Sie haben das Bild «${updated_article.title}» für ${bid.amount} CHF ersteigert – herzlichen Glückwunsch.
+
+Françoise Nussbaumer wird Sie in Kürze kontaktieren, um den Versand zu klären.
+
+Freundliche Grüsse
+--
+BILD DES TAGES
+auction.francoisenussbaumer.ch
+Françoise Nussbaumer
+mail@francoisenussbaumer.ch` // plain text body
           }; 
           transporter.sendMail(mailOptions, function(error, info) {
             if (error) {
