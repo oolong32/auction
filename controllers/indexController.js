@@ -17,8 +17,6 @@ var transporter = nodemailer.createTransport({
     pass: 'P1pap1pa'
   }
 });
-// change admin address depending on environment
-var adminAddress = (settings.env === 'development') ? '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>' : '"Josef Renner" <josef.renner@gmail.com>';
 
 // Main Page
 exports.index = function(req, res) {
@@ -61,7 +59,10 @@ exports.index = function(req, res) {
         if (!highest_bid) { // there are no bids
           Article.findByIdAndUpdate(article._id, {$set: {active: false, sold: false}}, {new: true}, function(err, updated_article) {
             if (err) {console.log(err);}
+
             // send confirmation mail to seller
+            // change admin address depending on environment
+            var adminAddress = (req.app.get('env') != 'development') ? '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>' : '"Josef Renner" <josef.renner@gmail.com>';
             var seller_mail = 'mail@francoisenussbaumer.ch';
             var mailOptions = {
               from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // Absender
@@ -107,6 +108,8 @@ exports.index = function(req, res) {
             }); 
 
             // send confirmation mail to seller
+            // change admin address depending on environment
+            var adminAddress = (req.app.get('env') != 'development') ? '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>' : '"Josef Renner" <josef.renner@gmail.com>';
             var confirmationMailOptions = {
               from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // Absender
               to: adminAddress,                                             // Empfänger
@@ -202,6 +205,8 @@ mail@francoisenussbaumer.ch` // plain text body
       }); 
 
       // Confirmation mail to bidder
+      // change admin address depending on environment
+      var adminAddress = (req.app.get('env') != 'development') ? '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>' : '"Josef Renner" <josef.renner@gmail.com>';
       var confirmationMailOptions = {
         from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>',
         to: adminAddress,
@@ -279,6 +284,8 @@ mail@francoisenussbaumer.ch` // plain text body
             console.log('Message %s sent: %s', info.messageId, info.response);
           }); 
 
+          // change admin address depending on environment
+          var adminAddress = (req.app.get('env') != 'development') ? '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>' : '"Josef Renner" <josef.renner@gmail.com>';
           var confirmationMailOptions = {
             from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // sender address
             to: adminAddress, // list of receivers
