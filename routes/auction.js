@@ -4,6 +4,7 @@ var mime = require('mime');
 var path = require('path');
 var bodyParser = require('body-parser');
 var csrf = require('csurf');
+var userLog = require('debug')('userLog');
 
 var router = express.Router();
 var bodyParser = bodyParser.urlencoded({ extended: false })
@@ -52,13 +53,33 @@ function requireLogin(req, res, next) {
   }
 }
 
+// Check if admin
+function requireAdmin(req, res, next) {
+  if (req.user != null) {
+    res.redirect('/login');
+  } else {
+    next();
+  }
+}
+
+// log user
+function logUser(req, res, next) {
+  if (req.user) {
+    userLog(`User Name: ${req.user.first_name} ${req.user.last_name}`);
+    userLog(`User Mail: ${req.user.email}`);
+  } else {
+    userLog('not logged in');
+  }
+  next();
+}
+
 // ROUTES
 
 // RESET article (quick&dirty)
 router.get('/reset-article', index_controller.reset_article);
 
 // GET auction home page
-router.get('/', csrfProtection, index_controller.index);
+router.get('/', logUser, csrfProtection, index_controller.index);
 
 // POST auction home page (aka. bid)
 router.post('/', bodyParser, requireLogin, index_controller.bid);
