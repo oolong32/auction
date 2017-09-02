@@ -223,7 +223,7 @@ mail@francoisenussbaumer.ch` // plain text body
         from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>',
         to: adminAddress,
         subject: 'Gebot eingegangen', // Subject
-        text: `${username} hat ${bid.amount} geboten.`// plain text body
+        text: `${username} hat ${bid.amount}.— geboten.`// plain text body
       }; 
       transporter.sendMail(confirmationMailOptions, function(error, info) {
         if (error) {
@@ -302,7 +302,7 @@ mail@francoisenussbaumer.ch` // plain text body
             from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // sender address
             to: adminAddress, // list of receivers
             subject: `Versteigert: ${updated_article.title}`, // Subject
-            text: `${user[0].name} (${user[0].mail}) hat das Bild «${updated_article.title}» für ${bid.amount} CHF ersteigert.` // plain text body
+            text: `${user[0].name} (${user[0].email}) hat das Bild «${updated_article.title}» für ${bid.amount} CHF ersteigert.` // plain text body
           }; 
           transporter.sendMail(confirmationMailOptions, function(error, info) {
             if (error) {
