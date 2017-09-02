@@ -34,7 +34,7 @@ exports.index = function(req, res) {
       }
       var id = article[0]._id;
       Bid.find({ 'article': id }).populate('user').sort({ 'amount': -1 }).exec(function(err, bids) {
-        if (err) { console.error('Trubba not, bids defunct: ' + err); }
+        if (err) { console.error(`Trubba not, bids defunct: ${err}`); }
           // console.log('bids', bids);
           callback(null, [article[0], bids]);
       });
@@ -65,10 +65,10 @@ exports.index = function(req, res) {
             var adminAddress = (req.app.get('env') != 'development') ? '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>' : '"Josef Renner" <josef.renner@gmail.com>';
             var seller_mail = 'mail@francoisenussbaumer.ch';
             var mailOptions = {
-              from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // Absender
+              from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>',
               to: adminAddress,
-              subject: 'Nicht versteigert: ' + updated_article.title, // Subject
-              text: 'Es gab keine Gebote für das Bild «' + updated_article.title + '». Die Auktion ging am ' + updated_article.expiration_formatted + 'zu Ende.' // plain text body
+              subject: `Nicht versteigert: ${updated_article.title}`, // Subject
+              text: `Es gab keine Gebote für das Bild «${updated_article.title}». Die Auktion ging am ${updated_article.expiration_formatted} zu Ende.` // plain text body
             }; 
             transporter.sendMail(mailOptions, function(error, info) {
               if (error) {
@@ -97,8 +97,17 @@ exports.index = function(req, res) {
             var mailOptions = {
               from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // Absender
               to: buyer_mail, // Empfänger
-              subject: 'Ersteigert: ' + updated_article.title, // Betreff
-              text: 'Guten Tag ' + highest_bid.user.name + '\r\rHerzlichen Glückwunsch, Sie haben das Bild «' + updated_article.title + '» für CHF ' +  highest_bid.amount + '.— ersteigert.\r\rFrançoise Nussbaumer wird Sie in Kürze kontaktieren, um den Versand zu klären.\r\rFreundliche Grüsse\r--\rBILD DES TAGES\rauction.francoisenussbaumer.ch\rFrançoise Nussbaumer\rmail@francoisenussbaumer.ch' // plain text body
+              subject: `Ersteigert: ${updated_article.title}`, // Betreff
+              text: `Guten Tag ${highest_bid.user.name}
+              
+Herzlichen Glückwunsch, Sie haben das Bild «${updated_article.title}» für CHF ${highest_bid.amount}.— ersteigert.
+Françoise Nussbaumer wird Sie in Kürze kontaktieren, um den Versand zu klären.
+Freundliche Grüsse
+--
+BILD DES TAGES
+auction.francoisenussbaumer.ch
+Françoise Nussbaumer
+mail@francoisenussbaumer.ch` // plain text body
             }; 
             transporter.sendMail(mailOptions, function(error, info) {
               if (error) {
@@ -113,8 +122,8 @@ exports.index = function(req, res) {
             var confirmationMailOptions = {
               from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // Absender
               to: adminAddress,                                             // Empfänger
-              subject: 'Versteigert: ' + updated_article.title, // Betreff
-              text: highest_bid.user.name + ' (' + highest_bid.user.email + ') hat das Bild «' + updated_article.title + '» für CHF ' +  highest_bid.amount + '.— ersteigert.' // plain text body
+              subject: `Versteigert: ${updated_article.title}`, // Betreff
+              text: `${highest_bid.user.name} (${highest_bid.user.email}) hat das Bild «${updated_article.title}» für CHF ${highest_bid.amount}.— ersteigert.` // plain text body
             }; 
             transporter.sendMail(confirmationMailOptions, function(error, info) {
               if (error) {
@@ -211,7 +220,7 @@ mail@francoisenussbaumer.ch` // plain text body
         from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>',
         to: adminAddress,
         subject: 'Gebot eingegangen', // Subject
-        text: username + ' hat ' + bid.amount + '  geboten.'// plain text body
+        text: `${username} hat ${bid.amount} geboten.`// plain text body
       }; 
       transporter.sendMail(confirmationMailOptions, function(error, info) {
         if (error) {
@@ -263,7 +272,7 @@ exports.instant_buy = function(req, res) {
           var mailOptions = {
             from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // sender address
             to: user[0].email, // list of receivers
-            subject: 'Ersteigert: ' + updated_article.title, // Subject
+            subject: `Ersteigert: ${updated_article.title}`, // Subject
             text: `Guten Tag ${user[0].name}
  
 Sie haben das Bild «${updated_article.title}» für ${bid.amount} CHF ersteigert – herzlichen Glückwunsch.
@@ -289,8 +298,8 @@ mail@francoisenussbaumer.ch` // plain text body
           var confirmationMailOptions = {
             from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // sender address
             to: adminAddress, // list of receivers
-            subject: 'Versteigert: ' + updated_article.title, // Subject
-            text: user[0].name + ' (' + user[0].mail + ') hat das Bild «' + updated_article.title + '» für ' + bid.amount + ' CHF ersteigert.' // plain text body
+            subject: `Versteigert: ${updated_article.title}`, // Subject
+            text: `${user[0].name} (${user[0].mail}) hat das Bild «${updated_article.title}» für ${bid.amount} CHF ersteigert.` // plain text body
           }; 
           transporter.sendMail(confirmationMailOptions, function(error, info) {
             if (error) {
