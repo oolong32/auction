@@ -6,6 +6,9 @@ var Bid = require('../models/bid');
 var async = require('async');
 var nodemailer = require('nodemailer');
 
+var mailLog = require('debug')('mailLog');
+var bidLog = require('debug')('bidLog');
+
 // Nodemailer
 // create reusable transporter object using the default SMTP transport
 var transporter = nodemailer.createTransport({
@@ -74,7 +77,7 @@ exports.index = function(req, res) {
               if (error) {
                 return console.log(error);
               }
-              console.log('Message %s sent: %s', info.messageId, info.response);
+              mailLog('Message %s sent: %s', info.messageId, info.response);
             }); 
             // proceed to render 
             res.render('index', { title: 'Auktion beendet', article: updated_article, bids: results[1], csrfToken: req.csrfToken() });
@@ -113,7 +116,7 @@ mail@francoisenussbaumer.ch` // plain text body
               if (error) {
                 return console.log(error);
               }
-              console.log(`Message %s sent: %s`, info.messageId, info.response);
+              mailLog(`Message %s sent: %s`, info.messageId, info.response);
             }); 
 
             // send confirmation mail to seller
@@ -129,7 +132,7 @@ mail@francoisenussbaumer.ch` // plain text body
               if (error) {
                 return console.log(error);
               }
-              console.log(`Confirmation message %s sent: %s`, info.messageId, info.response);
+              mailLog(`Confirmation message %s sent: %s`, info.messageId, info.response);
             }); 
             
             // proceed to render 
@@ -146,9 +149,9 @@ mail@francoisenussbaumer.ch` // plain text body
 
 // Make bid on main page
 exports.bid = function(req, res) {
-  // console.log('geboten wird für', req.body.article);
-  // console.log('es bietet', req.session.user.email);
-  // console.log('das gebot beträgt', req.body.amount);
+  BidLog('geboten wird für', req.body.article);
+  BidLog('es bietet', req.session.user.email);
+  BidLog('das gebot beträgt', req.body.amount);
   async.parallel({
     article: function(callback) {
       Article.find({ '_id': req.body.article }, callback);
@@ -210,7 +213,7 @@ mail@francoisenussbaumer.ch` // plain text body
         if (error) {
           return console.log(error);
         }
-        console.log(`Message %s sent: %s`, info.messageId, info.response);
+        mailLog(`Message %s sent: %s`, info.messageId, info.response);
       }); 
 
       // Confirmation mail to bidder
@@ -226,7 +229,7 @@ mail@francoisenussbaumer.ch` // plain text body
         if (error) {
           return console.log(error);
         }
-        console.log(`Message %s sent: %s`, info.messageId, info.response);
+        mailLog(`Message %s sent: %s`, info.messageId, info.response);
       }); 
 
       res.redirect('/');
@@ -245,7 +248,7 @@ exports.instant_buy = function(req, res) {
       var article = data[0];
       var price = data[0].instant_buy_price;
       // console.log('preis:' + price);
-      console.log('verkauft:', article.title);
+      bidLog(`verkauft: ${article.title}`);
       // Angebotsstatus auf verkauft und inaktiv setzen
       // base_price wird angepasst, daran lässt sich auch das höchstgebot ablesen
       Article.findByIdAndUpdate( article._id, { base_price: price,  sold: true, active: false }, function(err, updated_article) {
@@ -254,7 +257,7 @@ exports.instant_buy = function(req, res) {
         }
         // Benutzer finden, wir brauchen die ID
         User.find({ 'email': req.session.user.email }).exec(function(err, user) {
-          console.log(user);
+          bidLog(user);
           if (err) {
             console.error(err);
           }
@@ -290,7 +293,7 @@ mail@francoisenussbaumer.ch` // plain text body
             if (error) {
               return console.log(error);
             }
-            console.log('Message %s sent: %s', info.messageId, info.response);
+            mailLog('Message %s sent: %s', info.messageId, info.response);
           }); 
 
           // change admin address depending on environment
@@ -305,7 +308,7 @@ mail@francoisenussbaumer.ch` // plain text body
             if (error) {
               return console.log(error);
             }
-            console.log('Confirmation message %s sent: %s', info.messageId, info.response);
+            mailLog('Confirmation message %s sent: %s', info.messageId, info.response);
           }); 
           res.redirect('/'); // besser wäre natürlich eine art bestätigungsseite/modal
           // folgendes ginge auch, aber eigentlich nicht nötig?????????? // res.render('index', { title: 'Versteigerung beendet', article: updated_article });
