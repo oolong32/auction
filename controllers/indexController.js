@@ -149,9 +149,9 @@ mail@francoisenussbaumer.ch` // plain text body
 
 // Make bid on main page
 exports.bid = function(req, res) {
-  BidLog('geboten wird für', req.body.article);
-  BidLog('es bietet', req.session.user.email);
-  BidLog('das gebot beträgt', req.body.amount);
+  bidLog('geboten wird für', req.body.article);
+  bidLog('es bietet', req.session.user.email);
+  bidLog('das gebot beträgt', req.body.amount);
   async.parallel({
     article: function(callback) {
       Article.find({ '_id': req.body.article }, callback);
