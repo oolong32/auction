@@ -17,7 +17,7 @@ var transporter = nodemailer.createTransport({
   secure: false, // secure:true for port 465, secure:false for port 587
   auth: {
     user: 'web21p3',
-    pass: 'P1p@r@mbo'
+    pass: 'foobar'
   }
 });
 
