@@ -17,7 +17,7 @@
     <p class="auction-details">Einstiegspreis <span class="currency">CHF</span> {{ article.start_price }}.—</p>
 
     {% if not article.sold %}
-    <p class="auction-details">Gegenwärtiges Höchstgebot {% if not bids %}(Noch kein Gebot.){% else %}<span class="currency">CHF</span> {{ article.base_price }}.—</p>{% endif %}
+    <p class="auction-details">Gegenwärtiges Höchstgebot {% if not bids | length %}(Noch kein Gebot.){% else %}<span class="currency">CHF</span> {{ article.base_price }}.—</p>{% endif %}
     {% else %}
     <p class="auction-details">Höchstgebot: {{ article.base_price }}.—</p>
     {% endif %}
