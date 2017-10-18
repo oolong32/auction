@@ -10,12 +10,13 @@ var favicon = require('serve-favicon');
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 var sessions = require('client-sessions');
+var debug = require('debug');
 
 var auction = require('./routes/auction');  // Import routes for "auction" area of site (which currently is all of it)
 var app = express();
 
 // app.locals.env = process.env;
-console.log(app.locals);
+// console.log(app.locals);
 
 // mongoose connection
 if ('development' === app.get('env')) {
@@ -58,7 +59,8 @@ app.use(function(req, res, next) {
     User.findOne({ email: req.session.user.email }, function(err, user) { // saublöd wegen dieser zeile muss das model user.js geladen werden
       if (user) {
         req.user = user;
-        delete req.user.password;
+        // delete req.user.password;  // doesn’t work
+        req.user.password = "foobar"; // therefore let’s overwrite the password
         req.session.user = req.user;
         res.locals.user = req.user;
       }
