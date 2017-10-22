@@ -45,7 +45,7 @@ app.use(favicon(path.join(__dirname, '/public', 'favicon.ico')));
 // Middleware für Passwortabfrage
 app.use(sessions({
   cookieName: 'session',
-  secret: 'hokus pokus fidibus simsalabim abrakadabra asdöflkjasödlkfj',
+  secret: 'mein laptop, mein kampfplatz für den frieden. tierkunde, finn mccool.',
   duration: 1000 * 60 * 60,
   activeDuration: 1000 * 10,
   httpOnly: true // don’t let browser javascript access cookies
