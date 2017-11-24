@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var moment = require('moment');
+require('moment-duration-format');
 
 var Schema = mongoose.Schema;
 
@@ -58,6 +59,17 @@ ArticleSchema
 .virtual('expiration_unformatted')
 .get(function () {
   return moment(this.createdAt).add(2, 'days').locale('de-ch').format();
+});
+
+// Virtual for remaining time to expiration date in hours
+ArticleSchema
+.virtual('remaining_hours')
+.get(function () {
+  // Stunden in ganzen Zahlen
+  var exp = moment(this.createdAt).add(2, 'days'); // expiration date
+  var now = moment(); // now
+  return moment.duration(exp.diff(now)).format('h'); // für diesen Käse musste extra ein Plugin installiert werden
+  // https://www.npmjs.com/package/moment-duration-format
 });
 
 // Virtual for remaining time to expiration date
