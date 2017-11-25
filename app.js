@@ -23,7 +23,7 @@ if ('development' === app.get('env')) {
     var mongoDB = 'mongodb://localhost:27017';
 } else {
   // dokku mongo link
-  var mongoDB = process.env.MONGO_URL || 'mongodb://fubar:4dc7b92834830c939e8cf5a955875394@dokku-mongo-fubar:27017/fubar';
+  var mongoDB = process.env.MONGO_URL || 'MONGO_URL: mongodb://fubar:dbfe6f9017a989652e18629e27d0cdb4@dokku-mongo-fubar:27017/fubar';
 }
 mongoose.connect(mongoDB);
 var db = mongoose.connection;
