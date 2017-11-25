@@ -7,7 +7,7 @@
 -->
 
 {# check environment and set path accordingly #}
-{% if settings.ev == "development" %}
+{% if settings.env == "development" %}
   {% set path = "http://localhost:3000" %}
 {% else %}
   {% set path = "https://auction.francoisenussbaumer.ch" %}

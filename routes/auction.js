@@ -55,10 +55,17 @@ function requireLogin(req, res, next) {
 
 // Check if admin
 function requireAdmin(req, res, next) {
-  if (req.user != null) {
-    res.redirect('/login');
+  if (req.user) { // is the user logged in (redundant, if requireLogin() is called first (so what)
+    // test if user belongs to admin group
+    if (req.user.email != "josef.renner@gmail.com" || /\w+@francoisenussbaumer.ch/.test(req.user.email)) {
+      userLog(`${req.user.first_name} ${req.user.last_name} tried to access admin!`);
+      res.redirect('/');
+    } else {
+      userLog('Hello Admin');
+      next();
+    }
   } else {
-    next();
+    res.redirect('/');
   }
 }
 
@@ -127,33 +134,33 @@ router.post('/user/:id/delete', bodyParser, user_controller.user_delete_post);
 // Articles (Bilder) ========================================
 
 // GET Article list
-router.get('/article', article_controller.article_list);
+router.get('/article', requireAdmin, article_controller.article_list);
 
 // GET form to create Article
-router.get('/article/create', requireLogin, bodyParser, article_controller.article_create_get);
+router.get('/article/create', requireLogin, requireAdmin, bodyParser, article_controller.article_create_get);
 
 // POST form to create Article
-router.post('/article/create', requireLogin, upload.single('image'), article_controller.article_create_post);
+router.post('/article/create', requireLogin, requireAdmin, upload.single('image'), article_controller.article_create_post);
 
 // GET form to update Article
-router.get('/article/:id/update', bodyParser, upload.single('image'), article_controller.article_update_get);
+router.get('/article/:id/update', bodyParser, requireAdmin, upload.single('image'), article_controller.article_update_get);
 
 // POST form to update Article
-router.post('/article/:id/update', upload.single('image'), article_controller.article_update_post);
+router.post('/article/:id/update', requireAdmin, upload.single('image'), article_controller.article_update_post);
 
 // GET Article detail
-router.get('/article/:id', article_controller.article_detail_get);
+router.get('/article/:id', requireAdmin, article_controller.article_detail_get);
 
 // GET form to delete Article
-router.get('/article/:id/delete', article_controller.article_delete_get);
+router.get('/article/:id/delete', requireAdmin, article_controller.article_delete_get);
 
 // POST form to delete Article
-router.post('/article/:id/delete', bodyParser, article_controller.article_delete_post);
+router.post('/article/:id/delete', requireAdmin, bodyParser, article_controller.article_delete_post);
 
 // Bids (Gebote) ===========================================
 
 // Get Bid overview
-router.get('/bid', bid_controller.bid_list);
+router.get('/bid', requireAdmin, bid_controller.bid_list);
 
 // GET form to create Bid
 // router.get('/bid/create', bid_controller.bid_create_get);
@@ -162,12 +169,12 @@ router.get('/bid', bid_controller.bid_list);
 // router.post('/bid/create', bid_controller.bid_create_post);
 
 // GET Bid details
-router.get('/bid/:id', bid_controller.bid_detail_get);
+router.get('/bid/:id', requireAdmin, bid_controller.bid_detail_get);
 
 // GET form to delete Bid
-router.get('/bid/:id/delete', csrfProtection, bid_controller.bid_delete_get);
+router.get('/bid/:id/delete', requireAdmin, csrfProtection, bid_controller.bid_delete_get);
 
 // POST form to delete Bid
-router.post('/bid/:id/delete', bodyParser, bid_controller.bid_delete_post);
+router.post('/bid/:id/delete', requireAdmin, bodyParser, bid_controller.bid_delete_post);
 
 module.exports = router;
