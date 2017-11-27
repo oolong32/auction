@@ -120,7 +120,7 @@ router.get('/logout', logout_controller.logout);
 // Users ====================================================
 
 // GET User list
-router.get('/user', user_controller.user_list);
+router.get('/user', requireAdmin, user_controller.user_list);
 
 // GET form to create User
 // router.get('/user/create', user_controller.user_create_get);
@@ -129,13 +129,13 @@ router.get('/user', user_controller.user_list);
 // router.post('/user/create', user_controller.user_create_post);
 
 // GET User details
-router.get('/user/:id', user_controller.user_detail);
+router.get('/user/:id', requireAdmin, user_controller.user_detail);
 
 // GET request to delete User
-router.get('/user/:id/delete', user_controller.user_delete_get);
+router.get('/user/:id/delete', requireAdmin, user_controller.user_delete_get);
 
 // POST request to delete User
-router.post('/user/:id/delete', bodyParser, user_controller.user_delete_post);
+router.post('/user/:id/delete', requireAdmin, bodyParser, user_controller.user_delete_post);
 
 // Articles (Bilder) ========================================
 
@@ -143,13 +143,13 @@ router.post('/user/:id/delete', bodyParser, user_controller.user_delete_post);
 router.get('/article', requireAdmin, article_controller.article_list);
 
 // GET form to create Article
-router.get('/article/create', requireLogin, requireAdmin, bodyParser, article_controller.article_create_get);
+router.get('/article/create', requireAdmin, bodyParser, article_controller.article_create_get);
 
 // POST form to create Article
-router.post('/article/create', requireLogin, requireAdmin, upload.single('image'), article_controller.article_create_post);
+router.post('/article/create', requireAdmin, upload.single('image'), article_controller.article_create_post);
 
 // GET form to update Article
-router.get('/article/:id/update', bodyParser, requireAdmin, upload.single('image'), article_controller.article_update_get);
+router.get('/article/:id/update', requireAdmin, bodyParser, upload.single('image'), article_controller.article_update_get);
 
 // POST form to update Article
 router.post('/article/:id/update', requireAdmin, upload.single('image'), article_controller.article_update_post);
