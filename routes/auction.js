@@ -102,6 +102,12 @@ router.get('/register', bodyParser, csrfProtection, register_controller.register
 // POST Registration page 
 router.post('/register', bodyParser, csrfProtection, register_controller.register_post);
 
+// GET new password page
+router.get('/new-password', bodyParser, csrfProtection, register_controller.new_password_get);
+
+// POST new password page
+router.post('/new-password', bodyParser, csrfProtection, register_controller.new_password_post);
+
 // GET Login page
 router.get('/login', bodyParser, csrfProtection, login_controller.login_get);
 
