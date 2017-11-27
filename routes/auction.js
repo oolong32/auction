@@ -57,12 +57,12 @@ function requireLogin(req, res, next) {
 function requireAdmin(req, res, next) {
   if (req.user) { // is the user logged in (redundant, if requireLogin() is called first (so what)
     // test if user belongs to admin group
-    if (req.user.email != "josef.renner@gmail.com" || /\w+(\.\w+)?@francoisenussbaumer\.ch/.test(req.user.email)) {
-      userLog(`${req.user.first_name} ${req.user.last_name} tried to access admin!`);
-      res.redirect('/');
-    } else {
+    if (req.user.email === "josef.renner@gmail.com" || /\w+(\.\w+)?@francoisenussbaumer\.ch/.test(req.user.email)) {
       userLog('Hello Admin');
       next();
+    } else {
+      userLog(`${req.user.first_name} ${req.user.last_name} tried to access admin!`);
+      res.redirect('/');
     }
   } else {
     res.redirect('/');
