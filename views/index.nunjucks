@@ -24,7 +24,7 @@
 
     <p class="auction-details">Sofort-kaufen <span class="currency">CHF</span> {{ article.instant_buy_price }}.—</p>
 
-    {% if not article.sold %}
+    {% if not article.sold and article.active %} {# die UND Bedingung eingefügt, weil das ausgeblendet werden sollte, wenn Versteigerung ohne Gebote endet.  #}
       <p class="auction-details">Verbleibende Zeit: <time datetime="{{ article.expiration_unformatted }}">{{ article.remaining_formatted }}</time>{% if article.remaining_hours > 22 %} ({{article.remaining_hours}} h){% endif %}</p> 
     {% endif %}
 
