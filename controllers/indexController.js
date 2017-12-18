@@ -55,7 +55,9 @@ exports.index = function(req, res) {
       // console.log(results[0].createdAt)
       var date = results[0].createdAt.getTime();
       // expiration should come from database, this needs to be adressed soon
-      var expiration = date + 2*24*60*60*1000; // <---------------------------------------------- hard coded time, bad bad bad
+      // var expiration = date + 2*24*60*60*1000; // <---------------------------------------------- hard coded time, bad bad bad
+      // it gets even worse, instead of fixing it we change it to one day ’cuz of x-mas, yay!
+      var expiration = date + 1*24*60*60*1000; // <---------------------------------------------- hard coded time, bad bad bad
       var remaining =  expiration - now;
 
       if (remaining <= 0 && article.active == true) { // expired but not sold
