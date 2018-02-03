@@ -45,7 +45,7 @@ ArticleSchema
 .virtual('expiration_formatted')
 .get(function () {
   // return moment(this.createdAt).add(2, 'days').locale('de-ch').format('lll');
-  return moment(this.createdAt).add(1, 'days').locale('de-ch').format('lll');
+  return moment(this.createdAt).add(2, 'days').locale('de-ch').format('lll');
 });
 
 // Virtual for article’s date UNFORMATTED
