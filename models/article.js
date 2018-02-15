@@ -45,7 +45,7 @@ ArticleSchema
 .virtual('expiration_formatted')
 .get(function () {
   // return moment(this.createdAt).add(2, 'days').locale('de-ch').format('lll');
-  return moment(this.createdAt).add(2, 'days').locale('de-ch').format('lll');
+  return moment(this.createdAt).add(1, 'days').locale('de-ch').format('lll');
 });
 
 // Virtual for article’s date UNFORMATTED
@@ -59,8 +59,8 @@ ArticleSchema
 ArticleSchema
 .virtual('expiration_unformatted')
 .get(function () {
-  return moment(this.createdAt).add(2, 'days').locale('de-ch').format();
-  // return moment(this.createdAt).add(1, 'days').locale('de-ch').format();
+  // return moment(this.createdAt).add(2, 'days').locale('de-ch').format();
+  return moment(this.createdAt).add(1, 'days').locale('de-ch').format();
 });
 
 // Virtual for remaining time to expiration date in hours
@@ -68,8 +68,8 @@ ArticleSchema
 .virtual('remaining_hours')
 .get(function () {
   // Stunden in ganzen Zahlen
-  var exp = moment(this.createdAt).add(2, 'days'); // expiration date
-  // var exp = moment(this.createdAt).add(1, 'days'); // expiration date
+  // var exp = moment(this.createdAt).add(2, 'days'); // expiration date
+  var exp = moment(this.createdAt).add(1, 'days'); // expiration date
   var now = moment(); // now
   return moment.duration(exp.diff(now)).format('h'); // für diesen Käse musste extra ein Plugin installiert werden
   // https://www.npmjs.com/package/moment-duration-format
@@ -81,7 +81,7 @@ ArticleSchema
 .get(function () {
   // sollte 22 h vorher auf Stunden umstellen, ab 45 Min. zu Minuten.
   // Hier keine Zeit, aber scheint redundant? Siehe expiration_formatted
-  return moment(this.createdAt).add(2, 'days').locale('de-ch').fromNow(true);
+  return moment(this.createdAt).add(1, 'days').locale('de-ch').fromNow(true);
 });
 
 //Export model
