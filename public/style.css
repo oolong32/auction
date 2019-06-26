@@ -6,8 +6,8 @@
 */
 /* Variables */
 body {
-  font-family: "Old Standard TT", georgia, serif;
-  font-weight: normal;
+  font-family: "Domaine Sans Text", "Old Standard TT", georgia, serif;
+  font-weight: 400;
   font-size: 16px;
   line-height: 1.2;
   word-spacing: -0.025em;
@@ -24,16 +24,14 @@ nav {
 
 /* Navigation, will go away eventually? */
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Old Standard TT", georgia, serif;
-  font-weight: bold;
+  font-family: "Domaine Sans Text", "Old Standard TT", georgia, serif;
+  font-weight: 700;
   text-align: center; }
 
 h1 {
   line-height: 1.2;
-  font-family: 'Old Standard TT', georgia, serif;
   letter-spacing: 0.5em;
   text-transform: uppercase;
-  font-weight: "Old Standard TT", georgia, serif;
   letter-spacing: 0.1em; }
 
 h1 {
@@ -72,7 +70,7 @@ em {
   font-style: italic; }
 
 strong {
-  font-weight: bold; }
+  font-weight: 700; }
 
 .username {
   text-transform: capitalize; }
@@ -130,7 +128,7 @@ a:hover, a:focus, a:active {
 h1 a,
 h1 a:link,
 h1 a:visited {
-  color: #8c7d73; }
+  color: black; }
 
 h1 a small,
 h1 a:link small,
@@ -184,15 +182,15 @@ form input[type="password"],
 form input[type="text"],
 form input[type="textarea"] {
   box-sizing: border-box;
-  font-family: "Old Standard TT", georgia, serif; }
+  font-family: "Domaine Sans Text", "Old Standard TT", georgia, serif; }
 
 form label,
 form button,
 form input {
   box-sizing: border-box;
-  font-family: "Old Standard TT", georgia, serif;
+  font-family: "Domaine Sans Text", "Old Standard TT", georgia, serif;
   font-size: 1em;
-  font-weight: normal;
+  font-weight: 400;
   display: block;
   /* Styles für Browser ohne Grid support */
   margin: 0 auto;

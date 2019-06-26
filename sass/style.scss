@@ -6,9 +6,9 @@
 
 /* Variables */
 
-$font: 'Old Standard TT', georgia, serif;
-$text: normal;
-$fett: bold;
+$font: 'Domaine Sans Text', 'Old Standard TT', georgia, serif;
+$text: 400;
+$fett: 700;
 
 $baseCol: 210;
 $baseColLeft: $baseCol + 30;
@@ -16,7 +16,7 @@ $baseColRight: $baseCol - 30;
 $contrast: ($baseCol + 90) % 360;
 $bg: ($baseCol - 160);
 $col: hsl($baseCol, 100%, 0%);
-$headCol: hsl(25, 10%, 50%); 
+$headCol: hsl(25, 0%, 0%); 
 $linkColActive: hsl($baseCol, 100%, 50%);
 $accent: hsl($contrast, 80%, 40%);
 $background: hsl($bg, 15%, 80%);
@@ -58,10 +58,8 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
 	line-height: 1.2;
-	font-family: 'Old Standard TT', georgia, serif;
 	letter-spacing: 0.5em;
 	text-transform: uppercase;
-	font-weight: $font;
 	letter-spacing: 0.1em;
 	// display: inline-block;
 	// -webkit-text-size-adjust: 100%; // kein Text-Zoom in iOS
