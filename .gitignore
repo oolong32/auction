@@ -4,3 +4,7 @@ node_modules/
 **/.DS_Store
 public/uploads/
 public/*.css
+**/*.ttf
+**/*.otf
+**/*.woff
+**/*.woff2
