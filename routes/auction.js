@@ -18,6 +18,7 @@ var logout_controller = require('../controllers/logoutController.js')
 var user_controller = require('../controllers/userController.js');
 var bid_controller = require('../controllers/bidController.js');
 var article_controller = require('../controllers/articleController.js');
+var api_controller = require('../controllers/apiController.js');
 
 // Multer (file upload)
 var storage = multer.diskStorage({
@@ -183,4 +184,8 @@ router.get('/bid/:id/delete', requireAdmin, csrfProtection, bid_controller.bid_d
 // POST form to delete Bid
 router.post('/bid/:id/delete', requireAdmin, bodyParser, bid_controller.bid_delete_post);
 
+// API =======================================================
+
+// General Infos
+router.get('/json', api_controller.json)
 module.exports = router;

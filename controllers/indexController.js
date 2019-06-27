@@ -32,7 +32,21 @@ exports.index = function(req, res) {
     },
     function(article, callback) {
       if (!article[0]) {
-        res.render('index', { title: 'Keine Auktion', article: { title: "Nichts", image_filename: null, description: "Es gibt noch kein Bild in der Datenbank", base_price: 0, instant_buy_price: 0, date_formatted: null, date_unformatted: 0, expiration_formatted: 0, expiration_unformatted: 0, active: false }, bids: null, csrfToken: req.csrfToken() });
+        res.render('index', {
+          title: 'Keine Auktion',
+          article: {
+            title: "Nichts",
+            image_filename: null,
+            description: "Es gibt noch kein Bild in der Datenbank",
+            base_price: 0,
+            instant_buy_price: 0,
+            date_formatted: null,
+            date_unformatted: 0,
+            expiration_formatted: 0,
+            expiration_unformatted: 0,
+            active: false
+          },
+          bids: null, csrfToken: req.csrfToken() });
         return;
       }
       var id = article[0]._id;
