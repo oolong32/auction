@@ -84,5 +84,14 @@ ArticleSchema
   return moment(this.createdAt).add(1, 'days').locale('de-ch').fromNow(true);
 });
 
+// Virtual for getting url
+ArticleSchema
+.virtual('permalink')
+.get(function () {
+  // sollte 22 h vorher auf Stunden umstellen, ab 45 Min. zu Minuten.
+  // Hier keine Zeit, aber scheint redundant? Siehe expiration_formatted
+  return `https://auction.francoisenussbaumer.ch/uploads/${this.image_filename}`;
+});
+
 //Export model
 module.exports = mongoose.model('Article', ArticleSchema);
