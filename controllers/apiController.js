@@ -29,6 +29,7 @@ exports.json = function(req, res) {
             date_unformatted: 0,
             expiration_formatted: 0,
             expiration_unformatted: 0,
+            permalink: null,
             active: false
           },
           bids: null
@@ -120,7 +121,10 @@ exports.json = function(req, res) {
         res.json({
           status: (article.active && !article.sold) ? 'Auktion' : 'Auktion beendet',
           article: results[0],
-          bids: results[1]
+          bids: results[1],
+          // etwas blöd: url ist hart-gecodet, z.b. kein localhost
+          permalink: results[0].permalink,
+          localpermalink: `http://localhost:3000/uploads/${results[0].image_filename}`
       });
     }
   });
