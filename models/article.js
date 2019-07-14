@@ -88,8 +88,6 @@ ArticleSchema
 ArticleSchema
 .virtual('permalink')
 .get(function () {
-  // sollte 22 h vorher auf Stunden umstellen, ab 45 Min. zu Minuten.
-  // Hier keine Zeit, aber scheint redundant? Siehe expiration_formatted
   return `https://auction.francoisenussbaumer.ch/uploads/${this.image_filename}`;
 });
 
