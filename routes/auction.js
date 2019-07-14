@@ -5,6 +5,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var csrf = require('csurf');
 var userLog = require('debug')('userLog');
+var cors = require('cors');
 
 var router = express.Router();
 var bodyParser = bodyParser.urlencoded({ extended: false })
@@ -187,5 +188,6 @@ router.post('/bid/:id/delete', requireAdmin, bodyParser, bid_controller.bid_dele
 // API =======================================================
 
 // General Infos
-router.get('/json', api_controller.json)
+router.get('/json', cors(), api_controller.json)
+
 module.exports = router;
