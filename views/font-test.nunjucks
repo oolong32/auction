@@ -2,8 +2,13 @@
 
 {% block content %}
 
-  <h2 style="font-family: 'Domaine Sans Text'; font-weight: 500;">{{ title }}</h2>
+  <h2 style="font-family: 'Domaine Sans Text', hobeaux; font-weight: 500; text-transform: none;">{{ title }}</h2>
 
-  <p style="font-family: 'Input Sans Narrow'; font-weight: 300; ">Adipisicing repellat nam vitae esse eveniet! Beatae ex culpa ipsa labore impedit.</p>
+  <p style="font-family: 'Domaine Sans Text', hobeaux; font-weight: 500;">Consectetur odit nam nisi pariatur ipsum? Ad delectus!</p>
+
+  <p style="font-family: 'Domaine Sans Text', hobeaux; font-weight: 500;">Amet quasi doloribus ea modi blanditiis! Tempore odit</p>
+
+  <p style="font-family: 'Input Sans Narrow', hobeaux; font-weight: 300; ">Adipisicing repellat nam vitae esse eveniet! Beatae ex culpa ipsa labore impedit.</p>
+  <p style="font-family: 'Input Sans Narrow', hobeaux, ; font-weight: 500; ">Consectetur quidem illum velit consectetur tempora perferendis.</p>
 
 {% endblock %}
