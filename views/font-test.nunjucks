@@ -2,8 +2,8 @@
 
 {% block content %}
 
-  <h2 style="font-family: 'Domaine'; font-weight: 500;">{{ title }}</h2>
+  <h2 style="font-family: 'Domaine Sans Text'; font-weight: 500;">{{ title }}</h2>
 
-  <p style="font-family: 'Input'; font-weight: 300; ">Adipisicing repellat nam vitae esse eveniet! Beatae ex culpa ipsa labore impedit.</p>
+  <p style="font-family: 'Input Sans Narrow'; font-weight: 300; ">Adipisicing repellat nam vitae esse eveniet! Beatae ex culpa ipsa labore impedit.</p>
 
 {% endblock %}
