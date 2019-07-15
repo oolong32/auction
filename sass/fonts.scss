@@ -1,17 +1,17 @@
 /* Domaine Sans Web */
 @font-face {
-  font-family: "Domaine Sans Text";
-  src: url('https://new.francoisenussbaumer.ch/assets/fonts/domaine-sans-text/DomaineSansTextWeb-Light.eot'); /* IE < 9 */
-  src: url('https://new.francoisenussbaumer.ch/assets/fonts/domaine-sans-text/DomaineSansTextWeb-Light.eot?#') format("embedded-opentype"), /* IE 9 */
+  font-family: "DomaineSansText";
+  src: url("https://new.francoisenussbaumer.ch/assets/fonts/domaine-sans-text/DomaineSansTextWeb-Light.eot"); /* IE < 9 */
+  src: url("https://new.francoisenussbaumer.ch/assets/fonts/domaine-sans-text/DomaineSansTextWeb-Light.eot?#") format("embedded-opentype"), /* IE 9 */
        url("https://new.francoisenussbaumer.ch/assets/fonts/domaine-sans-text/DomaineSansTextWeb-Light.woff2") format("woff2"),
        url("https://new.francoisenussbaumer.ch/assets/fonts/domaine-sans-text/DomaineSansTextWeb-Light.woff") format("woff");
   font-style: normal;
   font-weight: 300; }
 
 @font-face {
-  font-family: "Domaine Sans Text";
-  src: url('https://new.francoisenussbaumer.ch/assets/fonts/domaine-sans-text/DomaineSansTextWeb-LightItalic.eot'); /* IE < 9 */
-  src: url('https://new.francoisenussbaumer.ch/assets/fonts/domaine-sans-text/DomaineSansTextWeb-LightItalic.eot?#') format("embedded-opentype"), /* IE 9 */
+  font-family: "DomaineSansText";
+  src: url("https://new.francoisenussbaumer.ch/assets/fonts/domaine-sans-text/DomaineSansTextWeb-LightItalic.eot"); /* IE < 9 */
+  src: url("https://new.francoisenussbaumer.ch/assets/fonts/domaine-sans-text/DomaineSansTextWeb-LightItalic.eot?#") format("embedded-opentype"), /* IE 9 */
        url("https://new.francoisenussbaumer.ch/assets/fonts/domaine-sans-text/DomaineSansTextWeb-LightItalic.woff2") format("woff2"),
        url("https://new.francoisenussbaumer.ch/assets/fonts/domaine-sans-text/DomaineSansTextWeb-LightItalic.woff") format("woff");
   font-style: italic;
@@ -19,9 +19,9 @@
 }
 
 @font-face {
-  font-family: "Domaine Sans Text";
-  src: url('https://new.francoisenussbaumer.ch/assets/fonts/domaine-sans-text/DomaineSansTextWeb-Medium.eot'); /* IE < 9 */
-  src: url('https://new.francoisenussbaumer.ch/assets/fonts/domaine-sans-text/DomaineSansTextWeb-Medium.eot?#') format("embedded-opentype"), /* IE 9 */
+  font-family: "DomaineSansText";
+  src: url("https://new.francoisenussbaumer.ch/assets/fonts/domaine-sans-text/DomaineSansTextWeb-Medium.eot"); /* IE < 9 */
+  src: url("https://new.francoisenussbaumer.ch/assets/fonts/domaine-sans-text/DomaineSansTextWeb-Medium.eot?#") format("embedded-opentype"), /* IE 9 */
        url("https://new.francoisenussbaumer.ch/assets/fonts/domaine-sans-text/DomaineSansTextWeb-Medium.woff2") format("woff2"),
        url("https://new.francoisenussbaumer.ch/assets/fonts/domaine-sans-text/DomaineSansTextWeb-Medium.woff") format("woff");
   font-style: normal;
@@ -30,21 +30,21 @@
 
 /* Input Sans Narrow */
 @font-face {
-  font-family: "Input Sans Narrow";
-  src: url('https://new.francoisenussbaumer.ch/assets/fonts/input-sans-narrow/InputSansNarrow-Light.eot'); /* IE < 9 */
-  src: url('https://new.francoisenussbaumer.ch/assets/fonts/input-sans-narrow/InputSansNarrow-Light.eot?#') format("embedded-opentype"), /* IE 9 */
-    url("https://new.francoisenussbaumer.ch/assets/fonts/input-sans-narrow/InputSansNarrow-Light.woff2") format("woff2"),
-    url("https://new.francoisenussbaumer.ch/assets/fonts/input-sans-narrow/InputSansNarrow-Light.woff") format("woff");
+  font-family: "InputSansNarrow";
+  src: url("https://new.francoisenussbaumer.ch/assets/fonts/input-sans-narrow/InputSansNarrow-Light.eot"); /* IE < 9 */
+  src: url("https://new.francoisenussbaumer.ch/assets/fonts/input-sans-narrow/InputSansNarrow-Light.eot?#") format("embedded-opentype"), /* IE 9 */
+       url("https://new.francoisenussbaumer.ch/assets/fonts/input-sans-narrow/InputSansNarrow-Light.woff2") format("woff2"),
+       url("https://new.francoisenussbaumer.ch/assets/fonts/input-sans-narrow/InputSansNarrow-Light.woff") format("woff");
   font-style: normal;
   font-weight: 300;
 }
 
 @font-face {
-  font-family: "Input Sans Narrow";
-  src: url('https://new.francoisenussbaumer.ch/assets/fonts/input-sans-narrow/InputSansNarrow-Medium.eot'); /* IE < 9 */
-  src: url('https://new.francoisenussbaumer.ch/assets/fonts/input-sans-narrow/InputSansNarrow-Medium.eot?#') format("embedded-opentype"), /* IE 9 */
-    url("https://new.francoisenussbaumer.ch/assets/fonts/input-sans-narrow/InputSansNarrow-Medium.woff2") format("woff2"),
-    url("https://new.francoisenussbaumer.ch/assets/fonts/input-sans-narrow/InputSansNarrow-Medium.woff") format("woff");
+  font-family: "InputSansNarrow";
+  src: url("https://new.francoisenussbaumer.ch/assets/fonts/input-sans-narrow/InputSansNarrow-Medium.eot"); /* IE < 9 */
+  src: url("https://new.francoisenussbaumer.ch/assets/fonts/input-sans-narrow/InputSansNarrow-Medium.eot?#") format("embedded-opentype"), /* IE 9 */
+       url("https://new.francoisenussbaumer.ch/assets/fonts/input-sans-narrow/InputSansNarrow-Medium.woff2") format("woff2"),
+       url("https://new.francoisenussbaumer.ch/assets/fonts/input-sans-narrow/InputSansNarrow-Medium.woff") format("woff");
   font-style: normal;
   font-weight: 500;
 }
