@@ -355,5 +355,6 @@ exports.reset_article = function(req, res) {
 // font test
 exports.fontTest = function(req, res) {
   res.render('font-test', { title: 'Font Test' });
+  return;
 }
 

@@ -2,11 +2,8 @@
 
 {% block content %}
 
-  {% if error %}
-    <p>Error getting content.</p>
-  {% else %}
+  <h2 style="font-family: 'Domaine'; font-weight: 500;">{{ title }}</h2>
 
-  <h2>{{ title }}</h2>
+  <p style="font-family: 'Input'; font-weight: 300; ">Adipisicing repellat nam vitae esse eveniet! Beatae ex culpa ipsa labore impedit.</p>
 
-  <p>Adipisicing repellat nam vitae esse eveniet! Beatae ex culpa ipsa labore impedit.</p>
 {% endblock %}
