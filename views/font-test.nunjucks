@@ -1,0 +1,12 @@
+{% extends "layout.nunjucks" %}
+
+{% block content %}
+
+  {% if error %}
+    <p>Error getting content.</p>
+  {% else %}
+
+  <h2>{{ title }}</h2>
+
+  <p>Adipisicing repellat nam vitae esse eveniet! Beatae ex culpa ipsa labore impedit.</p>
+{% endblock %}

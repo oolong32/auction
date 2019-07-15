@@ -350,3 +350,10 @@ exports.reset_article = function(req, res) {
       });
     });
 };
+
+
+// font test
+exports.font-test = function(req, res) {
+  res.render('font-test', { title: 'Font Test' });
+}
+

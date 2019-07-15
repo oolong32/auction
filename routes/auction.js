@@ -190,4 +190,7 @@ router.post('/bid/:id/delete', requireAdmin, bodyParser, bid_controller.bid_dele
 // General Infos
 router.get('/json', cors(), api_controller.json)
 
+// font-test
+router.get('font-test', api_controller.font-test)
+
 module.exports = router;
