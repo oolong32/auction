@@ -8,8 +8,8 @@
 
   <p style="font-family: DomaineSansText, hobeaux, arial; font-weight: 300;">Amet quasi doloribus ea modi blanditiis! Tempore odit</p>
 
-  <p style="font-family: InputSansNarrow, hobeaux, monsospace; font-weight: 500; ">Consectetur quidem illum velit consectetur tempora perferendis.</p>
+  <p style="font-family: InputSansNarrow, hobeaux, monospace; font-weight: 500;">Consectetur quidem illum velit consectetur tempora perferendis.</p>
 
-  <p style="font-family: InputSansNarrow, hobeaux, monospace; font-weight: 300; ">Adipisicing repellat nam vitae esse eveniet! Beatae ex culpa ipsa labore impedit.</p>
+  <p style="font-family: InputSansNarrow, hobeaux, monospace; font-weight: 300;">Adipisicing repellat nam vitae esse eveniet! Beatae ex culpa ipsa labore impedit.</p>
 
 {% endblock %}
