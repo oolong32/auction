@@ -2,7 +2,7 @@
 
 {% block content %}
 
-  <h2 style="font-family: DomaineSansText, hobeaux, arial; font-weight: 500; text-transform: none;">{{ title }}</h2>
+  <p style="font-family: DomaineSansText, hobeaux, arial; font-weight: 500; text-transform: none;">{{ title }}</p>
 
   <p style="font-family: DomaineSansText, hobeaux, arial; font-weight: 300;">Consectetur odit nam nisi pariatur ipsum? Ad delectus!</p>
 
