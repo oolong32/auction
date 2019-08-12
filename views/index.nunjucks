@@ -6,14 +6,14 @@
     <p>Error getting content.</p>
   {% else %}
 
-  <h2>{{ title }}</h2>
+  <!--  <h2>{{ title }}</h2> {# «Auktion» #}-->
 
   <section id="article-image">
     <img src="{{ path }}/uploads/{{ article.image_filename }}" alt="{{ article.title }}, {{ article.description }}">
   </section>
 
   <section id="article-details">
-    <p id="description">{{ article.title }}, {{ article.description }}</p>
+  <p id="description"><strong>{{ article.title }},</strong><br>{{ article.description }}</p>
     <p class="auction-details">Einstiegspreis <span class="currency">CHF</span> {{ article.start_price }}.—</p>
 
     {% if not article.sold %}

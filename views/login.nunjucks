@@ -26,8 +26,8 @@
     </form>
   </section>
   <section id="register">
-    <h2>Noch kein Benutzerkonto?</h2>
-    <p class="box-button"><a href="/register">Registrieren</a></p>
+    <h2>Noch keine Login und Passwort?</h2>
+    <p>Richten Sie ein <a href="/register">neues Benutzerkonto</a> ein.</p>
   </section>
 
 {% endblock %}

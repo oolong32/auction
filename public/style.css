@@ -1,100 +1,239 @@
 @charset "UTF-8";
-/* Todo 
+/* Variables {{{*/
+/* Input gibts 500, 300 und 200 */
+/* Alles viel zu kompliziert, oder? */
+/* Alles viel zu kompliziert, oder? */
+/* Alles viel zu kompliziert, oder? */
+/* Alles viel zu kompliziert, oder? */
+/* Variables }}}*/
+/* Root/Body {{{*/
+:root {
+  font-family: "DomaineSansTextTest-Light", "DomaineSansText", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-weight: 300;
+  font-size: 100%;
+  line-height: 1.3;
+  font-variant-numeric: oldStyle-nums;
+  text-align: center; }
 
-- Breakpoints zu nahe beieinander
+*, html {
+  box-sizing: border-box; }
 
-*/
-/* Variables */
 body {
-  font-family: "Domaine Sans Text", "Old Standard TT", georgia, serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.2;
-  word-spacing: -0.025em;
-  color: black;
-  background: #d4d1c4;
-  padding: 0 0.25em 0 0.3em; }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 0.5rem 0; }
 
-header, footer {
-  text-align: center;
-  padding: 1em 0 0.8em; }
+/* Root/Body }}}*/
+/* Font Sizes {{{*/
+h1 {
+  font-size: 1.25rem;
+  line-height: 1; }
+
+footer .credits {
+  font-size: 0.6875rem; }
+
+/* Font Sizes }}}*/
+/* Font Styles {{{*/
+h1, h2, h3, h4, h5, h6, strong {
+  font-weight: 500; }
+
+h1 {
+  font-variant-caps: all-small-caps; }
+
+h2 {
+  margin: 0 0 2rem; }
+
+p, li, figcaption {
+  font-weight: 300; }
+
+e3, h4, h5, p, figcaption {
+  margin: 0 0 1rem; }
+
+.smallcaps {
+  font-variant-caps: all-small-caps; }
+
+footer .credits {
+  font-family: "InputSans-Light", "InputSansNarrow", monospace;
+  font-weight: 300; }
+
+em {
+  color: red; }
+
+/* Font Styles }}}/*
+
+/* Layout {{{*/
+header, main {
+  width: 100%; }
 
 nav {
   display: none; }
 
-/* Navigation, will go away eventually? */
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Domaine Sans Text", "Old Standard TT", georgia, serif;
-  font-weight: 700;
-  text-align: center; }
+/* Navigation, only for dev */
+header {
+  margin: 2.25rem auto 2.5rem; }
 
-h1 {
-  line-height: 1.2;
-  letter-spacing: 0.5em;
-  text-transform: uppercase;
-  letter-spacing: 0.1em; }
+main {
+  margin: 0 1rem 3rem; }
 
-h1 {
-  font-size: 1.8em; }
+main img {
+  max-width: 100%;
+  margin-bottom: 1rem; }
 
-h2 {
-  font-size: 1em;
-  text-transform: uppercase; }
+section#register-login {
+  display: flex;
+  flex-direction: column; }
+  section#register-login p.box-button {
+    margin: auto; }
+  section#register-login p#register {
+    margin-bottom: 1rem; }
 
-h3 {
-  font-size: 1em; }
+footer section {
+  margin: 0 auto 3rem; }
 
-h4 {
-  font-size: 1em; }
+/* Layout }}}*/
+/* Links {{{*/
+a {
+  text-decoration: none; }
 
-h5 {
-  font-size: 1em; }
+/* Links }}}*/
+/* Colors {{{*/
+body {
+  background: whitesmoke;
+  color: black; }
 
-h6 {
-  font-size: 1em; }
+a,
+a:link,
+a:visited {
+  color: #6347eb; }
 
-p {
-  font-size: 1em; }
+a:focus,
+a:hover {
+  color: #2b00ff; }
 
-h1 small {
-  font-size: 0.5em;
-  /*font-weight: $text;*/
-  letter-spacing: 0.05em; }
+header a:link,
+header a:visited, footer a:link,
+footer a:visited {
+  color: black; }
 
-section#login h2,
-section#register h2,
-section#registration h2 {
-  text-transform: none; }
+header a:hover,
+header a:focus,
+header a:active, footer a:hover,
+footer a:focus,
+footer a:active {
+  color: #2b00ff; }
 
-em {
-  font-style: italic; }
+a.newsletter-signup {
+  color: black;
+  background: #5eeda6; }
 
-strong {
-  font-weight: 700; }
+a.newsletter-signup:hover {
+  color: black;
+  background: #33ff99; }
 
+.contact-instagram-link:hover svg path {
+  fill: #8080ff; }
+
+.box-button {
+  background: #5eeda6; }
+  .box-button a {
+    color: black; }
+
+.box-button:hover,
+#image-container p#auction-button:hover {
+  background: #33ff99; }
+  .box-button:hover a,
+  #image-container p#auction-button:hover a {
+    color: black; }
+
+form {
+  background: #e6e6e6; }
+
+form:focus-within {
+  background: #e0e6eb; }
+
+/* Colors }}}*/
+/* Lists {{{1*/
+main ul {
+  margin: 0 0 1rem;
+  padding-left: 0;
+  list-style-position: inside; }
+  main ul li {
+    padding-left: 0.3rem; }
+
+/* Lists }}}1*/
+/* Buttons {{{1*/
+#image-container {
+  position: relative;
+  padding: 0; }
+  #image-container p#auction-button {
+    position: absolute;
+    transform: rotate(-8deg);
+    bottom: -0.5rem;
+    left: 5%; }
+  #image-container p#auction-button:hover {
+    transform: rotate(-15deg) scale(1.1); }
+
+p.button {
+  font-family: "Input Sans Narrow", monospace;
+  font-weight: 300;
+  display: inline-block;
+  border-radius: 1rem;
+  margin: 1rem auto;
+  padding: .3rem 1rem .5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out; }
+
+p.button:hover {
+  transform: scale(1.1); }
+
+a.newsletter-signup {
+  font-family: "Input Sans Narrow", monospace;
+  font-weight: 300;
+  display: flex;
+  margin: 0 auto 2rem;
+  width: 9.5rem;
+  height: 9.5rem;
+  border-radius: 4.75rem;
+  transform-origin: center center;
+  transform: rotate(-12deg);
+  transition: all 0.2s ease-in-out; }
+  a.newsletter-signup p {
+    transform: translateY(-0.0625rem);
+    display: inline-block;
+    margin: auto; }
+
+a.newsletter-signup:hover {
+  transform: scale(1.1) rotate(-15deg); }
+
+.contact-instagram-link svg {
+  transform: scale(1);
+  transition: all 0.2s ease-in-out; }
+  .contact-instagram-link svg path {
+    transition: all 0.2s ease-in-out; }
+
+.contact-instagram-link:hover svg {
+  transform: scale(1.1); }
+
+/* Buttons }}}1*/
+/* bisher … {{{1*/
 .username {
   text-transform: capitalize; }
 
 .top-secret,
 .error-message {
-  color: #b814b8; }
+  color: #66b814; }
 
 /* Layout Basics (Mobile) */
-header {
-  margin: 0.5em 0 0.5em;
-  padding: 0.2em 0.15em; }
-
 main section {
   text-align: center;
   margin-bottom: 0.5em; }
 
-main h2 {
-  margin-bottom: 0.5em; }
-
-/* Titel "Auktion" */
-p {
-  margin: 0; }
-
+/*
+main h2 { margin-bottom: 0.5em; } // Titel "Auktion", Titel Registrierung und Login
+**/
 section#article-details {
   margin-bottom: 2em; }
 
@@ -111,46 +250,23 @@ section#bid-list ul#article-bids {
 section#login {
   margin-bottom: 2em; }
 
-section#login form input[type="submit"],
-section#registration form input[type="submit"] {
-  margin-top: 0.5em; }
-
-footer {
-  margin: 4em 0 1em; }
-
-/* Links */
-a:link, a:visited {
-  color: black; }
-
-a:hover, a:focus, a:active {
-  color: #0080ff; }
-
-h1 a,
-h1 a:link,
-h1 a:visited {
-  color: black; }
-
-h1 a small,
-h1 a:link small,
-h1 a:visited small {
-  color: black; }
-
-h1 a,
-.box-button a,
-footer a {
-  text-decoration: none; }
-
 .box-button {
-  font-weight: 400;
-  color: black;
-  /* cursor: pointer; verwirrend! */
-  text-align: center;
-  border: 1px solid black;
-  padding: 0.4em 0.5em 0.25em;
+  /* wie francoisenussbaumer.ch */
+  font-family: "Input Sans Narrow", monospace;
+  font-weight: 300;
   display: inline-block;
-  box-shadow: 4px 3px 0 black;
-  background: #e9e8e2; }
+  border: none;
+  border-radius: 1rem;
+  margin: 1rem auto;
+  padding: .3rem 1rem .5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out; }
 
+.box-button:hover {
+  transform: scale(1.1); }
+
+/* wie francoisenussbaumer.ch */
 p#instant-buy {
   margin: 0.5em 0 2em; }
 
@@ -162,39 +278,41 @@ ul {
 dd {
   margin: 0 0 0.5em 0; }
 
-.currency {
-  letter-spacing: 0.025em; }
-
 img {
   width: 100%;
   max-width: 600px;
   height: auto;
   padding: 0.5em;
-  background: #e9e8e2;
+  background: #e2e7e9;
   box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.2); }
 
 form {
   display: inline-block;
-  /* damit es nicht die gesamte Breite überspannt*/ }
-
-form input[type="submit"],
-form input[type="password"],
-form input[type="text"],
-form input[type="textarea"] {
-  box-sizing: border-box;
-  font-family: "Domaine Sans Text", "Old Standard TT", georgia, serif; }
+  /* damit es nicht die gesamte Breite überspannt*/
+  padding: 1rem;
+  border-radius: 0.25rem; }
 
 form label,
 form button,
 form input {
   box-sizing: border-box;
-  font-family: "Domaine Sans Text", "Old Standard TT", georgia, serif;
+  font-family: "DomaineSansTextTest-Light", "DomaineSansText", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 1em;
-  font-weight: 400;
+  font-weight: 300;
   display: block;
   /* Styles für Browser ohne Grid support */
   margin: 0 auto;
   margin-bottom: 0.25em; }
+
+form input[type="password"],
+form input[type="text"],
+form input[type="email"],
+form input[type="textarea"] {
+  box-sizing: border-box;
+  /* Neu August 19 */
+  font-family: "InputSans-Light", "InputSansNarrow", monospace;
+  font-size: 0.7rem;
+  padding: 0.25rem; }
 
 form label {
   display: inline;
@@ -202,19 +320,20 @@ form label {
   float: left;
   padding-right: 0.25em; }
 
+/*
 form button {
   background: transparent;
   cursor: pointer;
-  color: black;
-  margin-top: 0; }
-
-form button:hover {
-  color: #0080ff; }
+  color: $col;
+  // margin-top: 0;
+}
+august 19:  scheint irrelevant
 
 form input[type="submit"] {
   margin-top: 2em;
-  font-size: 1em; }
-
+  font-size: 1em;
+}
+*/
 form#delete-form {
   width: 100%; }
 
@@ -281,51 +400,45 @@ form#delete-form button {
   section#register,
   section#registration {
     display: grid;
-    grid-template-columns: 1fr minmax(auto, 400px) 1fr;
-    grid-gap: 0.25em; }
-  section#login h2,
-  section#login p,
-  section#login form,
-  section#register h2,
-  section#register p,
-  section#registration h2,
-  section#registration p,
-  section#registration form {
-    grid-column: 2;
-    width: 100%;
-    margin: 0;
-    justify-self: center; }
-  section#login form {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-gap: 0.25em; }
-  section#login form label {
-    grid-column: 1;
-    align-self: center;
-    margin: 0;
-    padding: 0; }
-  section#login form input {
-    grid-column: 2; }
-  section#login form input[type="submit"] {
-    grid-column: 1/-1;
-    margin: 0;
-    width: 100%; }
-  section#registration form {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-auto-rows: 2em;
-    grid-gap: 0.3em;
-    margin: 0; }
-  section#registration form label,
-  section#registration form input {
-    margin: 0;
-    padding: 0; }
-  section#registration form label {
-    align-self: end;
-    justify-self: start;
-    line-height: 1.5; }
-  section#registration form input[type="submit"] {
-    margin: 0; }
+    grid-template-columns: 1fr minmax(auto, 400px) 1fr; }
+  section#login,
+  section#register,
+  section#registration {
+    /* Einmitten */
+    /* End Form */ }
+    section#login h2, section#login p, section#login form,
+    section#register h2,
+    section#register p,
+    section#register form,
+    section#registration h2,
+    section#registration p,
+    section#registration form {
+      grid-column: 2;
+      width: 100%;
+      margin: 0 0 1rem;
+      justify-self: center; }
+    section#login form,
+    section#register form,
+    section#registration form {
+      display: grid;
+      grid-template-columns: 1fr; }
+      section#login form label,
+      section#register form label,
+      section#registration form label {
+        text-align: left;
+        margin: 0;
+        padding: 0; }
+      section#login form input,
+      section#register form input,
+      section#registration form input {
+        width: 100%;
+        margin-bottom: 1rem; }
+      section#login form input[type="submit"],
+      section#register form input[type="submit"],
+      section#registration form input[type="submit"] {
+        margin: 1rem auto 0;
+        width: auto; }
+  /* End Section Login/Register/Registration */
   /* Bild erfassen */
   form#article-create-form {
     display: grid;
@@ -400,24 +513,46 @@ form#delete-form button {
     justify-self: start; } }
 
 /* Media Queries */
-@media (max-width: 740px) and (orientation: landscape) {
-  body {
-    font-size: 18px;
-    /*background: lime; */ }
-  img {
-    padding: 0.75em; }
-  @supports (display: grid) {
-    /* Gebote abgeben Formular, Sofort kaufen*/
-    section#bid-ui {
-      grid-template-columns: 1fr 2fr 1fr; } } }
-
-@media (min-width: 741px) {
-  body {
-    font-size: 20px; }
+@media (min-width: 500px) {
+  /* Desktop Text Sizes {{{2*/
+  /* wie francoisenussbaumer.ch*/
+  :root {
+    font-size: 125%; }
+  h1 {
+    font-size: 1.8rem; }
   header {
     margin-bottom: 2em; }
-  img {
-    padding: 1em; }
-  @supports (display: grid) {
-    section#bid-ui {
-      grid-template-columns: 1fr 1fr 1fr; } } }
+  /* wie francoisenussbaumer.ch*/
+  /* Desktop Text Sizes }}}2*/
+  /* Layout {{{2*/
+  body {
+    padding: 1rem 3rem 0; }
+  main {
+    max-width: 40rem; }
+  main #content,
+  footer {
+    max-width: 32rem;
+    padding: 0; }
+  /* Desktop Form Layout {{{3*/
+  form {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 0.25em; }
+    form label {
+      grid-column: 1;
+      align-self: center;
+      margin: 0;
+      padding: 0; }
+    form input {
+      grid-column: 2;
+      width: 100%; }
+    form input[type="submit"] {
+      grid-column: 1/-1;
+      margin: 1rem auto 0;
+      width: auto; }
+  /* Desktop Form Layout }}}3 */
+  /* Layout }}}2*/
+  section#bid-ui {
+    grid-template-columns: 1fr 1fr 1fr; } }
+
+/* bisher … }}}1*/
