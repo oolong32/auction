@@ -389,7 +389,7 @@ form#delete-form button { display: block; }
   dt,
   dd { margin: 0; padding: 0;} /* Keine Abstände in Aufzählungen, weil meist (immer?) display: grid */
 
-  /* Bieten Formular */
+  /* Bieten Formular {{{2*/
   section#bid-ui {
     // grid-column: 1/-1;
     display: grid;
@@ -449,9 +449,9 @@ form#delete-form button { display: block; }
     grid-column: 2;
     white-space: nowrap;
   }
+/* Bieten Formular }}}2*/
 
-  /* Anmelden */
-
+  /* Anmelden {{{2*/
   section#login,
   section#register,
   section#registration {
@@ -473,7 +473,7 @@ form#delete-form button { display: block; }
       justify-self: center;
     }
 
-    form {
+    form { // login, register, registration
       display: grid;
       grid-template-columns: 1fr;
 
@@ -494,9 +494,9 @@ form#delete-form button { display: block; }
         width: auto; // keine ellenlangen Knöpfe
       }
 
-    } /* End Form */ 
+    } /* End Form */  // login, register, registration
 
- } /* End Section Login/Register/Registration */
+ } /* End Section Login/Register/Registration }}}2*/
 
   /* Bild erfassen */
   form#article-create-form {
@@ -620,10 +620,7 @@ form#delete-form button { display: block; }
       padding: 0;
     }
 
-    input {
-      grid-column: 2;
-      width: 100%;
-    }
+    input { width: 100%; }
 
     input[type="submit"] {
       grid-column: 1/-1;

@@ -347,7 +347,7 @@ form#delete-form button {
     margin: 0;
     padding: 0; }
   /* Keine Abstände in Aufzählungen, weil meist (immer?) display: grid */
-  /* Bieten Formular */
+  /* Bieten Formular {{{2*/
   section#bid-ui {
     display: grid;
     grid-gap: 0.5em;
@@ -395,7 +395,8 @@ form#delete-form button {
   section#bid-list ul li {
     grid-column: 2;
     white-space: nowrap; }
-  /* Anmelden */
+  /* Bieten Formular }}}2*/
+  /* Anmelden {{{2*/
   section#login,
   section#register,
   section#registration {
@@ -438,7 +439,7 @@ form#delete-form button {
       section#registration form input[type="submit"] {
         margin: 1rem auto 0;
         width: auto; }
-  /* End Section Login/Register/Registration */
+  /* End Section Login/Register/Registration }}}2*/
   /* Bild erfassen */
   form#article-create-form {
     display: grid;
@@ -544,7 +545,6 @@ form#delete-form button {
       margin: 0;
       padding: 0; }
     form input {
-      grid-column: 2;
       width: 100%; }
     form input[type="submit"] {
       grid-column: 1/-1;
