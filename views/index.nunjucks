@@ -6,48 +6,60 @@
     <p>Error getting content.</p>
   {% else %}
 
-  <!--  <h2>{{ title }}</h2> {# «Auktion» #}-->
+  <!--  <h2>{{ title }}</h2> --> {# «Auktion» #}
 
   <section id="article-image">
     <img src="{{ path }}/uploads/{{ article.image_filename }}" alt="{{ article.title }}, {{ article.description }}">
+    <p id="description"><strong>{{ article.title }},</strong><br>{{ article.description }}</p>
   </section>
 
-  <section id="article-details">
-  <p id="description"><strong>{{ article.title }},</strong><br>{{ article.description }}</p>
-    <p class="auction-details">Einstiegspreis <span class="currency">CHF</span> {{ article.start_price }}.—</p>
-
+  <section id="auction-details">
     {% if not article.sold %}
-    <p class="auction-details">Gegenwärtiges Höchstgebot {% if not bids | length %}(Noch kein Gebot.){% else %}<span class="currency">CHF</span> {{ article.base_price }}.—</p>{% endif %}
+
+      {% if bids | length %}
+        <h4>Gegenwärtiges Höchstgebot</h4>
+        <p><span class="currency">CHF</span> {{ article.base_price }}.—</p>
+      {% else %}
+        <h4>Einstiegspreis</h4>
+        <p><span class="currency">CHF</span> {{ article.start_price }}.—</p>
+      {% endif %}
+
     {% else %}
-    <p class="auction-details">Höchstgebot: {{ article.base_price }}.—</p>
+      <h4>Höchstgebot</h4>
+      <p><span class="currency">CHF</span> {{ article.base_price }}.—</p>
     {% endif %}
 
-    <p class="auction-details">Sofort-kaufen <span class="currency">CHF</span> {{ article.instant_buy_price }}.—</p>
+    <h4>Sofort-Kaufpreis</h4>
+    <p><span class="currency">CHF</span> {{ article.instant_buy_price }}.—</p>
 
-    {% if not article.sold and article.active %} {# die UND Bedingung eingefügt, weil das ausgeblendet werden sollte, wenn Versteigerung ohne Gebote endet.  #}
-      <p class="auction-details">Verbleibende Zeit: <time datetime="{{ article.expiration_unformatted }}">{{ article.remaining_formatted }}</time>{% if article.remaining_hours > 22 %} ({{article.remaining_hours}} h){% endif %}</p> 
+    {% if not article.sold and article.active %}
+    {# wird ausgeblendet, wenn Versteigerung ohne Gebote endet. #}
+      <h4>Verbleibende Zeit</h4>
+      <p class="auction-details"><time datetime="{{ article.expiration_unformatted }}">{{ article.remaining_formatted }}</time>{% if article.remaining_hours > 22 %} ({{article.remaining_hours}} h){% endif %}</p> 
     {% endif %}
+  </section>
 
       {#
-      <dt>Auktion endet</dt>
-      <dd><time datetime="{{ article.expiration_unformatted }}">{{ article.expiration_formatted }}</time> Uhr</dd>
-      <dt>Eingestellt</dt>
-      <dd><time datetime="{{ article.date_unformatted}}">{{ article.date_formatted}}</time> Uhr</dd>
-      <dt>Zuletzt bearbeitet am</dt>
-      <dd><time>{{ article.updated_formatted}}</time> Uhr</dd>
-      <dt>Status</dt>
-      <dd>{{ "Verkauft" if article.sold else "Zu verkaufen" }}</dd>
-      <dt>Aktiv</dt>
-      <dd>{{ article.active}}</dd>
-      <dt>ID</dt>
-      <dd><a href="{{ article.url }}">{{ article._id}}</a></dd>
+      <section id="dev-only">
+        <dt>Auktion endet</dt>
+        <dd><time datetime="{{ article.expiration_unformatted }}">{{ article.expiration_formatted }}</time> Uhr</dd>
+        <dt>Eingestellt</dt>
+        <dd><time datetime="{{ article.date_unformatted}}">{{ article.date_formatted}}</time> Uhr</dd>
+        <dt>Zuletzt bearbeitet am</dt>
+        <dd><time>{{ article.updated_formatted}}</time> Uhr</dd>
+        <dt>Status</dt>
+        <dd>{{ "Verkauft" if article.sold else "Zu verkaufen" }}</dd>
+        <dt>Aktiv</dt>
+        <dd>{{ article.active}}</dd>
+        <dt>ID</dt>
+        <dd><a href="{{ article.url }}">{{ article._id}}</a></dd>
+      </section>
       #}
-  </section>
 
   <section id="bid-ui">
     {% if article.active %}
 
-    <h2>Bieten</h2>
+    {#<h3>Bieten</h3>#}
     {% if user %}
 
     <form method="POST" action="">
@@ -82,6 +94,7 @@
     {% endif %}
     </section>
 
+    {# Bid List {{{ #}
     <section id="bid-list">
       {% if bids | length %}
         {#
@@ -96,9 +109,12 @@
       {% elif not article.sold and not article.active %}
         <h2>Für dieses Bild hat es keine Gebote gegeben.</h2>
       {% else %}
+      {#
         <h2>Gegenwärtig gibt es noch keine Gebote.</h2>
+      #}
       {% endif %}
     </section>
+    {# Bid List }}} #}
 
     <section id="register-login">
       {% if user %}

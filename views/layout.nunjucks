@@ -32,16 +32,11 @@
 </head>
 
 <body>
-  <header>
-
-    <h1><a href="/">Françoise Nussbaumer</a></h1>
-
-    <h2>Bild des Tages</h2>
-    {# dies sollte direkt über dem Bild stehen? #}
-    {# ist der titel wirklich gut? #}
-    {# was ist mit «Auktion»? #}
-
+  <header> 
+    <h1><a href="/">Françoise Nussbaumer</a></h1> 
   </header>
+
+  <h2>Bild des Tages</h2>
 
   <main>
   {% block content %}
