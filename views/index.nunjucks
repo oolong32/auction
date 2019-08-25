@@ -13,8 +13,8 @@
     <p id="description"><strong>{{ article.title }},</strong><br>{{ article.description }}</p>
   </section>
 
+  {% if not article.sold and article.active %}
   <section id="auction-details">
-    {% if not article.sold %}
 
       {% if bids | length %}
         <h4>Gegenwärtiges Höchstgebot</h4>
@@ -24,73 +24,79 @@
         <p><span class="currency">CHF</span> {{ article.start_price }}.—</p>
       {% endif %}
 
+      <h4>Sofort-Kaufpreis</h4>
+      <p><span class="currency">CHF</span> {{ article.instant_buy_price }}.—</p>
+
+      <h4>Verbleibende Zeit</h4>
+      <p class="auction-details"><time datetime="{{ article.expiration_unformatted }}">{{ article.remaining_formatted }}</time>{% if article.remaining_hours > 22 %} ({{article.remaining_hours}} h){% endif %}</p> 
+
+      {# Höchstgebot (deaktiviert) {{{#}
+    {#
     {% else %}
       <h4>Höchstgebot</h4>
       <p><span class="currency">CHF</span> {{ article.base_price }}.—</p>
-    {% endif %}
-
-    <h4>Sofort-Kaufpreis</h4>
-    <p><span class="currency">CHF</span> {{ article.instant_buy_price }}.—</p>
-
-    {% if not article.sold and article.active %}
-    {# wird ausgeblendet, wenn Versteigerung ohne Gebote endet. #}
-      <h4>Verbleibende Zeit</h4>
-      <p class="auction-details"><time datetime="{{ article.expiration_unformatted }}">{{ article.remaining_formatted }}</time>{% if article.remaining_hours > 22 %} ({{article.remaining_hours}} h){% endif %}</p> 
-    {% endif %}
+    #}
+    {# Höchstgebot (deaktiviert) }}}#}
   </section>
+  {% endif %}
 
-      {#
-      <section id="dev-only">
-        <dt>Auktion endet</dt>
-        <dd><time datetime="{{ article.expiration_unformatted }}">{{ article.expiration_formatted }}</time> Uhr</dd>
-        <dt>Eingestellt</dt>
-        <dd><time datetime="{{ article.date_unformatted}}">{{ article.date_formatted}}</time> Uhr</dd>
-        <dt>Zuletzt bearbeitet am</dt>
-        <dd><time>{{ article.updated_formatted}}</time> Uhr</dd>
-        <dt>Status</dt>
-        <dd>{{ "Verkauft" if article.sold else "Zu verkaufen" }}</dd>
-        <dt>Aktiv</dt>
-        <dd>{{ article.active}}</dd>
-        <dt>ID</dt>
-        <dd><a href="{{ article.url }}">{{ article._id}}</a></dd>
-      </section>
-      #}
+  {# Dev Infos (deaktivert) {{{#}
+  {#
+  <section id="dev-only">
+    <dt>Auktion endet</dt>
+    <dd><time datetime="{{ article.expiration_unformatted }}">{{ article.expiration_formatted }}</time> Uhr</dd>
+    <dt>Eingestellt</dt>
+    <dd><time datetime="{{ article.date_unformatted}}">{{ article.date_formatted}}</time> Uhr</dd>
+    <dt>Zuletzt bearbeitet am</dt>
+    <dd><time>{{ article.updated_formatted}}</time> Uhr</dd>
+    <dt>Status</dt>
+    <dd>{{ "Verkauft" if article.sold else "Zu verkaufen" }}</dd>
+    <dt>Aktiv</dt>
+    <dd>{{ article.active}}</dd>
+    <dt>ID</dt>
+    <dd><a href="{{ article.url }}">{{ article._id}}</a></dd>
+  </section>
+  #}
+  {# Dev Infos (deaktivert) }}}#}
 
   <section id="bid-ui">
     {% if article.active %}
 
-    {#<h3>Bieten</h3>#}
-    {% if user %}
+      {% if user %}
 
-    <form method="POST" action="">
-      <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-      <input type="hidden" id="article" name="article" value="{{ article._id }}">
-      <label for="amount">Ich biete <span class="currency">CHF</span></label>
-      <input
-        type="number"
-        id="amount"
-        step="10"
-        min={% if bid == undefined %}"{{ article.base_price + 10 }}"{% else %}"{{ bid.amount }}"{% endif %}
-        placeholder=""
-        name="amount"
-        required="true"
-        value={% if bid == undefined %}"{{ article.base_price + 10 }}"{% else %}"{{ bid.amount }}"{% endif %}>
-      <button type="submit" class="box-button">Gebot abgeben</button>
-    </form>
+      <form method="POST" action="">
+        <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+        <input type="hidden" id="article" name="article" value="{{ article._id }}">
+        <label for="amount">Gebot (CHF)</label>
+        <input
+          type="number"
+          id="amount"
+          step="10"
+          min={% if bid == undefined %}"{{ article.base_price + 10 }}"{% else %}"{{ bid.amount }}"{% endif %}
+          placeholder=""
+          name="amount"
+          required="true"
+          value={% if bid == undefined %}"{{ article.base_price + 10 }}"{% else %}"{{ bid.amount }}"{% endif %}>
+        <button type="submit" class="box-button">Bieten</button>
+      </form>
 
-    <p id="instant-buy" class="box-button"><a href="/instant-buy">Für {{ article.instant_buy_price }}.— sofort kaufen</a></p>
+      <p id="instant-buy" class="box-button">
+        <a href="/instant-buy">Für {{ article.instant_buy_price }}.— sofort kaufen</a>
+      </p>
+
+      <p id="logged-in-as">Angemeldet als <span class="username">{{ user.name }}</span></p>
+
+      {% else %}
+        <p id="login-please">Zum Bieten müssen Sie <a href="/login">angemeldet</a> sein.</p>
+      {% endif %}
+
+      {# if bid_success %}
+        <p>Danke für Ihr Gebot.</p>
+      {% endif #}
 
     {% else %}
-      <p id="login-please">Zum Bieten müssen Sie <a href="/login">angemeldet</a> sein.</p>
-    {% endif %}
-
-    {# if bid_success %}
-    <p>Danke für Ihr Gebot.</p>
-    {% endif #}
-
-    {% else %}
-    <h2>Auktion für dieses Bild beendet</h2>
-    <p id="next-auction">Das nächste Angebot wird in Kürze aufgeschaltet. Abonnieren Sie den <a target="_blank" href="http://francoisenussbaumer.us15.list-manage.com/subscribe?u=c3c1b11be1b7631b7327939cc&id=6d259a4f6b">Newsletter</a> oder folgen Sie mir auf <a target="_blank" href="https://www.facebook.com/franzinussbaumer">Facebook</a>.</p>
+      <h2>Auktion für dieses Bild beendet</h2>
+      <p id="next-auction">Das nächste Angebot wird in Kürze aufgeschaltet. Folgen Sie mir auf <a href="https://www.instagram.com/francoise_nussbaumer/" target="_blank">Instagram</a>, <a target="_blank" href="https://www.facebook.com/franzinussbaumer">Facebook</a> oder abonnieren Sie den <a target="_blank" href="http://francoisenussbaumer.us15.list-manage.com/subscribe?u=c3c1b11be1b7631b7327939cc&id=6d259a4f6b">Newsletter</a>.</p>
     {% endif %}
     </section>
 
@@ -107,7 +113,9 @@
         <p>Gegenwärtig höchstes Gebot: CHF {{ bids[0].amount }}.—</p>
         #}
       {% elif not article.sold and not article.active %}
+        {#
         <h2>Für dieses Bild hat es keine Gebote gegeben.</h2>
+        #}
       {% else %}
       {#
         <h2>Gegenwärtig gibt es noch keine Gebote.</h2>
@@ -116,17 +124,17 @@
     </section>
     {# Bid List }}} #}
 
-    <section id="register-login">
-      {% if user %}
-      <p id="logged-in">Angemeldet als <span class="username">{{ user.name }}</span></p>
-      {#
-      <p class="box-button" id="logout"><a href="/logout">Abmelden</a></p>
-      #}
-      {% else %}
-      <p class="box-button" id="register"><a href="/register">Registrieren</a></p>
-      <p class="box-button" id="login"><a href="/login">Anmelden</a></p>
+      {% if not user %}
+      <section id="register-login">
+        <p class="box-button" id="register"><a href="/register">Registrieren</a></p>
+        <p class="box-button" id="login"><a href="/login">Anmelden</a></p>
+      </section>
     {% endif %}
-    </section>
+
+    {# irgendow noch log-out-button!  #}
+    {#
+    <p class="box-button" id="logout"><a href="/logout">Abmelden</a></p>
+    #}
 
   {% endif %} {# bezieht sich auf ganz oben, error oder nicht #}
 {% endblock %}

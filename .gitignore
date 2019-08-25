@@ -8,3 +8,5 @@ public/*.css
 **/*.otf
 **/*.woff
 **/*.woff2
+.sass-lint.yml
+public/fonts/

@@ -1,17 +1,14 @@
 /* Variables {{{*/
 
-$domaine: 'DomaineSansTextTest-Light' /*local*/, 'DomaineSansText', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$domaine: 'DomaineSansTextTest-Light' /*local*/, 'DomaineSansText', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 $text: 300;
 $fett: 500;
 
-$input: 'InputSans-Light' /*local*/, 'InputSansNarrow', monospace;
+$input: 'InputSansNarrow', monospace;
 /* Input gibts 500, 300 und 200 */
 
 $section-margin: 3rem;
 
-/* Alles viel zu kompliziert, oder? */
-/* Alles viel zu kompliziert, oder? */
-/* Alles viel zu kompliziert, oder? */
 /* Alles viel zu kompliziert, oder? */
 $baseCol: 0;
 $contrast: ($baseCol + 90) % 360;
@@ -29,7 +26,7 @@ $baseCol: 210;
 $bg:      hsl($baseCol, 0%, 96%);
 $form-bg: hsl($baseCol, 0%, 90%);
 $form-bg-active: hsl($baseCol, 20%, 90%);
-$information-bg: hsl($baseCol, 25%, 85%);
+$information-bg: hsl($baseCol, 0%, 90%);
 
 $link-passive: hsl(250, 80%, 60%);
 $link-active: hsl(250, 100%, 50%);
@@ -69,6 +66,9 @@ h4 { font-size: 0.625rem; }
 
 #auction-details p { font-size: 0.875rem; }
 
+#logged-in,
+form label { font-size: 0.75rem; }
+
 footer .credits { font-size: 0.6875rem; }
 
 /* Font Sizes }}}*/
@@ -81,19 +81,24 @@ h1, h2, h3, strong { font-weight: $fett; }
 
 p, li, figcaption { font-weight: 300; }
 
+form label,
 #auction-details h4 { 
   font-family: $input;
   text-transform: uppercase;
   letter-spacing: 0.0625rem;
-  text-align: left;
 }
+
+form label { text-align: left; }
+
+#auction-details h4 {  text-align: center; }
 
 .currency,
 .smallcaps { font-variant-caps: all-small-caps; }
 
+section#logged-in,
 footer .credits {
-        font-family: $input; 
-        font-weight: 300;
+  font-family: $input; 
+  font-weight: 300;
 } 
 
 em { color: red; } // wo gibts das?
@@ -104,18 +109,18 @@ em { color: red; } // wo gibts das?
 
 /* White Space {{{2*/
   
-h2, h3, h5, p, figcaption { margin: 0 0 1rem; } // should move to white-space section
+h2, h3, h5, p, figcaption { margin: 0 0 1rem; }
 
-#auction-details h4 { margin-bottom: 0.125rem;}
-#auction-details p { margin-bottom: 0.75rem;}
-
-#bid-ui h3 { margin-bottom: 0.5rem; } // should move to white-space section
+#auction-details h4 { margin-bottom: 0.125rem; }
+#auction-details p { margin-bottom: 0.75rem; }
 
 header { margin: 2.25rem auto 2.5rem; }
 
 main { margin: 0 1rem $section-margin ; }
 
 main img { margin-bottom: 1rem; }
+
+form label { margin-bottom: 0.125rem; }
 
 /* White Space }}}2*/
 
@@ -128,40 +133,32 @@ main img { max-width: 100%; }
 main #auction-details {
   display: grid;
   grid-template-columns: 1fr;
-  padding: 0 1.5rem;
+  // padding: 0 1.5rem;
   p {
-    padding: 0.5rem;
+    // padding: 0.5rem;
     white-space: nowrap;
-    border-radius: 0.25rem;
+    // border-radius: 0.25rem;
   }
 }
 
 /* Bieten Formular {{{2*/
 section#bid-ui {
-  padding: 0 1.5rem;
-  #login-please {
-    // background: $information-bg;
-    // padding: 1rem;
-    // border-radius: 0.25rem;
+  background: $form-bg;
+  border-radius: 0.25rem;
+  padding: 0.5rem 2rem 1rem;
+  p#logged-in-as { 
+  }
+  form {
+    background: transparent;
+    margin-bottom: 1rem;
+    input { padding: 0.25rem;}
+    label { display: block; }
+    button { 
+      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
   }
 }
-  section#bid-ui {
-  }
-  section#bid-ui p { /* Aufforderung zum Anmelden, Text bei Angebotsende */
-  }
-  section#bid-ui p#instant-buy {
-  }
-  section#bid-ui form {
-  }
-
-  section#bid-ui form label {
-  }
-
-  section#bid-ui form input {
-  }
-
-  section#bid-ui form button {
-  }
 /* Bieten Formular }}}2*/
 
 
@@ -242,7 +239,7 @@ form { background: $form-bg; }
 
 form:focus-within { background: $form-bg-active; }
 
-#auction-details p { background: $information-bg; }
+// #auction-details p { background: $information-bg; }
 
 
 /* Colors }}}*/
@@ -273,7 +270,7 @@ main ul {
 }
 
 p.button {
-  font-family: "Input Sans Narrow", monospace;
+  font-family: 'Input Sans Narrow', monospace;
   font-weight: 300;
   display: inline-block;
   border-radius: 1rem;
@@ -287,7 +284,7 @@ p.button {
 p.button:hover { transform: scale(1.1); }
 
 a.newsletter-signup {
-  font-family: "Input Sans Narrow", monospace;
+  font-family: 'Input Sans Narrow', monospace;
   font-weight: 300;
   display: flex;
   margin: 0 auto 2rem;
@@ -336,16 +333,11 @@ main section {
   p { margin-bottom: 0; }
 }
 
-/*
-main h2 { margin-bottom: 0.5em; } // Titel "Auktion", Titel Registrierung und Login
-**/
-
 section#login { margin-bottom: 2em; }
-
 
 .box-button {
   /* wie francoisenussbaumer.ch */
-  font-family: "Input Sans Narrow", monospace;
+  font-family: 'Input Sans Narrow', monospace;
   font-weight: 300;
   display: inline-block;
   border: none;
@@ -359,9 +351,7 @@ section#login { margin-bottom: 2em; }
 .box-button:hover { transform: scale(1.1); }
   /* wie francoisenussbaumer.ch */
 
-p#instant-buy {
-  margin: 0.5em 0 2em;
-}
+p#instant-buy { margin: 0 0 2em; }
 
 ul {
   list-style: none;
@@ -382,8 +372,6 @@ form {
   border-radius: 0.25rem;
 }
 
-form label,
-form button,
 form input {
   box-sizing: border-box;
   font-family: $domaine;
@@ -396,10 +384,10 @@ form input {
 }
 
 
-form input[type="password"],
-form input[type="text"],
-form input[type="email"],
-form input[type="textarea"] {
+form input[type='password'],
+form input[type='text'],
+form input[type='email'],
+form input[type='textarea'] {
   box-sizing: border-box;
   /* Neu August 19 */
   font-family: $input;
@@ -407,17 +395,10 @@ form input[type="textarea"] {
   padding: 0.25rem;
 }
 
-form input[type="text"],
-form input[type="email"],
-form input[type="password"],
-form input[type="textarea"] {
-}
-
-form label {
-  display: inline;
-  text-align: right;
-  float: left;
-  padding-right: 0.25em;
+form input[type='text'],
+form input[type='email'],
+form input[type='password'],
+form input[type='textarea'] {
 }
 
 /*
@@ -429,7 +410,7 @@ form button {
 }
 august 19:  scheint irrelevant
 
-form input[type="submit"] {
+form input[type='submit'] {
   margin-top: 2em;
   font-size: 1em;
 }
@@ -469,19 +450,14 @@ form#delete-form button { display: block; }
       display: grid;
       grid-template-columns: 1fr;
 
-      label {
-        // align-self: center;
-        text-align: left;
-        margin: 0;
-        padding: 0;
-      }
+      label { text-align: left; }
 
       input {
         width: 100%;
         margin-bottom: 1rem;
       }
 
-      input[type="submit"] {
+      input[type='submit'] {
         margin: 1rem auto 0;
         width: auto; // keine ellenlangen Knöpfe
       }
@@ -499,8 +475,6 @@ form#delete-form button { display: block; }
   }
   form#article-create-form label {
     grid-column: 2;
-    margin: 0;
-    padding: 0;
     align-self: center;
   }
   form#article-create-form input {
@@ -542,7 +516,7 @@ form#delete-form button { display: block; }
   }
   ul#admin-user-list li:before,
   ul#admin-article-list li:before {
-    content: "– ";
+    content: '– ';
   }
 
   /* Administration: Gebote (und Details User) */
@@ -572,7 +546,7 @@ form#delete-form button { display: block; }
   dl#admin-bid-details dd,
   dl#admin-bid-delete dd,
   dl#admin-user-details dd { justify-self: start; }
-}
+} /**/
 
 /* Media Queries */
 
@@ -580,12 +554,13 @@ form#delete-form button { display: block; }
 
   /* Desktop Text Sizes {{{2*/
   
-  /* wie francoisenussbaumer.ch*/
+  /* august 19 */
   :root { font-size: 125%; }
   h1 { font-size: 1.8rem; }
   header { margin-bottom: 2em;}
-  h4 { font-size: 0.5rem; }
-  /* wie francoisenussbaumer.ch*/
+  h4,
+  form label { font-size: 0.5rem; }
+  /* august 19 */
   
   /* Desktop Text Sizes }}}2*/
 
@@ -605,10 +580,11 @@ main #auction-details {
   grid-template-rows: auto auto;
   grid-auto-flow: column;
   padding: 0;
-  p { padding: 1rem 0.25rem; }
+  p {
+    padding: 0.25rem 0;
+    margin: 0;
+  }
 }
-
-section#bid-ui { padding: 0; }
 
 section#register-login { // Anmelde-Buttons auf /index
   display: grid;
@@ -621,34 +597,10 @@ section#register-login { // Anmelde-Buttons auf /index
     grid-column: 3;
     margin-left: 1rem;
   }
-  p#logged-in { grid-column: 2/-2; }
 }
+
 footer section { margin: 0 auto $section-margin; }
 
-  /* Desktop Form Layout {{{3*/
-
-  form {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-gap: 0.25em;
-
-    label {
-      grid-column: 1;
-      align-self: center;
-      margin: 0;
-      padding: 0;
-    }
-
-    input { width: 100%; }
-
-    input[type="submit"] {
-      grid-column: 1/-1;
-      margin: 1rem auto 0;
-      width: auto; // keine ellenlangen Knöpfe
-    }
-  } 
-  
-  /* Desktop Form Layout }}}3 */
 
   /* Layout }}}2*/
 
