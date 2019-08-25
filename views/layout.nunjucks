@@ -27,7 +27,11 @@
   <meta name="theme-color" content="#d4d1c4">
 
   <link rel="stylesheet" href="{{ path }}/reset.css">
+  {% if settings.env == "development" %}
+  <link rel="stylesheet" href="{{ path }}/fonts_local.css">
+  {% else %}
   <link rel="stylesheet" href="{{ path }}/fonts.css">
+  {% endif %}
   <link rel="stylesheet" href="{{ path }}/style.css">
 </head>
 
