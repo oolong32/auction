@@ -28,13 +28,7 @@ h1 {
   font-size: 1.25rem;
   line-height: 1; }
 
-h4 {
-  font-size: 0.625rem; }
-
-#auction-details p {
-  font-size: 0.875rem; }
-
-#logged-in,
+#user-info h4,
 form label {
   font-size: 0.75rem; }
 
@@ -52,8 +46,13 @@ h1, h2, h3, strong {
 p, li, figcaption {
   font-weight: 300; }
 
-form label,
-#auction-details h4 {
+.box-button,
+p.button {
+  font-family: "InputSansNarrow", monospace;
+  text-align: center; }
+
+#user-info h4,
+form label {
   font-family: "InputSansNarrow", monospace;
   text-transform: uppercase;
   letter-spacing: 0.0625rem; }
@@ -61,14 +60,10 @@ form label,
 form label {
   text-align: left; }
 
-#auction-details h4 {
-  text-align: center; }
-
 .currency,
 .smallcaps {
   font-variant-caps: all-small-caps; }
 
-section#logged-in,
 footer .credits {
   font-family: "InputSansNarrow", monospace;
   font-weight: 300; }
@@ -83,12 +78,6 @@ em {
 h2, h3, h5, p, figcaption {
   margin: 0 0 1rem; }
 
-#auction-details h4 {
-  margin-bottom: 0.125rem; }
-
-#auction-details p {
-  margin-bottom: 0.75rem; }
-
 header {
   margin: 2.25rem auto 2.5rem; }
 
@@ -98,7 +87,7 @@ main {
 main img {
   margin-bottom: 1rem; }
 
-form label {
+#user-info h4 {
   margin-bottom: 0.125rem; }
 
 /* White Space }}}2*/
@@ -112,39 +101,59 @@ nav {
 main img {
   max-width: 100%; }
 
-main #auction-details {
-  display: grid;
-  grid-template-columns: 1fr; }
-  main #auction-details p {
-    white-space: nowrap; }
+.auction-details p {
+  white-space: nowrap; }
 
 /* Bieten Formular {{{2*/
 section#bid-ui {
   background: #e6e6e6;
   border-radius: 0.25rem;
-  padding: 0.5rem 2rem 1rem; }
+  padding: 1rem 1rem 1.25rem; }
+  section#bid-ui div#user-info {
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #b3b3b3; }
+    section#bid-ui div#user-info h4 {
+      font-family: "InputSansNarrow", monospace; }
   section#bid-ui form {
+    display: flex;
+    flex-direction: column;
     background: transparent;
-    margin-bottom: 1rem; }
-    section#bid-ui form input {
-      padding: 0.25rem; }
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center; }
     section#bid-ui form label {
-      display: block; }
+      font-family: "DomaineSansTextTest-Light", "DomaineSansText", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      font-size: 1rem;
+      text-align: center;
+      text-transform: none;
+      display: block;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0; }
+    section#bid-ui form input {
+      margin: auto 0 auto auto;
+      padding: 0.25rem;
+      text-align: center;
+      min-width: 5ch;
+      max-width: 6ch; }
     section#bid-ui form button {
-      margin-top: 0.5rem;
-      font-size: 1rem; }
+      font-size: 1rem;
+      font-weight: 300;
+      width: max-content;
+      margin: auto auto auto 1rem; }
+  section#bid-ui div#instant-buy #instant-buy-info {
+    margin-bottom: 0.5rem; }
+  section#bid-ui div#register-login p {
+    margin-bottom: 0.5rem; }
+  section#bid-ui div#register-login #login, section#bid-ui div#register-login #register {
+    width: max-content;
+    margin: 0 auto 2rem; }
+  section#bid-ui div#register-login #register {
+    margin-bottom: 0; }
 
 /* Bieten Formular }}}2*/
-section#register-login {
-  display: grid;
-  grid-template-columns: minmax(1.25rem, 1fr) minmax(140px, 15rem) minmax(140px, 15rem) minmax(1.25rem, 1fr); }
-  section#register-login p#register {
-    grid-column: 2;
-    margin-right: 0.25rem; }
-  section#register-login p#login {
-    grid-column: 3;
-    margin-left: 0.25rem; }
-
 footer section {
   margin: 0 auto 3rem; }
 
@@ -232,12 +241,9 @@ main ul {
     transform: rotate(-15deg) scale(1.1); }
 
 p.button {
-  font-family: 'Input Sans Narrow', monospace;
-  font-weight: 300;
   display: inline-block;
   border-radius: 1rem;
   padding: .3rem 1rem .5rem;
-  text-align: center;
   cursor: pointer;
   transition: all 0.2s ease-in-out; }
 
@@ -293,13 +299,10 @@ section#login {
 
 .box-button {
   /* wie francoisenussbaumer.ch */
-  font-family: 'Input Sans Narrow', monospace;
-  font-weight: 300;
   display: inline-block;
   border: none;
   border-radius: 1rem;
   padding: .3rem 1rem .5rem;
-  text-align: center;
   cursor: pointer;
   transition: all 0.2s ease-in-out; }
 
@@ -307,9 +310,6 @@ section#login {
   transform: scale(1.1); }
 
 /* wie francoisenussbaumer.ch */
-p#instant-buy {
-  margin: 0 0 2em; }
-
 ul {
   list-style: none;
   margin: 0;
@@ -500,7 +500,7 @@ form#delete-form button {
     font-size: 1.8rem; }
   header {
     margin-bottom: 2em; }
-  h4,
+  #user-info h4,
   form label {
     font-size: 0.5rem; }
   /* august 19 */
@@ -514,24 +514,9 @@ form#delete-form button {
   footer {
     max-width: 32rem;
     padding: 0; }
-  main #auction-details {
-    grid-gap: 0 1rem;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto auto;
-    grid-auto-flow: column;
-    padding: 0; }
-    main #auction-details p {
-      padding: 0.25rem 0;
-      margin: 0; }
-  section#register-login {
-    display: grid;
-    grid-template-columns: minmax(1.25rem, 1fr) minmax(140px, 15rem) minmax(140px, 15rem) minmax(1.25rem, 1fr); }
-    section#register-login p#register {
-      grid-column: 2;
-      margin-right: 1rem; }
-    section#register-login p#login {
-      grid-column: 3;
-      margin-left: 1rem; }
+  main section#bid-ui {
+    max-width: 25rem;
+    margin: 0 auto 1.5rem; }
   footer section {
     margin: 0 auto 3rem; }
   /* Layout }}}2*/ }
