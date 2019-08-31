@@ -145,13 +145,13 @@ section#bid-ui {
     border-bottom: 1px solid $line-color;
     h4 { font-family: $input; }
     #username {}
-
   }
   form {
     display: flex;
     flex-direction: column;
     background: transparent;
     margin-bottom: 2rem;
+    padding: 1rem 0 0;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
