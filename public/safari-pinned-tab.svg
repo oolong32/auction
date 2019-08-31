@@ -1,24 +1,10 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
- "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="260.000000pt" height="260.000000pt" viewBox="0 0 260.000000 260.000000"
- preserveAspectRatio="xMidYMid meet">
-<metadata>
-Created by potrace 1.11, written by Peter Selinger 2001-2013
-</metadata>
-<g transform="translate(0.000000,260.000000) scale(0.100000,-0.100000)"
-fill="#000000" stroke="none">
-<path d="M319 2366 c-2 -3 -3 -25 -1 -50 l4 -46 124 0 c120 0 126 -1 150 -25
-l25 -25 -3 -887 c-3 -886 -3 -888 -24 -928 -42 -77 -96 -105 -204 -105 -49 0
--70 -4 -71 -12 -2 -20 3 -83 6 -86 5 -5 706 -2 715 3 4 3 7 24 6 47 l-2 43
--85 5 c-91 6 -110 13 -151 57 -65 68 -62 28 -64 888 -1 429 1 784 3 788 6 9
-53 -56 53 -72 0 -5 3 -11 8 -13 4 -1 27 -34 51 -73 25 -38 59 -92 76 -120 18
--27 103 -162 190 -300 87 -137 181 -286 210 -330 67 -104 336 -528 355 -560
-30 -49 234 -371 249 -392 14 -19 26 -22 76 -23 l61 0 0 953 c0 523 3 968 6
-987 6 42 39 109 65 132 34 31 91 48 163 48 l70 0 0 50 0 50 -363 0 -362 0 -1
--50 0 -50 72 0 c81 0 127 -16 166 -57 61 -63 60 -51 61 -816 1 -385 0 -700 -3
--702 -5 -3 -140 204 -175 267 -12 22 -173 280 -230 368 -23 36 -178 284 -345
-553 l-303 487 -287 0 c-158 0 -289 -2 -291 -4z"/>
-</g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="180px" height="180px" viewBox="0 0 180 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>safari-pinned-tab</title>
+    <desc>Created with Sketch.</desc>
+    <g id="safari-pinned-tab" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle id="Oval" fill="#FF00A1" fill-rule="nonzero" cx="90" cy="90" r="90"></circle>
+        <polygon id="N" fill="#FFFFFF" fill-rule="nonzero" points="115.32 103.16 115.32 47 125.4 47 125.4 131.24 119.28 131.24 64.56 64.64 64.56 131 54.48 131 54.48 47 69.48 47"></polygon>
+    </g>
 </svg>
