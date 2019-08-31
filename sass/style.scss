@@ -304,7 +304,7 @@ p.button {
 p.button:hover { transform: scale(1.1); }
 
 a.newsletter-signup {
-  font-family: 'Input Sans Narrow', monospace;
+  font-family: $input;
   font-weight: 300;
   display: flex;
   margin: 0 auto 2rem;
