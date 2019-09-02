@@ -48,9 +48,9 @@
           <input type="hidden" id="article" name="article" value="{{ article._id }}">
           {#<label for="amount">Gebot (CHF)</label>#}
           {% if bids | length %}
-            <label for="amount">Gegenwärtiges Höchstgebot: <span class="currency">CHF</span>&nbsp;{{ article.base_price }}.—</label>
+            <label id="amount-label" for="amount">Gegenwärtiges Höchstgebot: <span class="currency">CHF</span>&nbsp;{{ article.base_price }}.—</label>
           {% else %}
-            <label for="amount">Einstiegspreis: <span class="currency">CHF</span>&nbsp;{{ article.start_price }}.—</label>
+            <label id="amount-label" for="amount">Einstiegspreis: <span class="currency">CHF</span>&nbsp;{{ article.start_price }}.—</label>
           {% endif %}
           <input
             type="number" id="amount" step="10"

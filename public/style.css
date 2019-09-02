@@ -120,6 +120,7 @@ section#bid-ui {
     flex-direction: column;
     background: transparent;
     margin-bottom: 2rem;
+    padding: 1rem 0 0;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -132,6 +133,8 @@ section#bid-ui {
       display: block;
       margin-bottom: 0.5rem;
       letter-spacing: 0; }
+    section#bid-ui form label#amount-label {
+      width: 100%; }
     section#bid-ui form input {
       margin: auto 0 auto auto;
       padding: 0.25rem;
@@ -251,7 +254,7 @@ p.button:hover {
   transform: scale(1.1); }
 
 a.newsletter-signup {
-  font-family: 'Input Sans Narrow', monospace;
+  font-family: "InputSansNarrow", monospace;
   font-weight: 300;
   display: flex;
   margin: 0 auto 2rem;
@@ -426,12 +429,15 @@ form#delete-form button {
     grid-gap: 0.25em; }
   form#article-create-form label {
     grid-column: 2;
-    align-self: center; }
+    align-self: center;
+    justify-self: end; }
   form#article-create-form input {
     grid-column: 3;
     width: 100%;
     margin: 0;
-    padding: 0; }
+    padding: 0;
+    font-family: "InputSansNarrow", monospace;
+    font-size: 0.7rem; }
   /* Administration: Bild-Details*/
   dl#admin-details {
     margin-top: 2em;
@@ -480,10 +486,12 @@ form#delete-form button {
   dl#admin-bid-delete dd,
   dl#admin-user-details dd {
     grid-column: 3; }
+  dl#admin-bid-list dt,
   dl#admin-bid-details dt,
   dl#admin-bid-delete dt,
   dl#admin-user-details dt {
     justify-self: end; }
+  dl#admin-bid-list dd,
   dl#admin-bid-details dd,
   dl#admin-bid-delete dd,
   dl#admin-user-details dd {

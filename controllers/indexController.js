@@ -12,12 +12,12 @@ var bidLog = require('debug')('bidLog');
 // Nodemailer
 // create reusable transporter object using the default SMTP transport
 var transporter = nodemailer.createTransport({
-  host: 'login-111.hoststar.ch',
-  port: 25,
+  host: 'volumax.metanet.ch',
+  port: 587,
   secure: false, // secure:true for port 465, secure:false for port 587
   auth: {
-    user: 'web21p3',
-    pass: process.env.MAILPASS || 'asdf293fjlk'
+    user: 'mail@francoisenussbaumer.ch',
+    pass: process.env.MAILPASS || 'Paraplu1e'
   }
 });
 
@@ -357,4 +357,3 @@ exports.fontTest = function(req, res) {
   res.render('font-test', { title: 'Font Test' });
   return;
 }
-

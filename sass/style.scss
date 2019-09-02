@@ -165,6 +165,9 @@ section#bid-ui {
       margin-bottom: 0.5rem;
       letter-spacing: 0;
     }
+    label#amount-label {
+      width: 100%; // line breaks after this
+    }
     input { 
       margin: auto 0 auto auto;
       padding: 0.25rem;
@@ -264,6 +267,74 @@ a.newsletter-signup:hover {
 form { background: $form-bg; }
 
 form:focus-within { background: $form-bg-active; }
+
+/* dark mode {{{2*/
+/*
+@media (prefers-color-scheme: dark) {
+  nav li, #filter li, #filter h3, p.button, .newsletter-signup, .credits {
+    font-weight: 200;
+  }
+  body {
+    background: #111;
+    color: whitesmoke;
+  }
+  header h1 a { color: whitesmoke; }
+  p,
+  nav ul li {
+    a,
+    a:link,
+    a:visited { color: $link-passive-dark; }
+    a:focus,
+    a:hover { color: $link-active-dark; }
+  }
+  #filter h3 { color: whitesmoke; }
+  #filter ul {
+    border-top: 1px solid whitesmoke;
+    border-bottom: 1px solid whitesmoke;
+    li {
+      a,
+      a:link,
+      a:visited { color: whitesmoke; }
+      a:focus,
+      a:hover { color: whitesmoke; }
+      a.inactive { color: gray; }
+    }
+  }
+  #image-container p#auction-button { background: hsl(240, 40%, 40%); }
+  p.button,
+  #image-container:hover p#auction-button {
+    background: hsl(240, 50%, 50%);
+    a { color: whitesmoke; }
+  }
+  p.button:hover,
+  #image-container p#auction-button:hover {
+    background: hsl(240, 70%, 60%);
+    a { color: white; } 
+  }
+  a.newsletter-signup {
+    color: whitesmoke;
+    background: hsl(240, 50%, 50%);
+    border: none;
+  }
+  a.newsletter-signup:hover {
+    background: hsl(240, 70%, 60%);
+    color: white;
+  }
+  footer {
+      a:link,
+      a:visited { color: whitesmoke; }
+      a:focus,
+      a:hover { color: $link-active-dark; }
+  }
+  svg path { fill: whitesmoke; }
+  .contact-instagram-link:hover {
+    svg {
+      path { fill: hsl(240, 100%, 75%); }
+    }
+  }
+}
+*/
+/* dark mode }}}2*/
 
 /* Colors }}}*/
 
@@ -491,12 +562,15 @@ form#delete-form button { display: block; }
   form#article-create-form label {
     grid-column: 2;
     align-self: center;
+    justify-self: end;
   }
   form#article-create-form input {
     grid-column: 3;
     width: 100%;
     margin: 0;
     padding: 0;
+    font-family: $input;
+    font-size: 0.7rem;
   }
 
   /* Administration: Bild-Details*/
@@ -555,12 +629,16 @@ form#delete-form button { display: block; }
   dl#admin-user-details dd{
     grid-column: 3;
   }
+  dl#admin-bid-list dt,
   dl#admin-bid-details dt,
   dl#admin-bid-delete dt,
   dl#admin-user-details dt { justify-self: end; }
+  dl#admin-bid-list dd,
   dl#admin-bid-details dd,
   dl#admin-bid-delete dd,
-  dl#admin-user-details dd { justify-self: start; }
+  dl#admin-user-details dd {
+    justify-self: start;
+  }
 } /**/
 
 /* Media Queries */
