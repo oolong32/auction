@@ -94,7 +94,7 @@ exports.article_create_post = function(req, res, next) {
   //Create a genre object with escaped and trimmed data.
   var article = new Article(
     { title: req.body.title,
-      description: req.body.description,
+      description: req.body.description.replace(/ x /, ' × '),
       start_price: req.body.base_price, // Grundpreis, ändert sich nicht
       base_price: req.body.base_price - 10, // Trick 77, damit es richtig beginnt
       instant_buy_price: req.body.instant_buy_price,
@@ -195,7 +195,7 @@ exports.article_update_post = function(req, res, next) {
     // create article
     article = new Article(
       { title: req.body.title,
-        description: req.body.description,
+        description: req.body.description.replace(/ x /, ' × '),
         start_price: req.body.base_price,
         base_price: req.body.base_price, // dieses Feld wird später mit jedem Gebot erhöht
         instant_buy_price: req.body.instant_buy_price,
