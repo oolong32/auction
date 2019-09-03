@@ -5,7 +5,7 @@
 /* Variables }}}*/
 /* Root/Body {{{*/
 :root {
-  font-family: "DomaineSansTextTest-Light", "DomaineSansText", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: "DomaineSansText", "DomaineSansTextTest-Light", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-weight: 300;
   font-size: 100%;
   line-height: 1.3;
@@ -124,7 +124,7 @@ section#bid-ui {
     flex-wrap: wrap;
     justify-content: center; }
     section#bid-ui form label {
-      font-family: "DomaineSansTextTest-Light", "DomaineSansText", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      font-family: "DomaineSansText", "DomaineSansTextTest-Light", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
       font-size: 1rem;
       text-align: center;
       text-transform: none;
@@ -450,7 +450,7 @@ form {
 
 form input {
   box-sizing: border-box;
-  font-family: "DomaineSansTextTest-Light", "DomaineSansText", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: "DomaineSansText", "DomaineSansTextTest-Light", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 1em;
   font-weight: 300;
   display: block;
