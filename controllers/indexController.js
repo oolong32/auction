@@ -232,14 +232,16 @@ mail@francoisenussbaumer.ch` // plain text body
         mailLog(`Message %s sent: %s`, info.messageId, info.response);
       }); 
 
-      // Confirmation mail to bidder
+      // Confirmation mail to auctioner
       // change admin address depending on environment
-      var adminAddress = (req.app.get('env') != 'development') ? '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>' : '"Josef Renner" <josef.renner@gmail.com>';
+      var adminAddress = (req.app.get('env') != 'development')
+        ? '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>'
+        : '"Josef Renner" <josef.renner@gmail.com>';
       var confirmationMailOptions = {
         from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>',
         to: adminAddress,
-        subject: 'Gebot eingegangen', // Subject
-        text: `${username} hat ${bid.amount}.— geboten.`// plain text body
+        subject: 'Gebot eingegangen',
+        text: `${username} hat ${bid.amount}.— geboten.`
       }; 
       transporter.sendMail(confirmationMailOptions, function(error, info) {
         if (error) {
@@ -313,12 +315,14 @@ mail@francoisenussbaumer.ch` // plain text body
           }); 
 
           // change admin address depending on environment
-          var adminAddress = (req.app.get('env') != 'development') ? '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>' : '"Josef Renner" <josef.renner@gmail.com>';
+          var adminAddress = (req.app.get('env') != 'development')
+              ? '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>'
+              : '"Josef Renner" <josef.renner@gmail.com>';
           var confirmationMailOptions = {
-            from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>', // sender address
-            to: adminAddress, // list of receivers
-            subject: `Versteigert: ${updated_article.title}`, // Subject
-            text: `${user[0].name} (${user[0].email}) hat das Bild «${updated_article.title}» für ${bid.amount} CHF ersteigert.` // plain text body
+            from: '"Françoise Nussbaumer" <mail@francoisenussbaumer.ch>',
+            to: adminAddress,
+            subject: `Versteigert: ${updated_article.title}`,
+            text: `${user[0].name} (${user[0].email}) hat das Bild «${updated_article.title}» für ${bid.amount} CHF ersteigert.`
           }; 
           transporter.sendMail(confirmationMailOptions, function(error, info) {
             if (error) {

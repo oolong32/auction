@@ -13,25 +13,38 @@ $section-margin: 3rem;
 $baseCol: 0;
 $contrast: ($baseCol + 90) % 360;
 $bg: ($baseCol - 160);
-$col: hsl($baseCol, 100%, 0%);
-$headCol: hsl(25, 0%, 0%); 
-$accent: hsl($contrast, 80%, 40%);
-$background: hsl($bg, 15%, 100%);
-$backgroundLight: hsl($bg, 15%, 90%);
 
-// neu august 19
+$accent: hsl($contrast, 80%, 40%);
+$accent-dark: hsl(($contrast - 60)%360, 70%, 50%);
 
 $baseCol: 210;
 
 $bg:      hsl($baseCol, 0%, 96%);
+$bg-dark: hsl($baseCol, 0%, 7%);
+
 $form-bg: hsl($baseCol, 0%, 90%);
-$line-color: hsl($baseCol, 0%, 70%);
 $form-bg-active: hsl($baseCol, 20%, 90%);
-$information-bg: hsl($baseCol, 0%, 90%);
+
+$form-bg-dark: hsl($baseCol, 0%, 15%);
+$form-bg-dark-active: hsl($baseCol, 20%, 18%);
+
+$line-color: hsl($baseCol, 0%, 70%);
+$line-color-dark: hsl($baseCol, 0%, 40%) ;
 
 $link-passive: hsl(250, 80%, 60%);
 $link-active: hsl(250, 100%, 50%);
 
+$link-passive-dark: hsl(240, 90%, 70%);
+$link-active-dark: hsl(240, 100%, 80%);
+
+$button-background: hsl(150, 80%, 65%);
+$button-background-active: hsl(150, 100%, 60%);
+
+$button-background-dark: hsl(240, 50%, 50%);
+$button-background-active-dark: hsl(240, 70%, 60%);
+
+$insta-path-active: hsl(240, 100%, 75%);
+$insta-path-dark-active: hsl(240, 100%, 75%);
 /* Variables }}}*/
 
 /* Root/Body {{{*/
@@ -93,7 +106,10 @@ form label {
   letter-spacing: 0.0625rem;
 }
 
-form label { text-align: left; }
+form label { 
+  text-align: left;
+  margin-bottom: 0.25rem;
+}
 
 .currency,
 .smallcaps { font-variant-caps: all-small-caps; }
@@ -136,20 +152,16 @@ main img { max-width: 100%; }
 
 /* Bieten Formular {{{2*/
 section#bid-ui {
-  background: $form-bg;
   border-radius: 0.25rem;
   padding: 1rem 1rem 1.25rem;
   div#user-info {
     padding-bottom: 0.75rem;
     margin-bottom: 1rem;
-    border-bottom: 1px solid $line-color;
     h4 { font-family: $input; }
-    #username {}
   }
   form {
     display: flex;
     flex-direction: column;
-    background: transparent;
     margin-bottom: 2rem;
     padding: 1rem 0 0;
     display: flex;
@@ -177,14 +189,12 @@ section#bid-ui {
     }
     button { 
       font-size: 1rem;
-      font-weight: $text;
       width: max-content;
       margin: auto auto auto 1rem;
     }
   }
   div#instant-buy {
     #instant-buy-info { margin-bottom: 0.5rem; }
-    #instant-buy-button {}
   }
   div#register-login {
     p { margin-bottom: 0.5rem; }
@@ -192,14 +202,10 @@ section#bid-ui {
       width: max-content;
       margin: 0 auto 2rem;
     }
-    #register {
-      margin-bottom: 0;
-    }
-
+    #register { margin-bottom: 0; } 
   }
 }
 /* Bieten Formular }}}2*/
-
 
 div#register-login { // Anmelde-Buttons auf /index
 }
@@ -215,8 +221,9 @@ a { text-decoration: none; }
 
 /* Colors {{{*/
 
+/* default (light) mode {{{2*/
 body {
-  background: whitesmoke;
+  background: $bg;
   color: black;
 }
 
@@ -227,6 +234,8 @@ a:visited { color: $link-passive; }
 a:focus,
 a:hover { color: $link-active; }
 
+ul#admin-user-list li,
+ul#admin-article-list li,
 header, footer {
     a:link,
     a:visited { color: black; }
@@ -236,49 +245,68 @@ header, footer {
     a:active { color: $link-active; }
 }
 
-
 a.newsletter-signup {
   color: black;
-  background: hsl(150, 80%, 65%);
+  background: $button-background;
 }
 
 a.newsletter-signup:hover {
   color: black;
-  background: hsl(150, 100%, 60%);
+  background: $button-background-active;
 }
 
 .contact-instagram-link:hover {
   svg {
-    path { fill: hsl(240, 100%, 75%); }
+    path { fill: $insta-path-active; }
   }
 }
 
 .box-button {
-  background: hsl(150, 80%, 65%);
+  background: $button-background;
   a { color: black; }
 }
 
 .box-button:hover,
 #image-container p#auction-button:hover {
-  background:  hsl(150, 100%, 60%);
+  background:  $button-background-active;
   a { color: black; }
 }
+.top-secret,
+.error-message { color: $accent; }
 
-form { background: $form-bg; }
-
+form { 
+  color: white;
+  background: $form-bg;
+}
 form:focus-within { background: $form-bg-active; }
 
+section#bid-ui {
+  background: $form-bg;
+  div#user-info { border-bottom: 1px solid $line-color; }
+  form {
+    background: transparent;
+    button { font-weight: $text; }
+  }
+}
+/* default (light) mode }}}2*/
+
 /* dark mode {{{2*/
-/*
 @media (prefers-color-scheme: dark) {
-  nav li, #filter li, #filter h3, p.button, .newsletter-signup, .credits {
+  .box-button,
+  p.button,
+  a.newsletter-signup p,
+  #user-info h4,
+  form label,
+  form input,
+  #bid-ui form button.box-button,
+  footer .credits { // alles was input ist
     font-weight: 200;
   }
+  #bid-ui form input { font-weight: 300; } // einziges Eingabefeld mit Domaine Sans
   body {
-    background: #111;
+    background: $bg-dark;
     color: whitesmoke;
   }
-  header h1 a { color: whitesmoke; }
   p,
   nav ul li {
     a,
@@ -287,39 +315,60 @@ form:focus-within { background: $form-bg-active; }
     a:focus,
     a:hover { color: $link-active-dark; }
   }
-  #filter h3 { color: whitesmoke; }
-  #filter ul {
-    border-top: 1px solid whitesmoke;
-    border-bottom: 1px solid whitesmoke;
-    li {
-      a,
-      a:link,
-      a:visited { color: whitesmoke; }
-      a:focus,
-      a:hover { color: whitesmoke; }
-      a.inactive { color: gray; }
-    }
-  }
-  #image-container p#auction-button { background: hsl(240, 40%, 40%); }
-  p.button,
-  #image-container:hover p#auction-button {
-    background: hsl(240, 50%, 50%);
+  p.box-button,
+  p.button {
+    background: $button-background-dark;
     a { color: whitesmoke; }
   }
-  p.button:hover,
-  #image-container p#auction-button:hover {
-    background: hsl(240, 70%, 60%);
+  p.box-button:hover,
+  p.button:hover {
+    background: $button-background-active-dark;
     a { color: white; } 
   }
   a.newsletter-signup {
     color: whitesmoke;
-    background: hsl(240, 50%, 50%);
+    background: $button-background-dark;
     border: none;
   }
   a.newsletter-signup:hover {
-    background: hsl(240, 70%, 60%);
+    background: $button-background-active-dark;
     color: white;
   }
+  .top-secret,
+  .error-message { color: $accent-dark; }
+
+  form { 
+    background: $form-bg-dark;
+    input { 
+      background: hsl(0, 0%, 30%);
+      color: white;
+      border: $line-color-dark;
+    }
+    .box-button,
+    button { 
+      background: $button-background-dark;
+      color: whitesmoke;
+    }
+    .box-button:hover,
+    button:hover {
+      background: $button-background-active-dark;
+      color: white;
+    }
+  }
+  form:focus-within { background: $form-bg-dark-active; }
+
+  section#bid-ui {
+    background: $form-bg-dark;
+    color: white;
+    div#user-info { border-bottom: 1px solid $line-color-dark; }
+    form {
+      background: transparent;
+    }
+  }
+
+  header h1,
+  ul#admin-user-list li,
+  ul#admin-article-list li,
   footer {
       a:link,
       a:visited { color: whitesmoke; }
@@ -329,11 +378,10 @@ form:focus-within { background: $form-bg-active; }
   svg path { fill: whitesmoke; }
   .contact-instagram-link:hover {
     svg {
-      path { fill: hsl(240, 100%, 75%); }
+      path { fill: $insta-path-dark-active; }
     }
   }
 }
-*/
 /* dark mode }}}2*/
 
 /* Colors }}}*/
@@ -413,8 +461,6 @@ a.newsletter-signup:hover { transform: scale(1.1) rotate(-15deg); }
 /* bisher … {{{1*/
 
 .username { text-transform: capitalize; }
-.top-secret,
-.error-message { color: $accent; }
 
 /* Layout Basics (Mobile) */
 
@@ -486,21 +532,6 @@ form input[type='email'],
 form input[type='password'],
 form input[type='textarea'] {
 }
-
-/*
-form button {
-  background: transparent;
-  cursor: pointer;
-  color: $col;
-  // margin-top: 0;
-}
-august 19:  scheint irrelevant
-
-form input[type='submit'] {
-  margin-top: 2em;
-  font-size: 1em;
-}
-*/
 
 form#delete-form { width: 100%; }
 form#delete-form button { display: block; }
@@ -594,14 +625,14 @@ form#delete-form button { display: block; }
   /* Administration: Auflistung Bilder und User */
   ul#admin-user-list,
   ul#admin-article-list {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    grid-gap: 0.25em;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: start;
+    margin: 0 auto;
   }
   ul#admin-user-list li,
   ul#admin-article-list li {
     margin: 0; padding: 0;
-    grid-column: 2;
   }
   ul#admin-user-list li:before,
   ul#admin-article-list li:before {
