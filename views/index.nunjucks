@@ -10,7 +10,12 @@
 
   <section id="article-image">
     <img src="{{ path }}/uploads/{{ article.image_filename }}" alt="{{ article.title }}, {{ article.description }}">
-    <p id="description"><strong>{{ article.title }}</strong><br>{{ article.description }}</p>
+    <p id="title"><strong>{{ article.title }}</strong></p>
+    <p id="description">{{ article.description }}</p>
+
+    {% if not user and article.active %}
+    <p id="price"><span class="currency">CHF</span> {{ article.base_price + 10 if bids else article.start_price }}.—</p>
+    {% endif %}
   </section>
 
   {# Dev Infos (deaktivert) {{{#}
