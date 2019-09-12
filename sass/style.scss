@@ -277,7 +277,7 @@ a.newsletter-signup:hover {
 .error-message { color: $accent; }
 
 form { 
-  color: white;
+  color: black;
   background: $form-bg;
 }
 form:focus-within { background: $form-bg-active; }
@@ -340,6 +340,7 @@ section#bid-ui {
   .error-message { color: $accent-dark; }
 
   form { 
+    color: whitesmoke;
     background: $form-bg-dark;
     input { 
       background: hsl(0, 0%, 30%);

@@ -232,7 +232,7 @@ a.newsletter-signup:hover {
   color: #66b814; }
 
 form {
-  color: white;
+  color: black;
   background: #e6e6e6; }
 
 form:focus-within {
@@ -299,6 +299,7 @@ section#bid-ui {
   .error-message {
     color: #d98026; }
   form {
+    color: whitesmoke;
     background: #262626; }
     form input {
       background: #4d4d4d;
